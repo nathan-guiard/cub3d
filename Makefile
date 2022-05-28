@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/28 19:50:59 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/28 20:45:29 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,7 +20,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra ${INCLUDE}
+CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE}
 
 NAME	= cub3d
 
@@ -42,7 +42,16 @@ save_percent ?= 0
 
 len := $(shell echo ${NAME} | wc -c)
 
-all: ${NAME}
+all:
+	@${MY_MAKE} setup
+	@${MY_MAKE} libft_rule
+	@${MY_MAKE} mlx_rule
+	@echo -ne "\033[10;3H\033[1;32m              Objets deja compiles!\033[m";
+	@echo -ne "\033[16;H\033[?25h"
+	@${MY_MAKE} ${OBJ}
+	@echo -ne "\033[14;3H\033[1;32m               ${NAME} deja compile!\033[m";
+	@echo -ne "\033[16;H\033[?25h"
+	@${MY_MAKE} ${NAME}
 
 .c.o:
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
@@ -53,23 +62,13 @@ all: ${NAME}
 	$(call loading,${percent})
 	@$(eval current=$(shell expr ${current} + 1))
 
-${NAME}: setup libft_rule mlx_rule ${OBJ}
-	@if [[ -f ${NAME} ]] ;	\
-	then;	\
-		printf "\033[14;%dH\033[1;31m${NAME} existe deja!" "3";	\
-	else;	\
-		${CC} ${OBJ} ${CFLAGS} ${LIBFT} ${MLX} -lm -o ${NAME}; \
-		printf "\033[14;%dH\033[1mCompilation de ${NAME} \033[32mterminee\033[1;37m!" "$(shell expr 15 - \( ${len} / 2 \))"; \
-	fi
+${NAME}: ${OBJ}
+	@${CC} ${OBJ} ${CFLAGS} ${LIBFT} ${MLX} -lXext -lX11 -lm -o ${NAME};
+	@printf "\033[14;%dH\033[1mCompilation de ${NAME} \033[32mterminee\033[1;37m!" "$(shell expr 15 - \( ${len} / 2 \))";
 	@${MY_MAKE} end_make
 
 libft_rule:
-	@if [[ -f ${NAME} ]];\
-	then;	\
-		printf "\033[14;%dH\033[1;31m${NAME} existe deja!"	\
-		"3";	\
-	else; \
-		if [[ -f ${LIBFT} ]] ;	\
+	@if [[ -f ${LIBFT} ]] ;	\
 			then;	\
 				echo -ne "\033[4;3H\033[1;32m              Libft deja compilee!\033[m";	\
 			else; \
@@ -79,18 +78,12 @@ libft_rule:
 				then; \
 					echo "\033[11D\033[1;32mOK!        \033[m"; \
 			fi; \
-		fi;	\
-	fi;
+		fi;
 
 mlx_rule:
-	@if [[ -f ${NAME} ]];\
-	then;	\
-		printf "\033[14;%dH\033[1;31m${NAME} existe deja!"	\
-		"3";	\
-	else; \
-		if [[ -f ${MLX} ]] ;	\
+	@if [[ -f ${MLX} ]] ;	\
 			then;	\
-				echo -ne "\033[7;3H\033[1;32m              Mlx deja compilee!\033[m";	\
+				echo -ne "\033[7;3H\033[1;32m               Mlx deja compilee!\033[m";	\
 			else; \
 				echo -ne "\033[7;3HCompilation de la Mlx: \033[33mEn cours...\033[m"; \
 				${MY_MAKE} -C mlx >/dev/null 2>/dev/null; \
@@ -98,8 +91,7 @@ mlx_rule:
 				then; \
 					echo "\033[11D\033[1;32mOK!        \033[m"; \
 			fi; \
-		fi;	\
-	fi;	
+		fi;
 
 setup:
 	@echo -ne "\033[0;0H\033[J\033[?25l"
