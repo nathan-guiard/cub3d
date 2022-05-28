@@ -1,0 +1,12 @@
+srcs/*.o
+
+libft/srcs/*.o
+libft/libft.a
+
+mlx/*.a
+
+cub3d
+a.out
+*test*
+*truc*
+
