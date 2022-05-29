@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/29 19:34:19 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/29 21:58:44 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,8 +41,13 @@
 # define D_KEY			100
 # define S_KEY			115
 
-# define GREEN			0x00ff00
-# define BLACK			0x000000
+# define GREEN			0x0000ff00
+# define BLACK			0x00000000
+# define MENU_COLOR		0x0000af3f
+# define SHADOW_DIFF	0x00007f2f
+# define LIL_SHDW_DIFF	0x00003f1f
+# define THREE_DIFF		0x00003f3f
+
 typedef enum e_status
 {
 	start,
@@ -88,7 +93,7 @@ void	straight_line(t_img *img, t_co start, int len,
 				int direction, int color);
 void	diagonale(t_img *img, t_co start, int len, int direction, int color);
 void	draw_borders(t_img *img, t_co co, int color);
+void	remove_border(t_img *img, t_co co);
 void	draw_first_menu(t_menu *menu);
-
 
 #endif
