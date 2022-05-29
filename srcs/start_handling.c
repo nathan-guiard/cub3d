@@ -1,23 +1,19 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   main.c                                             :+:      :+:    :+:   */
+/*   start_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 19:51:01 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/29 18:59:56 by nguiard          ###   ########.fr       */
+/*   Created: 2022/05/29 18:30:48 by nguiard           #+#    #+#             */
+/*   Updated: 2022/05/29 18:46:28 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	main(int argc, char **argv)
+void	start_handling(int key, t_menu *menu)
 {
-	t_menu	menu;
-
-	menu = init_menu(argc, argv);
-	menu_hooks(&menu);
-	draw_first_menu(&menu);
-	mlx_loop(menu.init);
+	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
+		draw_button(menu, key);
 }

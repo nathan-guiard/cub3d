@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/29 11:59:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/29 18:58:31 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,8 +20,12 @@ t_menu	init_menu(int argc, char **argv)
 	res.argv = argv;
 	res.init = mlx_init();
 	res.win = mlx_new_window(res.init, WIDTH, HEIGTH, "cub3d");
+	res.img.img = mlx_new_image(res.init, WIDTH, HEIGTH);
+	res.img.addr = mlx_get_data_addr(res.img.img, &res.img.bpp, &res.img.line_len, 
+		&res.img.endian);
 	if (argv && argv[1])
 		res.basemap = argv[1];
 	res.status = start;
+	res.last_button = (t_co){.x = INT_MAX, .y = INT_MAX};
 	return (res);
 }

@@ -6,15 +6,20 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/29 12:21:34 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/29 19:02:51 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	srcs/main.c			\
-		srcs/init_menu.c	\
-		srcs/menu_hooks.c	\
-		srcs/quit.c			\
-		srcs/key.c			\
+SRC =	srcs/main.c					\
+		srcs/init_menu.c			\
+		srcs/menu_hooks.c			\
+		srcs/quit.c					\
+		srcs/key.c					\
+		srcs/draw_button.c			\
+		srcs/my_pixel_put.c 		\
+		srcs/straight_line.c		\
+		srcs/start_handling.c		\
+		srcs/draw_first_menu.c		\
 
 SHELL := /bin/zsh
 
@@ -24,7 +29,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE}
+CFLAGS	= -Wall -Werror -Wextra -O3 -g ${INCLUDE}
 
 NAME	= cub3d
 
@@ -50,12 +55,13 @@ all:
 	@${MY_MAKE} setup
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
-	@echo -ne "\033[10;3H\033[1;32m              Objets deja compiles!\033[m";
+	@echo -ne "\033[10;3H\033[1;32mObjets deja compiles!\033[m";
 	@echo -ne "\033[16;H"
 	@make --silent ${OBJ}
-	@echo -ne "\033[14;3H\033[1;32m               ${NAME} deja compile!\033[m";
+	@echo -ne "\033[14;3H\033[1;32m${NAME} deja compile!\033[m";
 	@echo -ne "\033[16;H"
 	@make --silent ${NAME}
+	@${MY_MAKE} end_make
 
 .c.o:
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
@@ -68,13 +74,13 @@ all:
 
 ${NAME}: ${OBJ}
 	@${CC} ${OBJ} ${CFLAGS} ${LIBFT} ${MLX} -lXext -lX11 -lm -o ${NAME};
-	@printf "\033[14;%dH\033[1mCompilation de ${NAME} \033[32mterminee\033[1;37m!" "$(shell expr 15 - \( ${len} / 2 \))";
+	@printf "\033[14;3H\033[1mCompilation de ${NAME} \033[32mterminee\033[1;37m!";
 	@${MY_MAKE} end_make
 
 libft_rule:
 	@if [[ -f ${LIBFT} ]] ;	\
 			then;	\
-				echo -ne "\033[4;3H\033[1;32m              Libft deja compilee!\033[m";	\
+				echo -ne "\033[4;3H\033[1;32mLibft deja compilee!\033[m";	\
 			else; \
 				echo -ne "\033[4;3HCompilation de la libft: \033[33mEn cours...\033[m"; \
 				${MY_MAKE} -C libft >/dev/null; \
@@ -87,7 +93,7 @@ libft_rule:
 mlx_rule:
 	@if [[ -f ${MLX} ]] ;	\
 			then;	\
-				echo -ne "\033[7;3H\033[1;32m               Mlx deja compilee!\033[m";	\
+				echo -ne "\033[7;3H\033[1;32mMlx deja compilee!\033[m";	\
 			else; \
 				echo -ne "\033[7;3HCompilation de la Mlx: \033[33mEn cours...\033[m"; \
 				${MY_MAKE} -C mlx >/dev/null 2>/dev/null; \
