@@ -6,11 +6,15 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/28 20:45:29 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/29 12:21:34 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	srcs/main.c		\
+SRC =	srcs/main.c			\
+		srcs/init_menu.c	\
+		srcs/menu_hooks.c	\
+		srcs/quit.c			\
+		srcs/key.c			\
 
 SHELL := /bin/zsh
 
@@ -47,11 +51,11 @@ all:
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
 	@echo -ne "\033[10;3H\033[1;32m              Objets deja compiles!\033[m";
-	@echo -ne "\033[16;H\033[?25h"
-	@${MY_MAKE} ${OBJ}
+	@echo -ne "\033[16;H"
+	@make --silent ${OBJ}
 	@echo -ne "\033[14;3H\033[1;32m               ${NAME} deja compile!\033[m";
-	@echo -ne "\033[16;H\033[?25h"
-	@${MY_MAKE} ${NAME}
+	@echo -ne "\033[16;H"
+	@make --silent ${NAME}
 
 .c.o:
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
