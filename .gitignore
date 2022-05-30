@@ -4,6 +4,8 @@ font/*.o
 libft/srcs/*.o
 libft/libft.a
 
+*/.*.swp
+
 mlx/*.a
 
 cub3d
