@@ -1,4 +1,5 @@
 srcs/*.o
+font/*.o
 
 libft/srcs/*.o
 libft/libft.a
