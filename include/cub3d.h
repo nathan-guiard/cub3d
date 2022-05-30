@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/29 21:58:44 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/30 15:09:16 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 
 # include "libft.h"
 # include "mlx.h"
+# include "font.h"
 
 # define TRUE			0
 # define FALSE			-42
@@ -53,27 +54,13 @@ typedef enum e_status
 	start,
 }	t_status;
 
-typedef struct s_img
-{
-	void	*img;
-	char	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-
-typedef struct s_co
-{
-	int	x;
-	int	y;
-}	t_co;
-
 typedef	struct s_menu
 {
 	void		*init;
 	void		*win;
 	t_img		img;
 	int			argc;
+	int			button;
 	char		**argv;
 	char		*basemap;
 	t_co		last_button;
@@ -86,13 +73,13 @@ int		quit_everything(void);
 int		key_handling(int key, void *arg);
 void	start_handling(int key, t_menu *menu);
 
-/*	Menu drawing															*/
+/*	Menu drawing			*/
 void	draw_button(t_menu *menu, int key);
 void	my_pixel_put(t_img *img, int x, int y, int color);
 void	straight_line(t_img *img, t_co start, int len, 
-				int direction, int color);
-void	diagonale(t_img *img, t_co start, int len, int direction, int color);
-void	draw_borders(t_img *img, t_co co, int color);
+				int direction);
+void	diagonale(t_img *img, t_co start, int len, int direction);
+void	draw_borders(t_img *img, t_co co);
 void	remove_border(t_img *img, t_co co);
 void	draw_first_menu(t_menu *menu);
 

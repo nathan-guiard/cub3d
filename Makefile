@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/29 19:02:51 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/30 13:59:25 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -20,6 +20,8 @@ SRC =	srcs/main.c					\
 		srcs/straight_line.c		\
 		srcs/start_handling.c		\
 		srcs/draw_first_menu.c		\
+		font/a_to_e.c				\
+		font/f_to_j.c				\
 
 SHELL := /bin/zsh
 
@@ -56,7 +58,6 @@ all:
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
 	@echo -ne "\033[10;3H\033[1;32mObjets deja compiles!\033[m";
-	@echo -ne "\033[16;H"
 	@make --silent ${OBJ}
 	@echo -ne "\033[14;3H\033[1;32m${NAME} deja compile!\033[m";
 	@echo -ne "\033[16;H"
@@ -65,7 +66,8 @@ all:
 
 .c.o:
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}
+	@echo -ne "\033[16;H"
+	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}	
 	@$(eval percent=$(shell expr ${current} "*" 100 / ${total}))
 	@echo -ne "\033[11;3H"
 	@printf "%d/%d:   \t\t%d%%" ${current} ${total} ${percent}

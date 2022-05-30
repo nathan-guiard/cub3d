@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/29 18:58:31 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/30 11:32:48 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,7 @@ t_menu	init_menu(int argc, char **argv)
 	if (argv && argv[1])
 		res.basemap = argv[1];
 	res.status = start;
-	res.last_button = (t_co){.x = INT_MAX, .y = INT_MAX};
+	res.last_button = (t_co){.x = 400, .y = 500};
+	res.button = 0;
 	return (res);
 }
