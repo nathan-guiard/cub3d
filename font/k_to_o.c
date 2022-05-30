@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:21:31 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 17:48:14 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/30 21:00:01 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,25 +85,25 @@ void	ft_m(t_img *img, t_co co, int size)
 void	ft_n(t_img *img, t_co co, int size)
 {
 	straight_line(img, (t_co){.x = co.x, .y = co.y,
-		.color = co.color}, 6 * size, DIR_X);
+		.color = co.color}, 3 * size, DIR_X);
 	straight_line(img, (t_co){.x = co.x, .y = co.y + 10 * size,
-		.color = co.color}, 2 * size, DIR_X);
+		.color = co.color}, 3 * size, DIR_X);
 	straight_line(img, (t_co){.x = co.x, .y = co.y,
 		.color = co.color}, 10 * size, DIR_Y);
 	straight_line(img, (t_co){.x = co.x + 10 * size, .y = co.y,
 		.color = co.color}, 10 * size, DIR_Y);
-	straight_line(img, (t_co){.x = co.x + 2 * size, .y = co.y + 8 * size,
-		.color = co.color}, 2 * size, DIR_Y);
-	straight_line(img, (t_co){.x = co.x + 4 * size, .y = co.y + 10 * size,
-		.color = co.color}, 6 * size, DIR_X);
-	straight_line(img, (t_co){.x = co.x + size * 8, .y = co.y,
-		.color = co.color}, 2 * size, DIR_X);
-	diagonale(img, (t_co){.x = co.x + size * 6, .y = co.y,
-		.color = co.color}, 2 * size, DOWNSIDE);
-	diagonale(img, (t_co){.x = co.x + size * 2, .y = co.y + 8 * size,
-		.color = co.color}, 2 * size, DOWNSIDE);
+	straight_line(img, (t_co){.x = co.x + 3 * size, .y = co.y + 6 * size,
+		.color = co.color}, 4 * size, DIR_Y);
+	straight_line(img, (t_co){.x = co.x + 7 * size, .y = co.y + 10 * size,
+		.color = co.color}, 3 * size, DIR_X);
+	straight_line(img, (t_co){.x = co.x + size * 7, .y = co.y,
+		.color = co.color}, 3 * size, DIR_X);
+	diagonale(img, (t_co){.x = co.x + size * 3, .y = co.y,
+		.color = co.color}, 4 * size, DOWNSIDE);
+	diagonale(img, (t_co){.x = co.x + size * 3, .y = co.y + 6 * size,
+		.color = co.color}, 4 * size, DOWNSIDE);
 	straight_line(img, (t_co){.x = co.x + 7 * size, .y = co.y,
-		.color = co.color}, 2 * size, DIR_Y);
+		.color = co.color}, 4 * size, DIR_Y);
 }
 
 void	ft_o(t_img *img, t_co co, int size)
