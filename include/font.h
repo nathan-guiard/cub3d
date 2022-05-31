@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:03:56 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 15:14:06 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/31 14:54:52 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,5 +67,7 @@ void	ft_8(t_img *img, t_co co, int size);
 void	ft_9(t_img *img, t_co co, int size);
 void	ft_dot(t_img *img, t_co co, int size);
 void	ft_slash(t_img *img, t_co co, int size);
+
+void	mlx_putstr(t_img *img, char *str, t_co co, int size);
 
 #endif
