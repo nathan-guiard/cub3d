@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 15:09:16 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/31 17:19:31 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,7 @@
 # define MENU_COLOR		0x0000af3f
 # define SHADOW_DIFF	0x00007f2f
 # define LIL_SHDW_DIFF	0x00003f1f
-# define THREE_DIFF		0x00003f3f
+# define THREE_DIFF		0x00003f7f
 
 typedef enum e_status
 {
@@ -82,5 +82,6 @@ void	diagonale(t_img *img, t_co start, int len, int direction);
 void	draw_borders(t_img *img, t_co co);
 void	remove_border(t_img *img, t_co co);
 void	draw_first_menu(t_menu *menu);
+void	draw_releif(t_img *img, t_co co, int size);
 
 #endif

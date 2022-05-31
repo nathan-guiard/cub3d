@@ -6,21 +6,11 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/31 14:54:31 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/31 17:22:28 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	srcs/main.c					\
-		srcs/init_menu.c			\
-		srcs/menu_hooks.c			\
-		srcs/quit.c					\
-		srcs/key.c					\
-		srcs/draw_button.c			\
-		srcs/my_pixel_put.c 		\
-		srcs/straight_line.c		\
-		srcs/start_handling.c		\
-		srcs/draw_first_menu.c		\
-		font/a_to_e.c				\
+SRC =	font/a_to_e.c				\
 		font/f_to_j.c				\
 		font/k_to_o.c				\
 		font/p_to_t.c				\
@@ -30,6 +20,17 @@ SRC =	srcs/main.c					\
 		font/five_to_nine.c			\
 		font/zero_dot_slash.c		\
 		font/mlx_putstr.c			\
+		srcs/init_menu.c			\
+		srcs/menu_hooks.c			\
+		srcs/quit.c					\
+		srcs/key.c					\
+		srcs/draw_button.c			\
+		srcs/my_pixel_put.c 		\
+		srcs/straight_line.c		\
+		srcs/start_handling.c		\
+		srcs/main.c					\
+		srcs/draw_first_menu.c		\
+		srcs/draw_releif.c			\
 
 SHELL := /bin/zsh
 
@@ -65,9 +66,9 @@ all:
 	@${MY_MAKE} setup
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
-	@echo -ne "\033[10;3H\033[1;32mObjets deja compiles!\033[m";
+	@echo -ne "\033[10;3H\033[1;32mObjets deja compliés!\033[m";
 	@make --silent ${OBJ}
-	@echo -ne "\033[14;3H\033[1;32m${NAME} deja compile!\033[m";
+	@echo -ne "\033[14;3H\033[1;32m${NAME} deja complié!\033[m";
 	@echo -ne "\033[16;H"
 	@make --silent ${NAME}
 	@${MY_MAKE} end_make
@@ -90,7 +91,7 @@ ${NAME}: ${OBJ}
 libft_rule:
 	@if [[ -f ${LIBFT} ]] ;	\
 			then;	\
-				echo -ne "\033[4;3H\033[1;32mLibft deja compilee!\033[m";	\
+				echo -ne "\033[4;3H\033[1;32mLibft deja compliée!\033[m";	\
 			else; \
 				echo -ne "\033[4;3HCompilation de la libft: \033[33mEn cours...\033[m"; \
 				${MY_MAKE} -C libft >/dev/null; \
@@ -103,7 +104,7 @@ libft_rule:
 mlx_rule:
 	@if [[ -f ${MLX} ]] ;	\
 			then;	\
-				echo -ne "\033[7;3H\033[1;32mMlx deja compilee!\033[m";	\
+				echo -ne "\033[7;3H\033[1;32mMlx deja compliée!\033[m";	\
 			else; \
 				echo -ne "\033[7;3HCompilation de la Mlx: \033[33mEn cours...\033[m"; \
 				${MY_MAKE} -C mlx >/dev/null 2>/dev/null; \

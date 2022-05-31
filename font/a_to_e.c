@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 12:06:20 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 15:18:21 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/31 17:12:03 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	ft_b(t_img *img, t_co co, int size)
 	diagonale(img, (t_co){.x = co.x + 9 * size, .y = co.y + (5 * size), .color = co.color}, size, UPSIDE);
 	diagonale(img, (t_co){.x = co.x + (9 * size), .y = co.y + 10 * size, .color = co.color}, size, UPSIDE);
 	straight_line(img, (t_co){.x = co.x + 5 * size, .y = co.y + 5 * size, .color = co.color}, 4 * size, DIR_X);
+	straight_line(img, (t_co){.x = co.x + 4 * size, .y = co.y + 2.5 *size, .color = co.color}, 2 * size, DIR_X);
+	straight_line(img, (t_co){.x = co.x + 4 * size, .y = co.y + 7.5 *size, .color = co.color}, 2 * size, DIR_X);
 }
 
 void	ft_c(t_img *img, t_co co, int size)
