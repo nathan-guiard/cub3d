@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 21:25:24 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/05/31 14:21:20 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ void	draw_box(t_img *img, t_co start , t_co end);
 
 void	draw_first_menu(t_menu *menu)
 {
-	ft_1(&menu->img, (t_co){.x = 900, .y = 500, 0x00ffffff}, 25);
+	ft_slash(&menu->img, (t_co){.x = 900, .y = 500, 0x00ffffff}, 25);
 	draw_box(&menu->img, (t_co){.x = 320, .y = 35, .color = 0x00001700}, (t_co){.x = 880, .y = 185});
 	draw_button(menu, DOWN_KEY);
 	draw_cub3d(&menu->img, 360, 70, MENU_COLOR);

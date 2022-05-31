@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/30 19:39:35 by nguiard          ###   ########.fr        #
+#    Updated: 2022/05/31 14:15:11 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,9 @@ SRC =	srcs/main.c					\
 		font/p_to_t.c				\
 		font/u_to_w.c				\
 		font/x_to_z.c				\
+		font/one_to_four.c			\
+		font/five_to_nine.c			\
+		font/zero_dot_slash.c		\
 
 SHELL := /bin/zsh
 
