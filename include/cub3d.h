@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/01 17:43:27 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/01 21:37:41 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@
 # define TITLE_X		210
 # define TITLE_Y		85
 
+# define ANIM_LOOP		25
+
 typedef enum e_status
 {
 	start,
@@ -64,11 +66,43 @@ typedef	struct s_menu
 	t_img		img;
 	int			argc;
 	int			button;
+	int			key_pressed;
 	char		**argv;
 	char		*basemap;
 	t_co		last_button;
 	t_status	status;
 }	t_menu;
+
+typedef struct s_bres
+{
+	int	x;
+	int	x1;
+	int	x2;
+	int	y;
+	int	y1;
+	int	y2;
+	int	dx;
+	int	dy;
+	int	e;
+	int	e10;
+	int e01;
+}	t_bres;
+
+typedef struct s_set
+{
+	t_co	a;
+	t_co	b;
+}	t_set;
+
+typedef struct s_math
+{
+	int	dx;
+	int	dy;
+	int	sx;
+	int	sy;
+	int	err;
+	int	e2;
+}	t_math;
 
 t_menu	init_menu(int argc, char **argv);
 void	menu_hooks(t_menu *menu);
@@ -87,5 +121,12 @@ void	remove_border(t_img *img, t_co co);
 void	draw_first_menu(t_menu *menu);
 void	draw_releif(t_img *img, t_co co, int size);
 void	draw_menu(t_menu *menu);
+
+/*	Animation				*/
+void	menu_bg_animation(t_menu *menu);
+void	menu_bg_line(t_img img, t_co start, t_co end);
+t_math	init_mathline(t_set set);
+t_co	base_set(t_set set);
+int		check_base(t_set set, t_co base);
 
 #endif

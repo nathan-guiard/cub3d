@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/01 17:42:05 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/01 18:02:42 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,12 @@ void	draw_box(t_img *img, t_co start , t_co end)
 
 void	draw_menu(t_menu *menu)
 {
+	draw_box(&menu->img, (t_co){.x = TITLE_X - 30, .y = TITLE_Y - 30,
+		.color = 0x00202020}, (t_co){.x = TITLE_X + 810, .y = TITLE_Y + 110});
+	draw_box(&menu->img, (t_co){.x = 400, .y = 500,
+		.color = 0x00202020}, (t_co){.x = 800, .y = 700});
+	draw_box(&menu->img, (t_co){.x = 400, .y = 250,
+		.color = 0x00202020}, (t_co){.x = 800, .y = 450});
 	mlx_putstr(&menu->img, "cub", (t_co){.x = TITLE_X, .y = TITLE_Y,
 		MENU_COLOR}, 10);
 	mlx_putstr(&menu->img, "d", (t_co){.x = TITLE_X + 700, .y = TITLE_Y,

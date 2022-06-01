@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/05/31 17:22:28 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/01 20:04:45 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,6 +31,9 @@ SRC =	font/a_to_e.c				\
 		srcs/main.c					\
 		srcs/draw_first_menu.c		\
 		srcs/draw_releif.c			\
+		srcs/menu_bg_animation.c	\
+		srcs/menu_bg_line.c			\
+		srcs/menu_math.c			\
 
 SHELL := /bin/zsh
 
@@ -40,7 +43,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 -g ${INCLUDE}
+CFLAGS	= -Wall -Werror -Wextra -O3 -g -fsanitize=address ${INCLUDE}
 
 NAME	= cub3d
 
