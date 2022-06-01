@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:26:37 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/31 17:33:07 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/01 17:18:09 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	mlx_putstr(t_img *img, char *str, t_co co, int size)
 		if (ft_isalpha(str[i]) || ft_isdigit(str[i]) ||
 			str[i] == '/' || str[i] == ' ' || str[i] == '.')
 		{
-			printf("%s: (%c): %d\n", str, str[i], co.x);
 			if (ft_isalpha(str[i]))
 				tab[str[i] - 'A'](img, co, size);
 			if (ft_isdigit(str[i]))

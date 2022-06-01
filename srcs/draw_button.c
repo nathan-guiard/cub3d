@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 12:32:25 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 15:32:27 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/01 17:48:51 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,12 +18,23 @@ void	draw_button(t_menu *menu, int key)
 		menu->button--;
 	else if ((key == DOWN_KEY || key == LEFT_KEY) && menu->button != MENU_BUTTONS)
 		menu->button++;
+	else if (key == 0)
+		;
 	else
 		return ;
 	remove_border(&menu->img, menu->last_button);
-	draw_borders(&menu->img, (t_co){.x = 400, 
-		.y = 250 + ((menu->button - 1) * 250), .color = MENU_COLOR});
-	menu->last_button = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
+	if (menu->button == 1 && key != 0)
+	{
+		draw_borders(&menu->img, (t_co){.x = 400, 
+			.y = 250 + ((menu->button - 1) * 250), .color = MENU_COLOR});
+		menu->last_button = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
+	}
+	else if (menu->button == 2 && key != 0)
+	{
+		draw_borders(&menu->img, (t_co){.x = 400, 
+			.y = 250 + ((menu->button - 1) * 250), .color = MENU_COLOR});
+		menu->last_button = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
+	}
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 }
 
