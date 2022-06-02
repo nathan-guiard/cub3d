@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/01 21:37:41 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/02 03:35:10 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,6 +53,9 @@
 # define TITLE_Y		85
 
 # define ANIM_LOOP		25
+# define CARELAGE_LEN	50
+# define CARELAGE_COLOR	0x00ffffff
+# define CARELAGE_RATIO 10
 
 typedef enum e_status
 {

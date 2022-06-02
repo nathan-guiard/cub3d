@@ -1,0 +1,54 @@
+void	carelage(t_menu *menu, int frame)
+{
+	t_co	co;
+
+	co.x = frame;
+	co.y = 0;
+	co.color = BLACK;
+	while (co.x < WIDTH && status == 0)
+	{
+		if (co.x < 600)
+			menu_bg_line(menu->img, co, (t_co)
+				{.x = ((600 - ft_abs(600 - co.x) * CARELAGE_RATIO)), .y = 900});
+		else
+			menu_bg_line(menu->img, co, (t_co)
+				{.x = ((ft_abs(600 - co.x) * CARELAGE_RATIO) + 600), .y = 900});
+		co.x += CARELAGE_LEN;
+	}
+	co.x = frame + 1;
+	co.color = CARELAGE_COLOR;
+	while (co.x < WIDTH && status == 0)
+	{
+		if (co.x < 600)
+			menu_bg_line(menu->img, co, (t_co)
+				{.x = ((600 - ft_abs(600 - co.x) * CARELAGE_RATIO)), .y = 900});
+		else
+			menu_bg_line(menu->img, co, (t_co)
+				{.x = ((ft_abs(600 - co.x) * CARELAGE_RATIO) + 600), .y = 900});
+		co.x += CARELAGE_LEN;
+	}
+}
+
+void	put_carelage_x(t_menu *menu)
+{
+	t_co	co;
+
+	co.x = 0;
+	co.color = CARELAGE_COLOR;
+	co.y = 30;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 90;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 170;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 280;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 390;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 520;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 670;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	co.y = 840;
+	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+}
