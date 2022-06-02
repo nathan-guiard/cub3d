@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:18:36 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/02 03:35:36 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/02 04:22:20 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,7 +54,7 @@ void	carelage(t_menu *menu, int frame)
 		co.x += CARELAGE_LEN;
 	}
 	co.x = frame + 1;
-	co.color = CARELAGE_COLOR;
+	co.color = MENU_COLOR + THREE_DIFF - SHADOW_DIFF;
 	while (co.x < WIDTH)
 	{
 		if (co.x < 600)
@@ -72,21 +72,21 @@ void	put_carelage_x(t_menu *menu)
 	t_co	co;
 
 	co.x = 0;
-	co.color = CARELAGE_COLOR;
+	co.color = MENU_COLOR + THREE_DIFF - SHADOW_DIFF;
 	co.y = 30;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 90;
+	co.y = 100;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 170;
+	co.y = 200;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 280;
+	co.y = 330;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 390;
+	co.y = 490;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 520;
+	co.y = 680;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 670;
-	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
-	co.y = 840;
-	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	//co.y = 730;
+	//menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
+	//co.y = 900;
+	//menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
 }

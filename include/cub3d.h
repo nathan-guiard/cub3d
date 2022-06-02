@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/02 03:35:10 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/02 03:37:40 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@
 # define TITLE_X		210
 # define TITLE_Y		85
 
-# define ANIM_LOOP		25
+# define ANIM_LOOP		100
 # define CARELAGE_LEN	50
 # define CARELAGE_COLOR	0x00ffffff
 # define CARELAGE_RATIO 10
