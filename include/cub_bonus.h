@@ -144,4 +144,5 @@ int		animation_thread(void *arg);
 /*	Play menu				*/
 void	play_handling(t_menu *menu, int key);
 void	draw_play(t_menu *menu);
+
 #endif
