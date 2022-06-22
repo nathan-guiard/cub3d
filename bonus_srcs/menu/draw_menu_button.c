@@ -1,7 +1,7 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_button.c                                      :+:      :+:    :+:   */
+/*   draw_menu_button.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
@@ -10,9 +10,9 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
-void	draw_button(t_menu *menu, int key)
+void	draw_menu_button(t_menu *menu, int key)
 {
 	if ((key == UP_KEY || key == RIGHT_KEY) && menu->button != 1)
 		menu->button--;

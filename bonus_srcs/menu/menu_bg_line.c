@@ -6,11 +6,11 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:53:56 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/02 04:13:26 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
 void	put_line(t_img img, t_set set, t_math all);
 

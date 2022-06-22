@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 16:10:24 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/22 17:38:29 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -27,21 +27,27 @@ BONUSSRC =	$(addsuffix .c, \
 		zero_dot_slash		\
 		mlx_putstr			\
 		)					\
-		main				\
-		init_menu			\
-		menu_hooks			\
-		quit				\
-		key					\
-		draw_button			\
-		my_pixel_put 		\
-		straight_line		\
-		start_handling		\
-		draw_first_menu		\
-		draw_releif			\
+		$(addprefix menu/,	\
 		menu_bg_animation	\
 		menu_bg_line		\
 		menu_math			\
 		menu_thread			\
+		draw_first_menu		\
+		draw_releif			\
+		draw_menu_button	\
+		start_handling		\
+		menu_hooks			\
+		)					\
+		$(addprefix play/,	\
+		draw_play			\
+		play_handling		\
+		)					\
+		main				\
+		init_menu			\
+		quit				\
+		key					\
+		my_pixel_put 		\
+		straight_line		\
 		)					\
 		)
 
@@ -116,6 +122,16 @@ bonus_obj/font/%.o: bonus_srcs/font/%.c
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
 	@echo -ne "\033[16;H"
 	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/font/%.c=bonus_obj/font/%.o}	
+	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
+	@echo -ne "\033[11;3H"
+	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
+	$(call loading,${percent})
+	@$(eval current=$(shell expr ${current} + 1))
+
+bonus_obj/menu/%.o: bonus_srcs/menu/%.c
+	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
+	@echo -ne "\033[16;H"
+	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/menu/%.c=bonus_obj/menu/%.o}	
 	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
 	@echo -ne "\033[11;3H"
 	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
@@ -215,4 +231,4 @@ fclean:
 clean:
 	@rm -rf ${OBJ} ${BONUSOBJ}
 
-.PHONY: clean fclean re end_make all setup libft_rule
+.PHONY: clean fclean re end_make all setup libft_rule bonus

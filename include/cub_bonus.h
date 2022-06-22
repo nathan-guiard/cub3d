@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub3d.h                                            :+:      :+:    :+:   */
+/*   cub_bonus.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:19:30 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:39:04 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,6 +61,7 @@
 typedef enum e_status
 {
 	start,
+	play,
 }	t_status;
 
 typedef	struct s_menu
@@ -116,7 +117,7 @@ int		key_handling(int key, void *arg);
 void	start_handling(int key, t_menu *menu);
 
 /*	Menu drawing			*/
-void	draw_button(t_menu *menu, int key);
+void	draw_menu_button(t_menu *menu, int key);
 void	my_pixel_put(t_img *img, int x, int y, int color);
 void	straight_line(t_img *img, t_co start, int len, 
 				int direction);
@@ -139,4 +140,8 @@ t_co	base_set(t_set set);
 int		check_base(t_set set, t_co base);
 int		animation_thread(void *arg);
 
+
+/*	Play menu				*/
+void	play_handling(void);
+void	draw_play(t_menu *menu);
 #endif

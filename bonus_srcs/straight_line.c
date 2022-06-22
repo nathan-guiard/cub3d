@@ -6,11 +6,11 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 13:02:03 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/31 17:30:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
 void	straight_line(t_img *img, t_co start, int len, int direction)
 {

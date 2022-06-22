@@ -6,11 +6,11 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 16:21:31 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/30 21:00:01 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
 void	ft_k(t_img *img, t_co co, int size)
 {

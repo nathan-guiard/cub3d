@@ -6,11 +6,11 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:26:37 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/01 17:18:09 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
 static char	real_toupper(unsigned int i, char c)
 {

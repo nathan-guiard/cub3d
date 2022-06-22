@@ -1,19 +1,20 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   menu_hooks.c                                       :+:      :+:    :+:   */
+/*   start_handling.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 20:59:38 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/28 21:08:36 by nguiard          ###   ########.fr       */
+/*   Created: 2022/05/29 18:30:48 by nguiard           #+#    #+#             */
+/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
-void	menu_hooks(t_menu *menu)
+void	start_handling(int key, t_menu *menu)
 {
-	mlx_hook(menu->win, 33, 0, quit_everything, menu);
-	mlx_key_hook(menu->win, key_handling, menu);
+	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
+		draw_menu_button(menu, key);
+	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 }
