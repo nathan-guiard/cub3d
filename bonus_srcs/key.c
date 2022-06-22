@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:09:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 18:06:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 18:31:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	key_handling(int key, void *arg)
 	if (menu->status == start)
 		start_handling(key, menu);
 	else if (menu->status == play)
-		play_handling();
+		play_handling(menu, key);
 	return (0);
 }
