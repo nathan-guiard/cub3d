@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 17:38:29 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/22 18:13:54 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ BONUSSRC =	$(addsuffix .c, \
 		draw_play			\
 		play_handling		\
 		)					\
+		draw_box			\
 		main				\
 		init_menu			\
 		quit				\

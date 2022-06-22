@@ -130,7 +130,7 @@ void	draw_menu(t_menu *menu);
 
 void	carelage(t_menu *menu, int frame);
 void	put_carelage_x(t_menu *menu);
-
+void	draw_box(t_menu *menu, t_co start, t_co end);
 
 /*	Animation				*/
 void	*menu_bg_animation(void *menu);

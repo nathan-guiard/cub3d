@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 21:09:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:43:12 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 18:06:49 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ int	key_handling(int key, void *arg)
 	
 	menu = (t_menu *)arg;
 	ft_printf("%d\n", key);
-	if (key == ESC)
+	if (key == ESC && menu->status == start)
 		quit_everything();
 	if (menu->status == start)
 		start_handling(key, menu);

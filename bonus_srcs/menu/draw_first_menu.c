@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 18:15:06 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 void	draw_cub3d(t_img *img, int x, int y, int color);
 void	draw_3(t_img *img, int x, int y, int color);
-void	draw_box(t_img *img, t_co start , t_co end);
 
 void	draw_first_menu(t_menu *menu)
 {
@@ -22,23 +21,6 @@ void	draw_first_menu(t_menu *menu)
 	carelage(menu, -1);
 	put_carelage_x(menu);
 	draw_menu_button(menu, DOWN_KEY);
-}
-
-void	draw_box(t_img *img, t_co start , t_co end)
-{
-	int	save;
-
-	save = start.x;
-	while(start.y < end.y)
-	{
-		while(start.x < end.x)
-		{
-			my_pixel_put(img, start.x, start.y, start.color);
-			start.x++;
-		}
-		start.y++;
-		start.x = save;
-	}
 }
 
 void	draw_menu(t_menu *menu)

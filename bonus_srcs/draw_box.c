@@ -1,20 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   draw_play.c                                        :+:      :+:    :+:   */
+/*   draw_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/06/22 17:35:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 18:13:39 by nguiard          ###   ########.fr       */
+/*   Created: 2022/06/22 18:09:40 by nguiard           #+#    #+#             */
+/*   Updated: 2022/06/22 18:12:06 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-void	draw_play(t_menu *menu)
+void	draw_box(t_menu *menu, t_co start, t_co end)
 {
-	draw_box(menu, (t_co){.x = 0, .y = 0, .color = 0},
-		(t_co){.x = WIDTH, .y = HEIGTH});
-	ft_printf("test\n");
+	int	save;
+
+	save = start.x;
+	while (start.y < end.y)
+	{
+		start.x = save;
+		while (start.x < end.x)
+		{
+			my_pixel_put(&menu->img, start.x, start.y, start.color);
+			start.x++;
+		}
+		start.y++;
+	}
 }
