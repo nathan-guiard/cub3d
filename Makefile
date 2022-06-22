@@ -6,38 +6,49 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/01 20:04:45 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/22 14:00:39 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC =	font/a_to_e.c				\
-		font/f_to_j.c				\
-		font/k_to_o.c				\
-		font/p_to_t.c				\
-		font/u_to_w.c				\
-		font/x_to_z.c				\
-		font/one_to_four.c			\
-		font/five_to_nine.c			\
-		font/zero_dot_slash.c		\
-		font/mlx_putstr.c			\
-		srcs/init_menu.c			\
-		srcs/menu_hooks.c			\
-		srcs/quit.c					\
-		srcs/key.c					\
-		srcs/draw_button.c			\
-		srcs/my_pixel_put.c 		\
-		srcs/straight_line.c		\
-		srcs/start_handling.c		\
-		srcs/main.c					\
-		srcs/draw_first_menu.c		\
-		srcs/draw_releif.c			\
-		srcs/menu_bg_animation.c	\
-		srcs/menu_bg_line.c			\
-		srcs/menu_math.c			\
+SRC = srcs/main.c
+
+BONUSSRC =	$(addsuffix .c, \
+		$(addprefix 		\
+		bonus_srcs/,		\
+		$(addprefix font/,  \
+		a_to_e				\
+		f_to_j				\
+		k_to_o				\
+		p_to_t				\
+		u_to_w				\
+		x_to_z				\
+		one_to_four			\
+		five_to_nine		\
+		zero_dot_slash		\
+		mlx_putstr			\
+		)					\
+		main				\
+		init_menu			\
+		menu_hooks			\
+		quit				\
+		key					\
+		draw_button			\
+		my_pixel_put 		\
+		straight_line		\
+		start_handling		\
+		draw_first_menu		\
+		draw_releif			\
+		menu_bg_animation	\
+		menu_bg_line		\
+		menu_math			\
+		)					\
+		)
 
 SHELL := /bin/zsh
 
-OBJ		= ${SRC:.c=.o}
+OBJ		= ${SRC:srcs/%.c=obj/%.o}
+
+BONUSOBJ = ${BONUSSRC:bonus_srcs/%.c=bonus_obj/%.o}
 
 CC		= gcc
 
@@ -46,6 +57,8 @@ INCLUDE = -Iinclude/
 CFLAGS	= -Wall -Werror -Wextra -O3 -g -fsanitize=address ${INCLUDE}
 
 NAME	= cub3d
+
+BONUS	= cub_tron_d
 
 LIBFT	= libft/libft.a
 
@@ -76,7 +89,7 @@ all:
 	@make --silent ${NAME}
 	@${MY_MAKE} end_make
 
-.c.o:
+obj/%.o: srcs/%.o
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
 	@echo -ne "\033[16;H"
 	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}	
@@ -86,9 +99,45 @@ all:
 	$(call loading,${percent})
 	@$(eval current=$(shell expr ${current} + 1))
 
+bonus_obj/%.o: bonus_srcs/%.c
+	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
+	@echo -ne "\033[16;H"
+	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/%.c=bonus_obj/%.o}	
+	@$(eval percent=$(shell expr ${current} "*" 100 / ${total}))
+	@echo -ne "\033[11;3H"
+	@printf "%d/%d:   \t\t%d%%" ${current} ${total} ${percent}
+	$(call loading,${percent})
+	@$(eval current=$(shell expr ${current} + 1))
+
+bonus_obj/font/%.o: bonus_srcs/font/%.c
+	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
+	@echo -ne "\033[16;H"
+	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/font/%.c=bonus_obj/font/%.o}	
+	@$(eval percent=$(shell expr ${current} "*" 100 / ${total}))
+	@echo -ne "\033[11;3H"
+	@printf "%d/%d:   \t\t%d%%" ${current} ${total} ${percent}
+	$(call loading,${percent})
+	@$(eval current=$(shell expr ${current} + 1))
+
 ${NAME}: ${OBJ}
 	@${CC} ${OBJ} ${CFLAGS} ${LIBFT} ${MLX} -lXext -lX11 -lm -o ${NAME};
 	@printf "\033[14;3H\033[1mCompilation de ${NAME} \033[32mterminee\033[1;37m!";
+	@${MY_MAKE} end_make
+
+bonus:
+	@${MY_MAKE} setup
+	@${MY_MAKE} libft_rule
+	@${MY_MAKE} mlx_rule
+	@echo -ne "\033[10;3H\033[1;32mObjets deja compliés!\033[m";
+	@make --silent ${BONUSOBJ}
+	@echo -ne "\033[14;3H\033[1;32m${BONUS} deja complié!\033[m";
+	@echo -ne "\033[16;H"
+	@make --silent ${BONUS}
+	@${MY_MAKE} end_make
+
+${BONUS}: ${BONUSOBJ}
+	@${CC} ${BONUSOBJ} ${CFLAGS} ${LIBFT} ${MLX} -lXext -lX11 -lm -lpthread -o ${BONUS};
+	@printf "\033[14;3H\033[1mCompilation de ${BONUS} \033[32mterminee\033[1;37m!";
 	@${MY_MAKE} end_make
 
 libft_rule:
@@ -158,9 +207,9 @@ re: fclean all
 fclean:
 	@make fclean -C libft 1>/dev/null
 	@make clean -C mlx 1>/dev/null
-	@rm -rf ${NAME} ${OBJ}
+	@rm -rf ${NAME} ${BONUS} ${OBJ} ${BONUSOBJ}
 
 clean:
-	@rm -rf ${OBJ}
+	@rm -rf ${OBJ} ${BONUSOBJ}
 
 .PHONY: clean fclean re end_make all setup libft_rule

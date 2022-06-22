@@ -1,5 +1,6 @@
-srcs/*.o
-font/*.o
+*obj/*.o
+*obj/*/*.o
+
 
 libft/srcs/*.o
 libft/libft.a
