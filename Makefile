@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 14:26:30 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/22 14:43:44 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -105,9 +105,9 @@ bonus_obj/%.o: bonus_srcs/%.c
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
 	@echo -ne "\033[16;H"
 	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/%.c=bonus_obj/%.o}	
-	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
+	@$(eval percent=$(shell expr ${current} "*" 100 / ${total}))
 	@echo -ne "\033[11;3H"
-	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
+	@printf "%d/%d:   \t\t%d%%" ${current} ${total} ${percent}
 	$(call loading,${percent})
 	@$(eval current=$(shell expr ${current} + 1))
 
