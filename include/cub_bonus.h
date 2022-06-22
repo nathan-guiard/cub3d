@@ -16,7 +16,8 @@
 # include "libft.h"
 # include "mlx.h"
 # include "font.h"
-# include "pthread.h"
+# include <pthread.h>
+# include <sys/time.h>
 
 # define TRUE			0
 # define FALSE			-42
@@ -66,17 +67,18 @@ typedef enum e_status
 
 typedef	struct s_menu
 {
-	void			*init;
-	void			*win;
-	t_img			img;
-	int				argc;
-	int				button;
-	int				key_pressed;
-	char			**argv;
-	char			*basemap;
-	t_co			last_button;
-	t_status		status;
-	pthread_mutex_t	*mutex_img;
+	void				*init;
+	void				*win;
+	t_img				img;
+	int					argc;
+	int					button;
+	int					key_pressed;
+	char				**argv;
+	char				*basemap;
+	t_co				last_button;
+	t_status			status;
+	pthread_mutex_t		*mutex_img;
+	unsigned long long	base_time;
 }	t_menu;
 
 typedef struct s_bres
@@ -115,6 +117,8 @@ void	menu_hooks(t_menu *menu);
 int		quit_everything(void);
 int		key_handling(int key, void *arg);
 void	start_handling(int key, t_menu *menu);
+
+unsigned long long	get_elapsedtime(unsigned long long base);
 
 /*	Menu drawing			*/
 void	draw_menu_button(t_menu *menu, int key);

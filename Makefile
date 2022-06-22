@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 18:13:54 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/22 19:36:13 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -49,6 +49,7 @@ BONUSSRC =	$(addsuffix .c, \
 		key					\
 		my_pixel_put 		\
 		straight_line		\
+		get_elapsedtime		\
 		)					\
 		)
 

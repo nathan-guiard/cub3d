@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:35:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 19:26:20 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:29:27 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,3 +79,5 @@ static void	draw_arrow2(t_menu *menu, int color)
 	diagonale(&menu->img, (t_co){.x = 76, .y = 460,
 		.color = color}, 10, UPSIDE);
 }
+
+
