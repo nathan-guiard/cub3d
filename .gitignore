@@ -1,5 +1,5 @@
-srcs/*.o
-font/*.o
+*obj/*.o
+*obj/*/*.o
 
 libft/srcs/*.o
 libft/libft.a
@@ -9,6 +9,7 @@ libft/libft.a
 mlx/*.a
 
 cub3d
+cub_tron_d
 a.out
 *test*
 *truc*
