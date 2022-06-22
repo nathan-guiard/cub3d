@@ -6,34 +6,34 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:18:36 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/02 04:22:20 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:16:37 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	carelage(t_menu *menu, int frame);
-void	put_carelage_x(t_menu *menu);
-
-void	menu_bg_animation(t_menu *menu)
+void	*menu_bg_animation(void *arg)
 {
 	static int	i = 0;
+	t_menu		*menu;
 
+	menu = (t_menu *)arg;
 	menu->key_pressed = 0;
-	while (menu->key_pressed != 1)
+	while (1)
 	{
+		usleep(500000);
 		i++;
-		//ft_printf("%d\t\t\t%d\n", i, frame);
-		if (i / ANIM_LOOP == (i - 1) / ANIM_LOOP)
-		{
-			carelage(menu, i / ANIM_LOOP);
-			put_carelage_x(menu);
-			//draw_menu(menu);
-			mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
-		}
-		if (i == 100 * ANIM_LOOP)
+		pthread_mutex_lock(menu->mutex_img);
+		carelage(menu, i);
+		put_carelage_x(menu);
+		pthread_mutex_unlock(menu->mutex_img);
+		mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
+		ft_printf("test %d\n", i);
+		if (i == 100)
 			i = 0;
 	}
+	menu->key_pressed = 0;
+	return (NULL);
 }
 
 void	carelage(t_menu *menu, int frame)
@@ -54,7 +54,7 @@ void	carelage(t_menu *menu, int frame)
 		co.x += CARELAGE_LEN;
 	}
 	co.x = frame + 1;
-	co.color = MENU_COLOR + THREE_DIFF - SHADOW_DIFF;
+	co.color = CARELAGE_COLOR;
 	while (co.x < WIDTH)
 	{
 		if (co.x < 600)
@@ -72,7 +72,7 @@ void	put_carelage_x(t_menu *menu)
 	t_co	co;
 
 	co.x = 0;
-	co.color = MENU_COLOR + THREE_DIFF - SHADOW_DIFF;
+	co.color = CARELAGE_COLOR;
 	co.y = 30;
 	menu_bg_line(menu->img, co, (t_co){.x = WIDTH, .y = co.y});
 	co.y = 100;

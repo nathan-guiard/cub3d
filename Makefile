@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 15:07:11 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/22 16:10:24 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ BONUSSRC =	$(addsuffix .c, \
 		menu_bg_animation	\
 		menu_bg_line		\
 		menu_math			\
+		menu_thread			\
 		)					\
 		)
 
@@ -54,7 +55,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 -g -fsanitize=address ${INCLUDE}
+CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g #-fsanitize=address
 
 NAME	= cub3d
 
@@ -80,7 +81,7 @@ save_percent ?= 0
 
 len := $(shell echo ${NAME} | wc -c)
 
-all:
+all: Makefile
 	@${MY_MAKE} setup
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
@@ -126,7 +127,7 @@ ${NAME}: ${OBJ}
 	@printf "\033[14;3H\033[1mCompilation de ${NAME} \033[32mterminee\033[1;37m!";
 	@${MY_MAKE} end_make
 
-bonus:
+bonus: Makefile
 	@${MY_MAKE} setup
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule

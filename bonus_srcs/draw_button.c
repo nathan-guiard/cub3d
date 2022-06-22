@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 12:32:25 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/01 17:48:51 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 16:29:17 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	draw_button(t_menu *menu, int key)
 			.y = 250 + ((menu->button - 1) * 250), .color = MENU_COLOR});
 		menu->last_button = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
 	}
-	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
+
 }
 
 void	draw_borders(t_img *img, t_co co)

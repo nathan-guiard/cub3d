@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/02 03:37:40 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:19:30 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,7 @@
 # include "libft.h"
 # include "mlx.h"
 # include "font.h"
+# include "pthread.h"
 
 # define TRUE			0
 # define FALSE			-42
@@ -54,7 +55,7 @@
 
 # define ANIM_LOOP		100
 # define CARELAGE_LEN	50
-# define CARELAGE_COLOR	0x00ffffff
+# define CARELAGE_COLOR	0x00007070
 # define CARELAGE_RATIO 10
 
 typedef enum e_status
@@ -64,16 +65,17 @@ typedef enum e_status
 
 typedef	struct s_menu
 {
-	void		*init;
-	void		*win;
-	t_img		img;
-	int			argc;
-	int			button;
-	int			key_pressed;
-	char		**argv;
-	char		*basemap;
-	t_co		last_button;
-	t_status	status;
+	void			*init;
+	void			*win;
+	t_img			img;
+	int				argc;
+	int				button;
+	int				key_pressed;
+	char			**argv;
+	char			*basemap;
+	t_co			last_button;
+	t_status		status;
+	pthread_mutex_t	*mutex_img;
 }	t_menu;
 
 typedef struct s_bres
@@ -125,11 +127,16 @@ void	draw_first_menu(t_menu *menu);
 void	draw_releif(t_img *img, t_co co, int size);
 void	draw_menu(t_menu *menu);
 
+void	carelage(t_menu *menu, int frame);
+void	put_carelage_x(t_menu *menu);
+
+
 /*	Animation				*/
-void	menu_bg_animation(t_menu *menu);
+void	*menu_bg_animation(void *menu);
 void	menu_bg_line(t_img img, t_co start, t_co end);
 t_math	init_mathline(t_set set);
 t_co	base_set(t_set set);
 int		check_base(t_set set, t_co base);
+int		animation_thread(void *arg);
 
 #endif

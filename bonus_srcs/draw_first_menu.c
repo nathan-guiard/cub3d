@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/02 03:36:13 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 17:14:22 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ void	draw_box(t_img *img, t_co start , t_co end);
 void	draw_first_menu(t_menu *menu)
 {
 	draw_menu(menu);
+	carelage(menu, -1);
+	put_carelage_x(menu);
 	draw_button(menu, DOWN_KEY);
 }
 
