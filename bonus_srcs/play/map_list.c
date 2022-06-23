@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:12:20 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 18:22:55 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/23 21:35:20 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,10 +57,10 @@ static char	*treated_string(char *str)
 	char	*to_free;
 
 	res = ft_substr(str, 0, ft_strchr(str, '.') - str);
-	if (ft_strlen(res) <= 15)
+	if (ft_strlen(res) <= MAX_STR_LEN)
 		return (res);
 	to_free = res;
-	res = ft_substr(res, 0, 14);
+	res = ft_substr(res, 0, MAX_STR_LEN - 1);
 	free(to_free);
 	to_free = res;
 	res = ft_strjoin(res, ".");

@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/23 19:14:00 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/23 20:41:42 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -42,6 +42,7 @@ BONUSSRC =	$(addsuffix .c, \
 		draw_play			\
 		play_handling		\
 		map_list			\
+		roulette			\
 		)					\
 		draw_box			\
 		main				\
@@ -115,26 +116,6 @@ bonus_obj/%.o: bonus_srcs/%.c
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
 	@echo -ne "\033[16;H"
 	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/%.c=bonus_obj/%.o}	
-	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
-	@echo -ne "\033[11;3H"
-	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
-	$(call loading,${percent})
-	@$(eval current=$(shell expr ${current} + 1))
-
-bonus_obj/font/%.o: bonus_srcs/font/%.c
-	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
-	@echo -ne "\033[16;H"
-	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/font/%.c=bonus_obj/font/%.o}	
-	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
-	@echo -ne "\033[11;3H"
-	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
-	$(call loading,${percent})
-	@$(eval current=$(shell expr ${current} + 1))
-
-bonus_obj/menu/%.o: bonus_srcs/menu/%.c
-	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
-	@echo -ne "\033[16;H"
-	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/menu/%.c=bonus_obj/menu/%.o}	
 	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
 	@echo -ne "\033[11;3H"
 	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}

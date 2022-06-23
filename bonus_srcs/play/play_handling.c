@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:36:46 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 19:12:01 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/23 21:50:19 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,13 +21,6 @@ void	play_handling(t_menu *menu, int key)
 
 	if (!map_list)
 		map_list = get_map_list();
-	t_list	*test;
-	test = map_list;
-	while (test)
-	{
-		ft_putendl_fd(test->content, 1);
-		test = test->next;
-	}
 	if (key == ESC)
 	{
 		menu->button = 0;
@@ -39,6 +32,14 @@ void	play_handling(t_menu *menu, int key)
 		map_list = destroy_map_list(map_list);
 		menu->status = start;
 		index = 0;
+	}
+	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
+	{
+		if (index < -1)
+			index = -1;
+		if (index > ft_lstsize(map_list) + 1)
+			index = ft_lstsize(map_list) + 1;
+		index = roulette(menu, map_list, key, index);
 	}
 }
 

@@ -61,6 +61,8 @@
 # define CARELAGE_COLOR	0x00007070
 # define CARELAGE_RATIO 10
 
+# define MAX_STR_LEN	14
+
 typedef enum e_status
 {
 	start,
@@ -151,5 +153,8 @@ int		animation_thread(void *arg);
 void	play_handling(t_menu *menu, int key);
 void	draw_play(t_menu *menu);
 t_list	*get_map_list(void);
+int roulette(t_menu *menu, t_list *lst, int key, int index);
+void	put_play_maps(t_menu *menu, char **tab);
+char	**define_map_tab(t_list *lst, int index);
 
 #endif
