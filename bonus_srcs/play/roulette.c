@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 19:24:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 21:45:45 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/23 22:14:02 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ int roulette(t_menu *menu, t_list *lst, int key, int index)
 		index++;
 	else
 		index--;
+	if (index < -2)
+		index = -2;
+	if (index > ft_lstsize(lst) + 1)
+		index = ft_lstsize(lst) + 1;
 	now = define_map_tab(lst, index);
 	erase_play_maps(menu, last);
 	put_play_maps(menu, now);
-	free(now);
-	free(last);
+	custom_free_tabtab(now);
+	custom_free_tabtab(last);
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 	return (index);
 }
@@ -45,7 +49,7 @@ char	**define_map_tab(t_list *lst, int index)
 	{
 		buff = ft_lstindex(lst, index - 2 + i);
 		if (buff)
-			res[i] = buff->content;
+			res[i] = treated_string(buff->content);
 		i++;
 	}
 	return (res);

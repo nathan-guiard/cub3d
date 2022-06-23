@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:35:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 17:06:31 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/23 22:22:22 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	draw_arrow(t_menu *menu, int color);
 static void	draw_arrow2(t_menu *menu, int color);
+void	draw_first_maps_name(t_menu *menu);
 
 void	draw_play(t_menu *menu)
 {
@@ -32,6 +33,7 @@ void	draw_play(t_menu *menu)
 		(t_co){.x = 900, .y = 700});
 	draw_arrow(menu, GREEN);
 	draw_arrow2(menu, 0x00008000);
+	draw_first_maps_name(menu);
 }
 
 static void	draw_arrow(t_menu *menu, int color)
@@ -78,4 +80,16 @@ static void	draw_arrow2(t_menu *menu, int color)
 		.color = color}, 11, DOWNSIDE);
 	diagonale(&menu->img, (t_co){.x = 76, .y = 460,
 		.color = color}, 10, UPSIDE);
+}
+
+void	draw_first_maps_name(t_menu *menu)
+{
+	char	**tab;
+	t_list	*lst;
+
+	lst = get_map_list();
+	tab = define_map_tab(lst, 0);
+	put_play_maps(menu, tab);
+	custom_free_tabtab(tab);
+	destroy_map_list(lst);
 }

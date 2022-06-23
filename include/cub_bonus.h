@@ -156,5 +156,8 @@ t_list	*get_map_list(void);
 int roulette(t_menu *menu, t_list *lst, int key, int index);
 void	put_play_maps(t_menu *menu, char **tab);
 char	**define_map_tab(t_list *lst, int index);
+char	*treated_string(char *str);
+void	custom_free_tabtab(char **tab);
+t_list	*destroy_map_list(t_list *lst);
 
 #endif

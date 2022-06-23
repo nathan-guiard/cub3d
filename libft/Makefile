@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/04 03:13:28 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/23 20:46:42 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/23 22:06:19 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -79,6 +79,7 @@ SRC =  srcs/ft_isalpha.c 		\
 	srcs/ft_abs.c				\
 	srcs/ft_free.c				\
 	srcs/join.c					\
+	srcs/free_tabtab.c			\
 
 CFLAGS = -Wall -Werror -Wextra -Iinclude
 
