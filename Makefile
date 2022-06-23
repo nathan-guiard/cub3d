@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 19:36:13 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/23 19:14:00 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -41,6 +41,7 @@ BONUSSRC =	$(addsuffix .c, \
 		$(addprefix play/,	\
 		draw_play			\
 		play_handling		\
+		map_list			\
 		)					\
 		draw_box			\
 		main				\
@@ -63,7 +64,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g -fsanitize=address
 
 NAME	= cub3d
 
@@ -191,7 +192,7 @@ setup:
 	@echo -ne "\033[0;0H\033[J\033[?25l"
 	@echo -ne "\033[1;38;5;57m"
 	@echo "╔══════════════════════════════════════════════════╗"
-	@echo "╟────────────────┤ \033[3mTRUBO MAKEFILE ├────────────────╢"
+	@echo "╟────────────────┤ \033[3mTURBO MAKEFILE ├────────────────╢"
 	@echo "║ Libft:                                           ║"
 	@echo "║                                                  ║"
 	@echo "║                                                  ║"

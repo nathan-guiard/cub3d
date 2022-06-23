@@ -18,6 +18,8 @@
 # include "font.h"
 # include <pthread.h>
 # include <sys/time.h>
+# include <dirent.h>
+# include <stdbool.h>
 
 # define TRUE			0
 # define FALSE			-42
@@ -148,5 +150,6 @@ int		animation_thread(void *arg);
 /*	Play menu				*/
 void	play_handling(t_menu *menu, int key);
 void	draw_play(t_menu *menu);
+t_list	*get_map_list(void);
 
 #endif
