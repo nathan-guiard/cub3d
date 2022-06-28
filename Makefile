@@ -3,14 +3,16 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
+#    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/06/22 16:10:24 by nguiard          ###   ########.fr        #
+#    Updated: 2022/06/27 12:55:06 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = srcs/main.c
+SRC = srcs/main.c \
+	srcs/check_errors.c \
+	srcs/list.c \
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\
@@ -92,10 +94,10 @@ all: Makefile
 	@make --silent ${NAME}
 	@${MY_MAKE} end_make
 
-obj/%.o: srcs/%.o
+obj/%.o: srcs/%.c
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
 	@echo -ne "\033[16;H"
-	@${CC} ${CFLAGS} -c $< -o ${<:.c=.o}	
+	@${CC} ${CFLAGS} -c $< -o ${<:srcs/%.c=obj/%.o}	
 	@$(eval percent=$(shell expr ${current} "*" 100 / ${total}))
 	@echo -ne "\033[11;3H"
 	@printf "%d/%d:   \t\t%d%%" ${current} ${total} ${percent}

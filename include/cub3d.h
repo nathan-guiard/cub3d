@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:19:30 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/27 16:00:53 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,8 @@
 # include "mlx.h"
 # include "font.h"
 # include "pthread.h"
+# include <fcntl.h>
+# include <stdio.h>
 
 # define TRUE			0
 # define FALSE			-42
@@ -58,12 +60,14 @@
 # define CARELAGE_COLOR	0x00007070
 # define CARELAGE_RATIO 10
 
+struct	s_map;
+struct	s_cub;
 typedef enum e_status
 {
 	start,
 }	t_status;
 
-typedef	struct s_menu
+typedef struct s_menu
 {
 	void			*init;
 	void			*win;
@@ -90,7 +94,7 @@ typedef struct s_bres
 	int	dy;
 	int	e;
 	int	e10;
-	int e01;
+	int	e01;
 }	t_bres;
 
 typedef struct s_set
@@ -109,6 +113,23 @@ typedef struct s_math
 	int	e2;
 }	t_math;
 
+typedef struct s_map
+{
+	char			*line;
+	struct s_map	*next;
+}	t_map;
+
+typedef struct s_cub
+{
+	int		with;
+	int		height;
+	int		n_start;
+	int		s_start;
+	int		w_start;
+	int		e_start;
+	t_map	*map;
+}	t_cub;
+
 t_menu	init_menu(int argc, char **argv);
 void	menu_hooks(t_menu *menu);
 int		quit_everything(void);
@@ -118,7 +139,7 @@ void	start_handling(int key, t_menu *menu);
 /*	Menu drawing			*/
 void	draw_button(t_menu *menu, int key);
 void	my_pixel_put(t_img *img, int x, int y, int color);
-void	straight_line(t_img *img, t_co start, int len, 
+void	straight_line(t_img *img, t_co start, int len, \
 				int direction);
 void	diagonale(t_img *img, t_co start, int len, int direction);
 void	draw_borders(t_img *img, t_co co);
@@ -130,7 +151,6 @@ void	draw_menu(t_menu *menu);
 void	carelage(t_menu *menu, int frame);
 void	put_carelage_x(t_menu *menu);
 
-
 /*	Animation				*/
 void	*menu_bg_animation(void *menu);
 void	menu_bg_line(t_img img, t_co start, t_co end);
@@ -138,5 +158,17 @@ t_math	init_mathline(t_set set);
 t_co	base_set(t_set set);
 int		check_base(t_set set, t_co base);
 int		animation_thread(void *arg);
+
+/*    PARSING                 */
+int		parse_map(int fd);
+int		check_arguments(int ac, char **av);
+int		check_chars(t_map **map);
+
+/*    LIST                     */
+void	ft_my_lstadd_back(t_map **alst, t_map *new);
+t_map	*ft_my_lstnew(char *line);
+
+/*          PARSE_UTILS    */
+int		ft_isset(char c, char *set);
 
 #endif
