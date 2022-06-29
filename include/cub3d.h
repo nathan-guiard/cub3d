@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clodaghmurphy <clodaghmurphy@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/29 11:47:19 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/29 17:37:24 by clodaghmurp      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -132,10 +132,12 @@ typedef struct s_cub
 {
 	int		width;
 	int		height;
-	int		n_start;
-	int		s_start;
-	int		w_start;
-	int		e_start;
+	char	*n_path;
+	char	*s_path;
+	char	*w_path;
+	char	*e_path;
+	unsigned int		f_color;
+	unsigned int		c_color;
 	t_map	*map;
 }	t_cub;
 
@@ -171,7 +173,7 @@ int		animation_thread(void *arg);
 /*    PARSING                 */
 int		parse_map(int fd);
 int		check_arguments(int ac, char **av);
-int		check_chars(t_map **map);
+int		check_chars(t_map **map, t_cub *cub);
 
 /*    LIST                     */
 void	ft_my_lstadd_back(t_map **alst, t_map *new);
