@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/28 14:17:50 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:47:19 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,7 +130,7 @@ typedef struct s_map
 
 typedef struct s_cub
 {
-	int		with;
+	int		width;
 	int		height;
 	int		n_start;
 	int		s_start;

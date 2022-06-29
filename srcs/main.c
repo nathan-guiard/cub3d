@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:16:48 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/06/28 14:07:24 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/29 11:48:07 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,8 @@ int	parse_map(int fd)
 	char	*line;
 
 	cub = NULL;
-	ft_bzero(cub, sizeof(cub));
+	cub = init_cub();
+	//ft_bzero(cub, sizeof(cub));
 	cub->map = NULL;
 	line = get_next_line(fd);
 	while (line != NULL)
@@ -67,4 +68,9 @@ int	check_chars(t_map **map)
 		temp = temp ->next;
 	}
 	return (1);
+}
+
+t_cub	init_cub(void)
+{
+	
 }
