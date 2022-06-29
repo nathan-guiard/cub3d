@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:53:16 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/06/27 12:54:14 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/28 13:53:27 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ t_map	*ft_my_lstnew(char *line)
 	if (!new_node)
 		return (NULL);
 	new_node ->line = line;
+	new_node->texture = 0;
 	new_node ->next = NULL;
 	return (new_node);
 }

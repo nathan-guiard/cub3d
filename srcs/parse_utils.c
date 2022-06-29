@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/06/27 15:59:11 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:10:30 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,4 +26,11 @@ int	ft_isset(char c, char *set)
 		i++;
 	}
 	return (-1);
+}
+
+int	ft_isspace(char *str, int *i)
+{
+	while (str[*i] == 32 || (str[*i] >= 9 && str[*i] <= 13))
+		(*i)++;
+	return (0);
 }

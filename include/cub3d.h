@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/27 16:00:53 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:17:50 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,14 @@ typedef enum e_status
 	start,
 }	t_status;
 
+typedef struct s_flags
+{
+	int	n;
+	int s;
+	int	e;
+	int	w;
+}	t_flags;
+
 typedef struct s_menu
 {
 	void			*init;
@@ -116,6 +124,7 @@ typedef struct s_math
 typedef struct s_map
 {
 	char			*line;
+	int				texture;
 	struct s_map	*next;
 }	t_map;
 
@@ -170,5 +179,17 @@ t_map	*ft_my_lstnew(char *line);
 
 /*          PARSE_UTILS    */
 int		ft_isset(char c, char *set);
+int		ft_isspace(char *str, int *i);
+
+/*			CHECK_ERRORS	*/
+int		check_arguments(int ac, char **av);
+int		check_file_ext(char *file);
+
+/*        CHECK_ELS        */
+void	init_flags(t_flags *flags);
+int		all_flags(t_flags *flags);
+int		verify_ele(char *str, int *i, t_flags *flags);
+int		check_elems(t_map **map);
+int		check_borders(t_map **map);
 
 #endif

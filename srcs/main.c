@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:16:48 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/06/28 10:27:59 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:07:24 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,7 @@ int	parse_map(int fd)
 		return (-1);
 	if (check_elems(&cub->map) == -1)
 		return (-1);
+	return (1);
 }
 
 int	check_chars(t_map **map)
@@ -65,14 +66,5 @@ int	check_chars(t_map **map)
 		}
 		temp = temp ->next;
 	}
-}
-
-int	check_borders(t_map **map)
-{
-	reutrn (0);
-}
-
-int	check_elems(t_map **map)
-{
-	
+	return (1);
 }

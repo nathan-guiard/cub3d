@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:21:50 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/06/27 14:28:15 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/06/28 14:09:37 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,17 +26,17 @@ int	check_arguments(int ac, char **av)
 		printf("Empty args\n");
 		return (-1);
 	}
-	if (check_file_ext(av) == -1)
+	if (check_file_ext(av[1]) == -1)
 	{
 		printf("Not a .cub file\n");
 		return (-1);
 	}
+	fd = open(av[1], O_RDONLY);
 	if (fd == -1)
 	{
 		printf("Invald file\n");
 		return (-1);
 	}
-	fd = open(av[1], O_RDONLY);
 	if (ac > 2)
 	{
 		printf("Too many arguements\n");
