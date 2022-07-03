@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clodaghmurphy <clodaghmurphy@student.42    +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/29 17:37:24 by clodaghmurp      ###   ########.fr       */
+/*   Updated: 2022/07/03 17:34:51 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -130,15 +130,15 @@ typedef struct s_map
 
 typedef struct s_cub
 {
-	int		width;
-	int		height;
-	char	*n_path;
-	char	*s_path;
-	char	*w_path;
-	char	*e_path;
-	unsigned int		f_color;
-	unsigned int		c_color;
-	t_map	*map;
+	int				width;
+	int				height;
+	char			*n_path;
+	char			*s_path;
+	char			*w_path;
+	char			*e_path;
+	unsigned int	f_color;
+	unsigned int	c_color;
+	struct s_map	*map;
 }	t_cub;
 
 t_menu	init_menu(int argc, char **argv);
@@ -174,14 +174,23 @@ int		animation_thread(void *arg);
 int		parse_map(int fd);
 int		check_arguments(int ac, char **av);
 int		check_chars(t_map **map, t_cub *cub);
-
+t_cub	*init_cub(void);
+int		configs_filled(t_cub *cub);
+int		set_path(char *str, int *i, t_cub *cub);
+int		check_first_and_last_line(char *str);
+int		check_line(char *str);
+int		create_map(t_map *map, t_cub *cub);
 /*    LIST                     */
 void	ft_my_lstadd_back(t_map **alst, t_map *new);
 t_map	*ft_my_lstnew(char *line);
+void	ft_my_lstclear(t_map **lst);
+int		ft_my_lstsize(t_map *lst);
 
 /*          PARSE_UTILS    */
 int		ft_isset(char c, char *set);
 int		ft_isspace(char *str, int *i);
+char	*my_strdup(const char *s);
+int		set_color(char *str, t_cub *cub, char c);
 
 /*			CHECK_ERRORS	*/
 int		check_arguments(int ac, char **av);
@@ -193,5 +202,8 @@ int		all_flags(t_flags *flags);
 int		verify_ele(char *str, int *i, t_flags *flags);
 int		check_elems(t_map **map);
 int		check_borders(t_map **map);
+
+/*         ERROR    */
+void	ft_error(t_cub *cub, t_map **map, char *str);
 
 #endif

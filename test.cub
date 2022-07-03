@@ -1,7 +1,10 @@
-SO lalal
-NO lalal
-EA lalal
-WE lalal
+SO south
+NO    north
+EA   east
+WE west
+
+F 200,100,0
+C 225,30,0
 
 1111111
 1000001
