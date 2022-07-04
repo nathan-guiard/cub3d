@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/03 13:55:34 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 12:48:36 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,37 @@ char	*my_strdup(const char *s)
 	{
 		res[i] = s[i];
 		i++;
+		if (s[i] == '\n')
+			break ;
 	}
 	res[i] = '\0';
 	return (res);
+}
+
+int	my_atoi(const char *nptr)
+{
+	int	i;
+	int	s;
+	int	res;
+
+	res = 0;
+	s = 1;
+	i = 0;
+	while ((nptr[i] >= 9 && nptr[i] <= 13) || nptr[i] == 32)
+		i++;
+	if (nptr[i] == '-')
+	{
+		s = -1;
+		i++;
+	}
+	else if (nptr[i] == '+')
+		i++;
+	while (nptr[i] >= 48 && nptr[i] <= 57)
+	{
+		res = (nptr[i] - 48) + res * 10;
+		i++;
+	}
+	if (nptr[i] != '\0' || (nptr[i] < 48 && nptr[i] > 57))
+		return (-1);
+	return (res * s);
 }

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:53:16 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/03 16:53:26 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:17:57 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,10 @@ t_map	*ft_my_lstnew(char *line)
 	if (!new_node)
 		return (NULL);
 	new_node ->line = my_strdup(line);
-	new_node->texture = 0;
+	if (line)
+		new_node->len = ft_strlen(new_node->line);
+	else
+		new_node->len = 0;
 	new_node ->next = NULL;
 	return (new_node);
 }
@@ -68,4 +71,20 @@ int	ft_my_lstsize(t_map *lst)
 		buff = buff->next;
 	}
 	return (i);
+}
+
+int	ft_lst_width(t_map *map)
+{
+	t_map	*temp;
+	int		width;
+
+	width = 0;
+	temp = map;
+	while (temp != NULL)
+	{
+		if (temp->len >= width)
+			width = temp->len;
+		temp = temp->next;
+	}
+	return (width);
 }

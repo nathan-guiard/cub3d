@@ -6,99 +6,90 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/06/28 14:16:19 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:03:41 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	check_borders(t_map **map)
-{
-	(void)map;
-	printf("borders\n");
-	return (0);
-}
-
-int	check_elems(t_map **map)
+int	verify_borders(t_map *map, t_cub *cub)
 {
 	t_map	*temp;
-	int		i;
 	int		ret;
-	t_flags	flags;
 
-	init_flags(&flags);
+	(void)cub;
+	temp = map;
+	ret = 1;
+	while (temp->next != NULL && ret != -1)
+	{
+		if (temp->next->len > temp->len && ret != -1)
+			ret = compare_strings(temp->next->line, temp->line);
+		else if (temp->next->len < temp->len && ret != -1)
+			ret = compare_strings(temp->line, temp->next->line);
+		temp = temp->next;
+	}
+	return (ret);
+}
+
+int	compare_strings(char *s_long, char *s_short)
+{
+	int	i;
+
+	i = 0;
+	if (s_long[i] == '0')
+		return (-1);
+	while (s_short[i])
+	{
+		if (!s_short[i + 1] && s_long[i] != '1')
+			return (-1);
+		i++;
+	}
+	while (s_long[i])
+	{
+		if (s_long[i] != '1')
+			return (-1);
+		i++;
+	}
+	return (1);
+}
+
+int	check_chars(t_map **map, t_cub *cub)
+{
+	t_map	*temp;
+	t_map	*temp2;
+	int		i;
+
 	i = 0;
 	temp = *map;
-	while (temp != NULL && all_flags(&flags) == 0)
+	while (temp != NULL && configs_filled(cub) != 1 && temp->line)
 	{
-		while (temp->line[i] && all_flags(&flags) == 0)
-		{
-			ft_isspace(temp->line, &i);
-			ret = verify_ele(temp->line, &i, &flags);
-			if (ret > 0)
-				temp->texture = ret;
-			else
-				return (-1);
-		}
-		temp = temp->next;
 		i = 0;
+		ft_isspace(temp->line, &i);
+		if (temp->line[i] == '1' || temp->line[i] == 0)
+			ft_error(cub, map, "ERROR : Incomplte list of elements");
+		check_pathnames(temp, map, cub, &i);
+		temp2 = temp;
+		temp = temp ->next;
+		free(temp2);
 	}
-	return (0);
+	create_map(temp, cub);
+	return (1);
 }
 
-int	verify_ele(char *str, int *i, t_flags *flags)
+void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i)
 {
-	if (ft_strncmp(str + *i, "SO", 2) == 0 && flags->s == 0)
+	if (ft_strncmp(temp->line + *i, "NO", 2) == 0 || \
+		ft_strncmp(temp->line + *i, "SO", 2) == 0 \
+		|| ft_strncmp(temp->line + *i, "EA", 2) == 0 \
+		|| ft_strncmp(temp->line + *i, "WE", 2) == 0)
 	{
-		flags->s = 1;
-		return (1);
+		if (set_path(temp->line, i, cub) == -1)
+			ft_error(cub, map, "ERROR : texture path error");
 	}
-	if (ft_strncmp(str + *i, "NO", 2) == 0 && flags->n == 0)
+	if ((temp->line[*i] == 'F' && temp->line[*i + 1] == 32) || \
+		(temp->line[*i] == 'C' && temp->line[*i + 1] == 32))
 	{
-		flags->s = 1;
-		return (1);
+		if (set_color(temp->line, cub, temp->line[*i]) == -1)
+			ft_error(cub, map, "ERROR : color error");
 	}
-	if (ft_strncmp(str + *i, "WE", 2) == 0 && flags->w == 0)
-	{
-		flags->s = 1;
-		return (1);
-	}
-	if (ft_strncmp(str + *i, "EA", 2) == 0 && flags->e == 0)
-	{
-		flags->s = 1;
-		return (1);
-	}
-	return (-1);
-}
-
-void	init_flags(t_flags *flags)
-{
-	flags->n = 0;
-	flags->s = 0;
-	flags->e = 0;
-	flags->w = 0;
-}
-
-int	all_flags(t_flags *flags)
-{
-	int	ret;
-
-	ret = 0;
-	if (flags->n == 1)
-		ret = 1;
-	else
-		return (0);
-	if (flags->s == 1)
-		ret = 1;
-	else
-		return (0);
-	if (flags->e == 1)
-		ret = 1;
-	else
-		return (0);
-	if (flags->w == 1)
-		ret = 1;
-	else
-		return (0);
-	return (ret);
 }

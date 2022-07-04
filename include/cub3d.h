@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 10:52:22 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:05:31 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -124,7 +124,7 @@ typedef struct s_math
 typedef struct s_map
 {
 	char			*line;
-	int				texture;
+	int				len;
 	struct s_map	*next;
 }	t_map;
 
@@ -179,20 +179,20 @@ t_cub	*init_cub(void);
 int		configs_filled(t_cub *cub);
 int		set_path(char *str, int *i, t_cub *cub);
 int		check_first_and_last_line(char *str);
-int		check_line(char *str);
+int		check_line(char *str, int ret);
 int		create_map(t_map *map, t_cub *cub);
 /*    LIST                     */
 void	ft_my_lstadd_back(t_map **alst, t_map *new);
 t_map	*ft_my_lstnew(char *line);
 void	ft_my_lstclear(t_map **lst);
 int		ft_my_lstsize(t_map *lst);
+int		ft_lst_width(t_map *map);
 
 /*          PARSE_UTILS    */
 int		ft_isset(char c, char *set);
 int		ft_isspace(char *str, int *i);
 char	*my_strdup(const char *s);
-int		set_color(char *str, t_cub *cub, char c);
-
+int		my_atoi(const char *nptr);
 /*			CHECK_ERRORS	*/
 int		check_arguments(int ac, char **av);
 int		check_file_ext(char *file);
@@ -204,8 +204,14 @@ int		verify_ele(char *str, int *i, t_flags *flags);
 int		check_elems(t_map **map);
 int		check_borders(t_map **map);
 void	print_map(t_cub *cub);
-
+int		compare_strings(char *s_long, char *s_short);
+int		verify_borders(t_map *map, t_cub *cub);
+void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i);
+/*			FC_COLOR		*/
+int		set_color(char *str, t_cub *cub, char c);
+void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 /*         ERROR    */
 void	ft_error(t_cub *cub, t_map **map, char *str);
+void	ft_error2(t_cub *cub, char *str);
 
 #endif

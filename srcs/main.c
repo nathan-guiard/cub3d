@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:16:48 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 09:35:50 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 13:04:48 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,10 +31,10 @@ t_cub	*init_cub(void)
 	if (!cub)
 		return (NULL);
 	cub->map = ft_my_lstnew(NULL);
-	/* cub->n_path = NULL;
+	cub->n_path = NULL;
 	cub->s_path = NULL;
 	cub->e_path = NULL;
-	cub->w_path = NULL; */
+	cub->w_path = NULL;
 	cub->width = 0;
 	cub->height = 0;
 	return (cub);
