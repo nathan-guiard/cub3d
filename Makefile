@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
+#    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/04 15:47:11 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/04 18:36:43 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -52,6 +52,11 @@ BONUSSRC =	$(addsuffix .c, \
 		map_list			\
 		roulette			\
 		exec_map			\
+		)					\
+		$(addprefix			\
+		editor/,			\
+		editor_handling		\
+		draw_ask_name		\
 		)					\
 		draw_box			\
 		main				\

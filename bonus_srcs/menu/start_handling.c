@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 18:30:48 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 20:23:01 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/04 18:36:17 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,11 @@ void	start_handling(int key, t_menu *menu)
 	{
 		draw_play(menu);
 		menu->status = play;
+	}
+	if (key == ENTER && menu->button == 2)
+	{
+		draw_ask_name(menu);
+		menu->status = editor_ask_name;
 	}
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 }

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 18:38:51 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/04 18:45:13 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	draw_first_menu(t_menu *menu)
 {
 	draw_menu(menu);
 	draw_menu_button(menu, DOWN_KEY);
+	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 }
 
 void	draw_menu(t_menu *menu)

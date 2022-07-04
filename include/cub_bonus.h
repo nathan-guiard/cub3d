@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 16:57:58 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/04 18:43:26 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,8 +71,10 @@ struct	s_cub;
 
 typedef enum e_status
 {
-	start,
-	play,
+	start = 1,
+	play = 2,
+	editor = 10,
+	editor_ask_name = 11,
 }	t_status;
 
 typedef struct s_flags
@@ -97,6 +99,8 @@ typedef struct s_menu
 	t_status			status;
 	pthread_mutex_t		*mutex_img;
 	unsigned long long	base_time;
+	char				**char_map;
+	int					fd;
 }	t_menu;
 
 typedef struct s_bres
@@ -194,5 +198,9 @@ char	*treated_string(char *str);
 void	custom_free_tabtab(char **tab);
 t_list	*destroy_map_list(t_list *lst);
 int		exec_map(t_list *lst, int index);
+
+/*	Editor					*/
+void	editor_handling(t_menu *menu, int key);
+void	draw_ask_name(t_menu *menu);
 
 #endif
