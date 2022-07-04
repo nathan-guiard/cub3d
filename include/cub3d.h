@@ -67,7 +67,6 @@
 
 struct	s_map;
 struct	s_cub;
-# define MAX_STR_LEN	14
 
 typedef enum e_status
 {
@@ -151,38 +150,6 @@ typedef struct s_cub
 	char			**char_map;
 }	t_cub;
 
-t_menu	init_menu(int argc, char **argv);
-void	menu_hooks(t_menu *menu);
-int		quit_everything(void);
-int		key_handling(int key, void *arg);
-void	start_handling(int key, t_menu *menu);
-
-unsigned long long	get_elapsedtime(unsigned long long base);
-
-/*	Menu drawing			*/
-void	draw_menu_button(t_menu *menu, int key);
-void	my_pixel_put(t_img *img, int x, int y, int color);
-void	straight_line(t_img *img, t_co start, int len, \
-				int direction);
-void	diagonale(t_img *img, t_co start, int len, int direction);
-void	draw_borders(t_img *img, t_co co);
-void	remove_border(t_img *img, t_co co);
-void	draw_first_menu(t_menu *menu);
-void	draw_releif(t_img *img, t_co co, int size);
-void	draw_menu(t_menu *menu);
-
-void	carelage(t_menu *menu, int frame);
-void	put_carelage_x(t_menu *menu);
-void	draw_box(t_menu *menu, t_co start, t_co end);
-
-/*	Animation				*/
-void	*menu_bg_animation(void *menu);
-void	menu_bg_line(t_img img, t_co start, t_co end);
-t_math	init_mathline(t_set set);
-t_co	base_set(t_set set);
-int		check_base(t_set set, t_co base);
-int		animation_thread(void *arg);
-
 /*    PARSING                 */
 int		parse_map(int fd);
 int		check_arguments(int ac, char **av);
@@ -227,16 +194,5 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 void	ft_error(t_cub *cub, t_map **map, char *str);
 void	ft_error2(t_cub *cub, char *str);
 void	*free_tab(char **s);
-/*	Play menu				*/
-void	play_handling(t_menu *menu, int key);
-void	draw_play(t_menu *menu);
-t_list	*get_map_list(void);
-int 	roulette(t_menu *menu, t_list *lst, int key, int index);
-void	put_play_maps(t_menu *menu, char **tab);
-char	**define_map_tab(t_list *lst, int index);
-char	*treated_string(char *str);
-void	custom_free_tabtab(char **tab);
-t_list	*destroy_map_list(t_list *lst);
-int		exec_map(t_list *lst, int index);
 
 #endif
