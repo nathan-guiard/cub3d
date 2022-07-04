@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 15:13:57 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:36:14 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,6 @@ int	create_map(t_map *map, t_cub *cub)
 {
 	char	**tab;
 	int		i;
-	int		size;
 
 	i = 0;
 	cub->height = ft_my_lstsize(map);
@@ -71,17 +70,18 @@ int	create_map(t_map *map, t_cub *cub)
 void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 {
 	int	ret;
+	int	size;
 
 	ret = 0;
-	if (i == 0 || i == cub->height)
+	if (*i == 0 || *i == cub->height)
 			ret = check_first_and_last_line(map->line);
-		ret = check_line(map->line, ret);
-		if (ret == -1)
-			ft_error(cub, &map, "ERROR : map error");
-		size = ft_strlen(map->line);
-		tab[i] = malloc(sizeof(char) * (size + 1));
-		if (!tab[i])
-			ft_error(cub, &map, "ERROR : malloc error");
-		tab[i] = map->line;
-		i++;
+	ret = check_line(map->line, ret);
+	if (ret == -1)
+		ft_error(cub, &map, "ERROR : map error");
+	size = ft_strlen(map->line);
+	tab[*i] = malloc(sizeof(char) * (size + 1));
+	if (!tab[*i])
+		ft_error(cub, &map, "ERROR : malloc error");
+	tab[*i] = map->line;
+	i++;
 }
