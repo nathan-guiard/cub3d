@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   cub_bonus.h                                            :+:      :+:    :+:   */
+/*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 15:05:31 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:57:58 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#ifndef CUB3D_H
-# define CUB3D_H
+#ifndef CUB_BONUS_H
+# define CUB_BONUS_H
 
 # include "libft.h"
 # include "mlx.h"
@@ -182,49 +182,6 @@ t_math	init_mathline(t_set set);
 t_co	base_set(t_set set);
 int		check_base(t_set set, t_co base);
 int		animation_thread(void *arg);
-
-/*    PARSING                 */
-int		parse_map(int fd);
-int		check_arguments(int ac, char **av);
-int		check_chars(t_map **map, t_cub *cub);
-t_cub	*init_cub(void);
-int		configs_filled(t_cub *cub);
-int		set_path(char *str, int *i, t_cub *cub);
-int		check_first_and_last_line(char *str);
-int		check_line(char *str, int ret);
-int		create_map(t_map *map, t_cub *cub);
-/*    LIST                     */
-void	ft_my_lstadd_back(t_map **alst, t_map *new);
-t_map	*ft_my_lstnew(char *line);
-void	ft_my_lstclear(t_map **lst);
-int		ft_my_lstsize(t_map *lst);
-int		ft_lst_width(t_map *map);
-
-/*          PARSE_UTILS    */
-int		ft_isset(char c, char *set);
-int		ft_isspace(char *str, int *i);
-char	*my_strdup(const char *s);
-int		my_atoi(const char *nptr);
-/*			CHECK_ERRORS	*/
-int		check_arguments(int ac, char **av);
-int		check_file_ext(char *file);
-
-/*        CHECK_ELS        */
-void	init_flags(t_flags *flags);
-int		all_flags(t_flags *flags);
-int		verify_ele(char *str, int *i, t_flags *flags);
-int		check_elems(t_map **map);
-int		check_borders(t_map **map);
-void	print_map(t_cub *cub);
-int		compare_strings(char *s_long, char *s_short);
-int		verify_borders(t_map *map, t_cub *cub);
-void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i);
-/*			FC_COLOR		*/
-int		set_color(char *str, t_cub *cub, char c);
-void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
-/*         ERROR    */
-void	ft_error(t_cub *cub, t_map **map, char *str);
-void	ft_error2(t_cub *cub, char *str);
 
 /*	Play menu				*/
 void	play_handling(t_menu *menu, int key);
