@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/02 13:40:46 by nguiard           #+#    #+#             */
-/*   Updated: 2022/02/02 14:09:18 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/23 21:38:52 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ t_list	*ft_lstindex(t_list *lst, int index)
 	int		i;
 
 	i = 0;
-	if (!lst)
+	if (!lst || index < 0 || index >= ft_lstsize(lst))
 		return (NULL);
 	buff = lst;
 	while (buff->next != NULL && i < index)

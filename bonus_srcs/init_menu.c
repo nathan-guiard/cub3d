@@ -6,17 +6,18 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 16:44:36 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/06/22 19:39:05 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
 t_menu	init_menu(int argc, char **argv)
 {
 	t_menu	res;
 	static pthread_mutex_t	mutex;
 
+	res.base_time = get_elapsedtime(0);
 	res.argc = argc;
 	res.argv = argv;
 	res.init = mlx_init();

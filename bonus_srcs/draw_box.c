@@ -1,19 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   menu_hooks.c                                       :+:      :+:    :+:   */
+/*   draw_box.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/05/28 20:59:38 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/28 21:08:36 by nguiard          ###   ########.fr       */
+/*   Created: 2022/06/22 18:09:40 by nguiard           #+#    #+#             */
+/*   Updated: 2022/06/22 18:12:06 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cub3d.h"
+#include "cub_bonus.h"
 
-void	menu_hooks(t_menu *menu)
+void	draw_box(t_menu *menu, t_co start, t_co end)
 {
-	mlx_hook(menu->win, 33, 0, quit_everything, menu);
-	mlx_key_hook(menu->win, key_handling, menu);
+	int	save;
+
+	save = start.x;
+	while (start.y < end.y)
+	{
+		start.x = save;
+		while (start.x < end.x)
+		{
+			my_pixel_put(&menu->img, start.x, start.y, start.color);
+			start.x++;
+		}
+		start.y++;
+	}
 }

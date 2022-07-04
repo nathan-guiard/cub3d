@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/04 15:04:27 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/04 15:19:06 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -35,21 +35,31 @@ BONUSSRC =	$(addsuffix .c, \
 		zero_dot_slash		\
 		mlx_putstr			\
 		)					\
-		main				\
-		init_menu			\
-		menu_hooks			\
-		quit				\
-		key					\
-		draw_button			\
-		my_pixel_put 		\
-		straight_line		\
-		start_handling		\
-		draw_first_menu		\
-		draw_releif			\
+		$(addprefix menu/,	\
 		menu_bg_animation	\
 		menu_bg_line		\
 		menu_math			\
 		menu_thread			\
+		draw_first_menu		\
+		draw_releif			\
+		draw_menu_button	\
+		start_handling		\
+		menu_hooks			\
+		)					\
+		$(addprefix play/,	\
+		draw_play			\
+		play_handling		\
+		map_list			\
+		roulette			\
+		)					\
+		draw_box			\
+		main				\
+		init_menu			\
+		quit				\
+		key					\
+		my_pixel_put 		\
+		straight_line		\
+		get_elapsedtime		\
 		)					\
 		)
 
@@ -63,7 +73,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g -fsanitize=address
 
 NAME	= cub3d
 
@@ -114,16 +124,6 @@ bonus_obj/%.o: bonus_srcs/%.c
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
 	@echo -ne "\033[16;H"
 	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/%.c=bonus_obj/%.o}	
-	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
-	@echo -ne "\033[11;3H"
-	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
-	$(call loading,${percent})
-	@$(eval current=$(shell expr ${current} + 1))
-
-bonus_obj/font/%.o: bonus_srcs/font/%.c
-	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}
-	@echo -ne "\033[16;H"
-	@${CC} ${CFLAGS} -c $< -o ${<:bonus_srcs/font/%.c=bonus_obj/font/%.o}	
 	@$(eval percent=$(shell expr ${current} "*" 100 / ${totalbonus}))
 	@echo -ne "\033[11;3H"
 	@printf "%d/%d:   \t\t%d%%" ${current} ${totalbonus} ${percent}
@@ -181,7 +181,7 @@ setup:
 	@echo -ne "\033[0;0H\033[J\033[?25l"
 	@echo -ne "\033[1;38;5;57m"
 	@echo "╔══════════════════════════════════════════════════╗"
-	@echo "╟────────────────┤ \033[3mTRUBO MAKEFILE ├────────────────╢"
+	@echo "╟────────────────┤ \033[3mTURBO MAKEFILE ├────────────────╢"
 	@echo "║ Libft:                                           ║"
 	@echo "║                                                  ║"
 	@echo "║                                                  ║"
@@ -223,4 +223,4 @@ fclean:
 clean:
 	@rm -rf ${OBJ} ${BONUSOBJ}
 
-.PHONY: clean fclean re end_make all setup libft_rule
+.PHONY: clean fclean re end_make all setup libft_rule bonus
