@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/04 15:19:06 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/04 15:21:57 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -51,6 +51,7 @@ BONUSSRC =	$(addsuffix .c, \
 		play_handling		\
 		map_list			\
 		roulette			\
+		exec_map			\
 		)					\
 		draw_box			\
 		main				\
