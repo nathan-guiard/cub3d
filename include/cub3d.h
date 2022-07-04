@@ -226,12 +226,12 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 /*         ERROR    */
 void	ft_error(t_cub *cub, t_map **map, char *str);
 void	ft_error2(t_cub *cub, char *str);
-
+void	*free_tab(char **s);
 /*	Play menu				*/
 void	play_handling(t_menu *menu, int key);
 void	draw_play(t_menu *menu);
 t_list	*get_map_list(void);
-int roulette(t_menu *menu, t_list *lst, int key, int index);
+int 	roulette(t_menu *menu, t_list *lst, int key, int index);
 void	put_play_maps(t_menu *menu, char **tab);
 char	**define_map_tab(t_list *lst, int index);
 char	*treated_string(char *str);

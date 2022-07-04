@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/04 15:21:57 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/04 15:47:11 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -74,7 +74,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g -fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g #-fsanitize=address
 
 NAME	= cub3d
 

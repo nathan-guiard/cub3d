@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 15:36:14 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:50:35 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,5 +83,5 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 	if (!tab[*i])
 		ft_error(cub, &map, "ERROR : malloc error");
 	tab[*i] = map->line;
-	i++;
+	(*i)++;
 }

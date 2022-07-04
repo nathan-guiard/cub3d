@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:51:45 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 15:39:38 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 15:41:12 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ int	set_color(char *str, t_cub *cub, char c)
 		i++;
 	}
 	assign_rgb(tab, &rgb, cub, c);
+	free_tab(tab);
 	return (1);
 }
 
