@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 15:03:41 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 17:30:08 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ int	compare_strings(char *s_long, char *s_short)
 int	check_chars(t_map **map, t_cub *cub)
 {
 	t_map	*temp;
-	t_map	*temp2;
 	int		i;
 
 	i = 0;
@@ -68,9 +67,7 @@ int	check_chars(t_map **map, t_cub *cub)
 		if (temp->line[i] == '1' || temp->line[i] == 0)
 			ft_error(cub, map, "ERROR : Incomplte list of elements");
 		check_pathnames(temp, map, cub, &i);
-		temp2 = temp;
 		temp = temp ->next;
-		free(temp2);
 	}
 	create_map(temp, cub);
 	return (1);

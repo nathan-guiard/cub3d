@@ -1,32 +1,37 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   errors.c                                           :+:      :+:    :+:   */
+/*   let_it_go.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/07/03 15:27:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 17:35:08 by clmurphy         ###   ########.fr       */
+/*   Created: 2022/07/04 17:12:54 by clmurphy          #+#    #+#             */
+/*   Updated: 2022/07/04 18:04:22 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-void	ft_error(t_cub *cub, t_map **map, char *str)
+void	free_tab(char **s)
 {
-	(void)map;
-	printf("\033[1m\033[31m%s\n", str);
-	ft_my_lstclear(&cub->map);
-	if (cub->char_map)
-		free_tab(cub->char_map);
-	free(cub);
-	exit(127);
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		return ;
+	while (s[i])
+	{
+		free(s[i]);
+		s[i] = NULL;
+		i++;
+	}
+	free(s);
+	s = NULL;
 }
 
-void	ft_error2(t_cub *cub, char *str)
+void	free_cub(t_cub *cub)
 {
-	printf("\033[1m\033[31m%s\n", str);
+	free_tab(cub->char_map);
+	cub->char_map = NULL;
 	ft_my_lstclear(&cub->map);
-	free(cub);
-	exit(127);
 }

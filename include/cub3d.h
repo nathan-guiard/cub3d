@@ -74,14 +74,6 @@ typedef enum e_status
 	play,
 }	t_status;
 
-typedef struct s_flags
-{
-	int	n;
-	int s;
-	int	e;
-	int	w;
-}	t_flags;
-
 typedef struct s_menu
 {
 	void				*init;
@@ -162,6 +154,7 @@ int		check_line(char *str, int ret);
 int		create_map(t_map *map, t_cub *cub);
 void	set_tab(char **tab, int *i, t_cub *cub, t_map *map);
 int		create_list(char *line, t_map **map);
+void	set_path2(char *str, char *res, t_cub *cub, int j);
 /*    LIST                     */
 void	ft_my_lstadd_back(t_map **alst, t_map *new);
 t_map	*ft_my_lstnew(char *line);
@@ -177,11 +170,9 @@ int		my_atoi(const char *nptr);
 /*			CHECK_ERRORS	*/
 int		check_arguments(int ac, char **av);
 int		check_file_ext(char *file);
+int		check_arguments2(int ac, char **av);
 
 /*        CHECK_ELS        */
-void	init_flags(t_flags *flags);
-int		all_flags(t_flags *flags);
-int		verify_ele(char *str, int *i, t_flags *flags);
 int		check_elems(t_map **map);
 int		check_borders(t_map **map);
 void	print_map(t_cub *cub);
@@ -194,6 +185,10 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 /*         ERROR    */
 void	ft_error(t_cub *cub, t_map **map, char *str);
 void	ft_error2(t_cub *cub, char *str);
-void	*free_tab(char **s);
+/*		LAUCNH_CUB3d		*/
+int		launch_cub3d(t_cub *cub);
+/*		LET_IT_GO		*/
+void	free_cub(t_cub *cub);
+void	free_tab(char **s);
 
 #endif
