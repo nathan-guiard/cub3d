@@ -194,6 +194,7 @@ int		check_first_and_last_line(char *str);
 int		check_line(char *str, int ret);
 int		create_map(t_map *map, t_cub *cub);
 void	set_tab(char **tab, int *i, t_cub *cub, t_map *map);
+int		create_list(char *line, t_map **map);
 /*    LIST                     */
 void	ft_my_lstadd_back(t_map **alst, t_map *new);
 t_map	*ft_my_lstnew(char *line);

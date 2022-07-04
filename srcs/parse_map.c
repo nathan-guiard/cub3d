@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 15:50:35 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:50:07 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,7 @@ int	parse_map(int fd)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		if (line[0] == '\n')
-		{
-			free(line);
-			line = NULL;
-			line = get_next_line(fd);
-			continue ;
-		}
-		ft_my_lstadd_back(&map, ft_my_lstnew(line));
-		free(line);
-		line = NULL;
+		create_list(line, &map);
 		line = get_next_line(fd);
 	}
 	if (line)
@@ -40,7 +31,22 @@ int	parse_map(int fd)
 	cub->map = map;
 	if (check_chars(&map, cub) == -1)
 		return (-1);
+	ft_my_lstclear(&cub->map);
 	print_map(cub);
+	return (1);
+}
+
+int	create_list( char *line, t_map **map)
+{
+	if (line[0] == '\n')
+	{
+		free(line);
+		line = NULL;
+		return (-1);
+	}
+	ft_my_lstadd_back(map, ft_my_lstnew(line));
+	free(line);
+	line = NULL;
 	return (1);
 }
 

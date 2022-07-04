@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:53:16 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 13:17:57 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 16:59:48 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,7 @@ void	ft_my_lstclear(t_map **lst)
 	{
 		temp = temp ->next;
 		free(*lst);
+		free((*lst)->line);
 		*lst = temp;
 	}
 }
