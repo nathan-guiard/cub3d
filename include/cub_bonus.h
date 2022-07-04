@@ -23,6 +23,7 @@
 
 # define TRUE			0
 # define FALSE			-42
+# define ERROR			-420
 
 # define WIDTH			1200
 # define HEIGTH			900
@@ -159,5 +160,6 @@ char	**define_map_tab(t_list *lst, int index);
 char	*treated_string(char *str);
 void	custom_free_tabtab(char **tab);
 t_list	*destroy_map_list(t_list *lst);
+int		exec_map(t_list *lst, int index);
 
 #endif

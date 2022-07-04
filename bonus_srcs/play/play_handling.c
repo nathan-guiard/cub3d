@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:36:46 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 22:22:11 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/04 15:02:02 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ void	play_handling(t_menu *menu, int key)
 	static t_list	*map_list;
 	static int		index;
 
-	ft_printf("index avat: %d\n", index);
 	if (!map_list)
 		map_list = get_map_list();
 	if (key == ESC)
@@ -33,11 +32,12 @@ void	play_handling(t_menu *menu, int key)
 		index = 0;
 	}
 	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
-	{
 		index = roulette(menu, map_list, key, index);
-
+	if (key == ENTER)
+	{
+		exec_map(map_list, index);
+		play_handling(menu, ESC);
 	}
-	ft_printf("index apres: %d\n", index);
 }
 
 static void	sert_a_rien(void *truc)
