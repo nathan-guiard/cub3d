@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/03 15:35:41 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/04 09:36:33 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,6 +16,8 @@ SRC = srcs/main.c \
 	srcs/parse_utils.c \
 	srcs/check_els.c \
 	srcs/errors.c \
+	srcs/parse_map.c \
+	srcs/parse_map_utils.c \
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/03 17:34:51 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/04 10:52:22 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -139,6 +139,7 @@ typedef struct s_cub
 	unsigned int	f_color;
 	unsigned int	c_color;
 	struct s_map	*map;
+	char			**char_map;
 }	t_cub;
 
 t_menu	init_menu(int argc, char **argv);
@@ -202,6 +203,7 @@ int		all_flags(t_flags *flags);
 int		verify_ele(char *str, int *i, t_flags *flags);
 int		check_elems(t_map **map);
 int		check_borders(t_map **map);
+void	print_map(t_cub *cub);
 
 /*         ERROR    */
 void	ft_error(t_cub *cub, t_map **map, char *str);
