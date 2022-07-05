@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/05 11:45:02 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:43:33 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_first_and_last_line(char *str)
 	return (1);
 }
 
-int	set_path(char *str, int *i, t_cub *cub)
+int	set_path(char *str, t_map **map, int *i, t_cub *cub)
 {
 	int		j;
 	char	*res;
@@ -76,35 +76,37 @@ int	set_path(char *str, int *i, t_cub *cub)
 	if (str[j] == 'N')
 	{
 		if (cub->n_path)
-			ft_error2(cub, "ERROR : duplicte path names");
+			ft_error2(cub, map, res, "ERROR : duplicte path names");
 		cub->n_path = res;
 		return (1);
 	}
-	if (str[j] == 'S')
-	{
-		if (cub->s_path)
-			ft_error2(cub, "ERROR : duplicte path names");
-		cub->s_path = res;
-		return (1);
-	}
-	set_path2(str, res, cub, j);
+	if (set_path2(str, res, cub, j) == -1)
+		ft_error2(cub, map, res, "ERROR : duplicte path names");
 	return (0);
 }
 
-void	set_path2(char *str, char *res, t_cub *cub, int j)
+int	set_path2(char *str, char *res, t_cub *cub, int j)
 {
+	if (str[j] == 'S')
+	{
+		if (cub->s_path)
+			return (-1);
+		cub->s_path = res;
+		return (1);
+	}
 	if (str[j] == 'E')
 	{
 		if (cub->e_path)
-			ft_error2(cub, "ERROR : duplicte path names");
+			return (-1);
 		cub->e_path = res;
-		return ;
+		return (1);
 	}
 	if (str[j] == 'W')
 	{
 		if (cub->w_path)
-			ft_error2(cub, "ERROR : duplicte path names");
+			return (-1);
 		cub->w_path = res;
-		return ;
+		return (1);
 	}
+	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/05 11:45:42 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/05 13:58:24 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int	check_chars(t_map **map, t_cub *cub)
 {
 	t_map	*temp;
 	int		i;
-	//int		ret;
 
 	i = 0;
 	temp = *map;
@@ -68,8 +67,6 @@ int	check_chars(t_map **map, t_cub *cub)
 		if (temp->line[i] == '1' || temp->line[i] == 0)
 			ft_error(cub, map, "ERROR : Incomplte list of elements");
 		check_pathnames(temp, map, cub, &i);
-	 	/* if (ret == 1)
-			free(temp->line); */
 		temp = temp ->next;
 	}
 	create_map(temp, cub);
@@ -83,7 +80,7 @@ void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i)
 		|| ft_strncmp(temp->line + *i, "EA", 2) == 0 \
 		|| ft_strncmp(temp->line + *i, "WE", 2) == 0)
 	{
-		if (set_path(temp->line, i, cub) == -1)
+		if (set_path(temp->line, &temp, i, cub) == -1)
 			ft_error(cub, map, "ERROR : texture path error");
 	}
 	if ((temp->line[*i] == 'F' && temp->line[*i + 1] == 32) || \
@@ -92,5 +89,5 @@ void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i)
 		if (set_color(temp->line, cub, temp->line[*i]) == -1)
 			ft_error(cub, map, "ERROR : color error");
 	}
-	free(temp->line);
+	//free(temp->line);
 }

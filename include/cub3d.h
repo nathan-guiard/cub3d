@@ -148,13 +148,13 @@ int		check_arguments(int ac, char **av);
 int		check_chars(t_map **map, t_cub *cub);
 t_cub	*init_cub(void);
 int		configs_filled(t_cub *cub);
-int		set_path(char *str, int *i, t_cub *cub);
+int		set_path(char *str, t_map **map, int *i, t_cub *cub);
 int		check_first_and_last_line(char *str);
 int		check_line(char *str, int ret);
 int		create_map(t_map *map, t_cub *cub);
 void	set_tab(char **tab, int *i, t_cub *cub, t_map *map);
 int		create_list(char *line, t_map **map);
-void	set_path2(char *str, char *res, t_cub *cub, int j);
+int		set_path2(char *str, char *res, t_cub *cub, int j);
 /*    LIST                     */
 void	ft_my_lstadd_back(t_map **alst, t_map *new);
 t_map	*ft_my_lstnew(char *line);
@@ -184,7 +184,7 @@ int		set_color(char *str, t_cub *cub, char c);
 void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 /*         ERROR    */
 void	ft_error(t_cub *cub, t_map **map, char *str);
-void	ft_error2(t_cub *cub, char *str);
+void	ft_error2(t_cub *cub, t_map **map, char *res, char *str);
 /*		LAUCNH_CUB3d		*/
 int		launch_cub3d(t_cub *cub);
 /*		LET_IT_GO		*/
