@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/05 12:37:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 15:15:29 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,6 +76,7 @@ typedef enum e_status
 	play = 2,
 	editor = 10,
 	editor_ask_name = 11,
+	editor_building = 12,
 }	t_status;
 
 typedef struct s_flags
