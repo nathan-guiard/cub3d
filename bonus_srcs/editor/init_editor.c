@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 12:36:50 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/05 15:39:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 16:55:47 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	init_editor(t_menu *menu, char *str)
 	}
 	menu->fd = fd;
 	menu->status = editor_building;
-//	draw_editor(menu);
+	draw_editor(menu);
 }
 
 static char	*transform_str(char *str)

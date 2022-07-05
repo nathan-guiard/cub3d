@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 19:24:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 22:14:02 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 17:16:09 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,10 +24,10 @@ int roulette(t_menu *menu, t_list *lst, int key, int index)
 		index++;
 	else
 		index--;
-	if (index < -2)
-		index = -2;
-	if (index > ft_lstsize(lst) + 1)
-		index = ft_lstsize(lst) + 1;
+	if (index < 0)
+		index = 0;
+	if (index > ft_lstsize(lst) - 1)
+		index = ft_lstsize(lst) - 1;
 	now = define_map_tab(lst, index);
 	erase_play_maps(menu, last);
 	put_play_maps(menu, now);
@@ -64,7 +64,6 @@ void	put_play_maps(t_menu *menu, char **tab)
 	co.x = 325;
 	co.y = 250;
 	co.color = BLACK;
-	ft_printf("\n\033[1;32m");
 	while (i < 5)
 	{
 		if (i == 2)
@@ -74,11 +73,9 @@ void	put_play_maps(t_menu *menu, char **tab)
 		}
 		else
 			mlx_putstr(&menu->img, tab[i], co, 4);
-		ft_printf("Put: %s\n", tab[i]);
 		i++;
 		co.y += 100;
 	}
-	ft_printf("\033[m");
 }
 
 void	erase_play_maps(t_menu *menu, char **tab)
@@ -90,12 +87,10 @@ void	erase_play_maps(t_menu *menu, char **tab)
 	co.x = 325;
 	co.y = 250;
 	co.color = 0x00002000;
-	ft_printf("\n\033[1m");
 	while (i < 3)
 	{
 		co.color += 0x00002000;
 		mlx_putstr(&menu->img, tab[i], co, 4);
-		ft_printf("Put: %s\n", tab[i]);
 		i++;
 		co.y += 100;
 	}
@@ -103,9 +98,7 @@ void	erase_play_maps(t_menu *menu, char **tab)
 	{
 		co.color -= 0x00002000;
 		mlx_putstr(&menu->img, tab[i], co, 4);
-		ft_printf("Put: %s\n", tab[i]);
 		i++;
 		co.y += 100;
 	}
-	ft_printf("\033[m");
 }

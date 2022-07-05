@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/05 15:15:29 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 16:56:52 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -206,5 +206,6 @@ void	editor_handling(t_menu *menu, int key);
 void	draw_ask_name(t_menu *menu);
 char	*ask_name_handling(t_menu *menu, int key, char *last);
 void	init_editor(t_menu *menu, char *last);
+void	draw_editor(t_menu *menu);
 
 #endif

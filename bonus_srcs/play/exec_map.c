@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:37:30 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 15:00:07 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 17:13:31 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,9 @@ int	exec_map(t_list *lst, int index)
 	argv[0] = ft_strdup("./cub3d");
 	argv[1] = ft_strdup(ft_lstindex(lst, index)->content);
 	argv[2] = NULL;
+	ft_printf("\033[1mexecuting ./cub3d %s\033[m\n", argv[1]);
 	if (fork() == 0)
-	{
-		execve(res, argv, NULL);
-		exit(-1);
-	}
+		exit(execve(res, argv, NULL));
 	free_tabtab(argv);
 	free(res);
 	free(path);
