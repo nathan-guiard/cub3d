@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:12:54 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 18:04:22 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/05 11:38:19 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,5 +33,10 @@ void	free_cub(t_cub *cub)
 {
 	free_tab(cub->char_map);
 	cub->char_map = NULL;
+	free(cub->n_path);
+	free(cub->s_path);
+	free(cub->e_path);
+	free(cub->w_path);
 	ft_my_lstclear(&cub->map);
+	free(cub);
 }

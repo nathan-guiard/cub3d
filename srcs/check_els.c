@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 17:30:08 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/05 11:45:42 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,6 +57,7 @@ int	check_chars(t_map **map, t_cub *cub)
 {
 	t_map	*temp;
 	int		i;
+	//int		ret;
 
 	i = 0;
 	temp = *map;
@@ -67,6 +68,8 @@ int	check_chars(t_map **map, t_cub *cub)
 		if (temp->line[i] == '1' || temp->line[i] == 0)
 			ft_error(cub, map, "ERROR : Incomplte list of elements");
 		check_pathnames(temp, map, cub, &i);
+	 	/* if (ret == 1)
+			free(temp->line); */
 		temp = temp ->next;
 	}
 	create_map(temp, cub);
@@ -89,4 +92,5 @@ void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i)
 		if (set_color(temp->line, cub, temp->line[*i]) == -1)
 			ft_error(cub, map, "ERROR : color error");
 	}
+	free(temp->line);
 }
