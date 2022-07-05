@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/04 18:36:43 by nguiard          ###   ########.fr        #
+#    Updated: 2022/07/05 12:37:41 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -57,6 +57,8 @@ BONUSSRC =	$(addsuffix .c, \
 		editor/,			\
 		editor_handling		\
 		draw_ask_name		\
+		ask_name_handling	\
+		init_editor			\
 		)					\
 		draw_box			\
 		main				\

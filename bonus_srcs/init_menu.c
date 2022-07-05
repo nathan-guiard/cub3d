@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 18:13:26 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 12:06:08 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,6 @@ t_menu	init_menu(int argc, char **argv)
 	pthread_mutex_init(&mutex, NULL);
 	res.mutex_img = &mutex;
 	res.char_map = NULL;
-	res.fd = 0;
+	res.fd = -1;
 	return (res);
 }

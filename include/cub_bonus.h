@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 18:43:26 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/05 12:37:33 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define W_KEY			119
 # define D_KEY			100
 # define S_KEY			115
+# define DEL			65288
 
 # define GREEN			0x0000ff00
 # define BLACK			0x00000000
@@ -202,5 +203,7 @@ int		exec_map(t_list *lst, int index);
 /*	Editor					*/
 void	editor_handling(t_menu *menu, int key);
 void	draw_ask_name(t_menu *menu);
+char	*ask_name_handling(t_menu *menu, int key, char *last);
+void	init_editor(t_menu *menu, char *last);
 
 #endif
