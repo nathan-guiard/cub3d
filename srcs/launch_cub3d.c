@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 17:24:22 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:31:14 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 int	launch_cub3d(t_cub *cub)
 {
 	print_map(cub);
+	
 	return (1);
 }
 
