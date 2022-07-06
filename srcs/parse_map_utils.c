@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/05 13:43:33 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:10:15 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	check_first_and_last_line(char *str)
 	return (1);
 }
 
-int	set_path(char *str, t_map **map, int *i, t_cub *cub)
+int	set_path(char *str, int *i, t_cub *cub)
 {
 	int		j;
 	char	*res;
@@ -76,12 +76,12 @@ int	set_path(char *str, t_map **map, int *i, t_cub *cub)
 	if (str[j] == 'N')
 	{
 		if (cub->n_path)
-			ft_error2(cub, map, res, "ERROR : duplicte path names");
+			ft_error2(cub, &cub->map, res, "ERROR : duplicte path names");
 		cub->n_path = res;
 		return (1);
 	}
 	if (set_path2(str, res, cub, j) == -1)
-		ft_error2(cub, map, res, "ERROR : duplicte path names");
+		ft_error2(cub, &cub->map, res, "ERROR : duplicte path names");
 	return (0);
 }
 

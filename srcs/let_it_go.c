@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:12:54 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/05 11:38:19 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:28:01 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,4 +39,19 @@ void	free_cub(t_cub *cub)
 	free(cub->w_path);
 	ft_my_lstclear(&cub->map);
 	free(cub);
+}
+
+void	end_cub(t_cub *cub, t_map **map)
+{
+	t_map	*temp;
+
+	temp = *map;
+	while ((temp)->next != NULL)
+	{
+		free((temp)->line);
+		temp = (temp)->next;
+	}
+	free((temp)->line);
+	ft_my_lstclear(&cub->map);
+	free_cub(cub);
 }

@@ -148,7 +148,7 @@ int		check_arguments(int ac, char **av);
 int		check_chars(t_map **map, t_cub *cub);
 t_cub	*init_cub(void);
 int		configs_filled(t_cub *cub);
-int		set_path(char *str, t_map **map, int *i, t_cub *cub);
+int		set_path(char *str, int *i, t_cub *cub);
 int		check_first_and_last_line(char *str);
 int		check_line(char *str, int ret);
 int		create_map(t_map *map, t_cub *cub);
@@ -178,7 +178,7 @@ int		check_borders(t_map **map);
 void	print_map(t_cub *cub);
 int		compare_strings(char *s_long, char *s_short);
 int		verify_borders(t_map *map, t_cub *cub);
-void	check_pathnames(t_map *temp, t_map **map, t_cub *cub, int *i);
+void	check_pathnames(t_map *temp, t_cub *cub, int *i);
 /*			FC_COLOR		*/
 int		set_color(char *str, t_cub *cub, char c);
 void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
@@ -190,5 +190,6 @@ int		launch_cub3d(t_cub *cub);
 /*		LET_IT_GO		*/
 void	free_cub(t_cub *cub);
 void	free_tab(char **s);
+void	end_cub(t_cub *cub, t_map **map);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/05 11:35:13 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 10:28:46 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ int	parse_map(int fd)
 	if (check_chars(&cub->map, cub) == -1)
 		return (-1);
 	launch_cub3d(cub);
-	free_cub(cub);
+	end_cub(cub, &cub->map);
 	return (1);
 }
 
@@ -61,10 +61,10 @@ int	create_map(t_map *map, t_cub *cub)
 	cub->height = ft_my_lstsize(map);
 	cub->width = ft_lst_width(map);
 	if (verify_borders(map, cub) == -1)
-		ft_error(cub, &map, "ERROR : Check map borders");
+		ft_error(cub, &cub->map, "ERROR : Check map borders");
 	tab = malloc(sizeof(char *) * (cub->height + 1));
 	if (!tab)
-		ft_error(cub, &map, "ERROR : malloc error");
+		ft_error(cub, &cub->map, "ERROR : malloc error");
 	cub->char_map = tab;
 	while (temp != NULL)
 	{
@@ -84,9 +84,10 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		ret = check_first_and_last_line(map->line);
 	ret = check_line(map->line, ret);
 	if (ret == -1)
-		ft_error(cub, &map, "ERROR : map error");
+	{
+		tab[*i] = NULL;
+		ft_error(cub, &cub->map, "ERROR : map error");
+	}	
 	tab[*i] = ft_strdup(map->line);
-	free(map->line);
-	map->line = NULL;
 	(*i)++;
 }
