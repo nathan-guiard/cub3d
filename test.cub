@@ -1,7 +1,7 @@
-SO south
-NO    north
-EA   east
-WE west
+SO ./pics/eagle.png
+NO ./PICTO_PXL.xpm
+EA ./PICTO_PXL.xpm
+WE ./PICTO_PXL.xpm
 
 F 200,100,0
 C 225,30,0

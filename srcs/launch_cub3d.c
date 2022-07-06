@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/06 14:48:31 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 15:38:41 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,11 +14,16 @@
 
 int	launch_cub3d(t_cub *cub)
 {
+	int		img_width;
+	int		img_height;
+
 	print_map(cub);
 	cub->mlx = init_mlx(cub);
 	my_pixel_put(&cub->mlx.img, 50, 50, cub->f_color);
+	cub->mlx.img.img = mlx_png_file_to_image(cub->mlx.init, cub->s_path, &img_width, &img_height);
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win, \
 	cub->mlx.img.img, 0, 0);
+	mlx_loop(cub->mlx.init);
 	return (1);
 }
 
