@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/06 10:31:00 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:43:58 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -128,6 +128,13 @@ typedef struct s_map
 	struct s_map	*next;
 }	t_map;
 
+typedef struct s_mlx
+{
+	void	*init;
+	void	*win;
+	t_img	img;
+}	t_mlx;
+
 typedef struct s_cub
 {
 	int				width;
@@ -140,6 +147,7 @@ typedef struct s_cub
 	unsigned int	c_color;
 	struct s_map	*map;
 	char			**char_map;
+	t_mlx			mlx;
 }	t_cub;
 
 /*    PARSING                 */
@@ -185,8 +193,11 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 /*         ERROR    */
 void	ft_error(t_cub *cub, t_map **map, char *str);
 void	ft_error2(t_cub *cub, t_map **map, char *res, char *str);
+void	ft_error_cub(t_cub *cub, t_map **map, char *str);
 /*		LAUCNH_CUB3d		*/
 int		launch_cub3d(t_cub *cub);
+t_mlx	init_mlx(t_cub *cub);
+void	my_pixel_put(t_img *img, int x, int y, int color);
 /*		LET_IT_GO		*/
 void	free_cub(t_cub *cub);
 void	free_tab(char **s);

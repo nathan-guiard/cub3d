@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/06 10:31:14 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/06 14:46:35 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,8 +15,35 @@
 int	launch_cub3d(t_cub *cub)
 {
 	print_map(cub);
-	
+	cub->mlx = init_mlx(cub);
+	my_pixel_put(&cub->mlx.img, 50, 50, cub->f_color);
+	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win, \
+	cub->mlx.img.img, 0, 0);
 	return (1);
+}
+
+t_mlx	init_mlx(t_cub *cub)
+{
+	t_mlx	mlx;
+
+	(void)cub;
+/* 	mlx = ft_calloc(sizeof(mlx), 1);
+	if (!mlx)
+		ft_error_cub(cub, &cub->map, "malloc error"); */
+	mlx.init = mlx_init();
+	mlx.win = mlx_new_window(mlx.init, WIDTH, HEIGTH, "cub3d");
+	mlx.img.img = mlx_new_image(mlx.init, WIDTH, HEIGTH);
+	mlx.img.addr = mlx_get_data_addr(mlx.img.img, \
+	&mlx.img.bpp, &mlx.img.line_len, &mlx.img.endian);
+	return (mlx);
+}
+
+void	my_pixel_put(t_img *img, int x, int y, int color)
+{
+	char	*dst;
+
+	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
+	*(unsigned int *)dst = color;
 }
 
 void	print_map(t_cub *cub)
