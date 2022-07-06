@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 18:45:13 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/06 14:38:19 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	draw_menu(t_menu *menu)
 	mlx_putstr(&menu->img, "d", (t_co){.x = TITLE_X + 700, .y = TITLE_Y,
 		MENU_COLOR}, 10);
 	mlx_putstr(&menu->img, "tron", (t_co){.x = TITLE_X + 300, .y = TITLE_Y,
-		MENU_COLOR + THREE_DIFF}, 10);
+		THREE_BLUE}, 10);
 	mlx_putstr(&menu->img, "play", (t_co){.x = 480, .y = 320,
 		MENU_COLOR}, 6);
 	mlx_putstr(&menu->img, "map", (t_co){.x = 540, .y = 550,

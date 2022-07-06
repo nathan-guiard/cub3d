@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/05 17:08:22 by nguiard          ###   ########.fr        #
+#    Updated: 2022/07/06 16:45:13 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -60,6 +60,7 @@ BONUSSRC =	$(addsuffix .c, \
 		ask_name_handling	\
 		init_editor			\
 		draw_editor			\
+		charmap_utils		\
 		)					\
 		draw_box			\
 		main				\
@@ -82,7 +83,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra -O3 ${INCLUDE} -g -fsanitize=address
 
 NAME	= cub3d
 
