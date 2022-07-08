@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/03 15:27:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/06 14:27:19 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/07 10:08:02 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ void	ft_error_cub(t_cub *cub, t_map **map, char *str)
 	}
 	free((temp)->line);
 	ft_my_lstclear(&cub->map);
-	free(cub->mlx);
+	//free(cub->mlx);
 	free_cub(cub);
 	exit(127);
 }

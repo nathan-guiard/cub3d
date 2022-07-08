@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/06 10:12:29 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/08 15:10:34 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ int	check_chars(t_map **map, t_cub *cub)
 	{
 		i = 0;
 		ft_isspace(temp->line, &i);
-		if (temp->line[i] == '1' || temp->line[i] == 0)
+		if (temp->line[i] == '1' || temp->line[i] == '0')
 			ft_error(cub, &cub->map, "ERROR : Incomplte list of elements");
 		check_pathnames(temp, cub, &i);
 		temp = temp ->next;

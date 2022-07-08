@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/06 14:43:58 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/08 12:36:58 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,7 @@
 # include <sys/time.h>
 # include <dirent.h>
 # include <stdbool.h>
+# include <math.h>
 
 # define TRUE			0
 # define FALSE			-42
@@ -90,6 +91,20 @@ typedef struct s_menu
 	unsigned long long	base_time;
 }	t_menu;
 
+typedef struct s_line
+{
+	int	dx;
+	int	dy;
+	int	p;
+	int	end;
+	int	x;
+	int	y;
+	int	ym;
+	int	xm;
+	int	err;
+
+}	t_line;
+
 typedef struct s_bres
 {
 	int	x;
@@ -134,6 +149,24 @@ typedef struct s_mlx
 	void	*win;
 	t_img	img;
 }	t_mlx;
+
+typedef struct s_cords
+{
+	int		scr_width;
+	int		scr_height;
+	int		tile_size;
+	int		scale;
+	int		x1;
+	int		x2;
+	int		y1;
+	int		y2;
+	float	x;
+	float	y;
+	float	end_x;
+	float	end_y;
+	float	temp_x;
+	float	temp_y;
+}	t_cords;
 
 typedef struct s_cub
 {
@@ -202,5 +235,17 @@ void	my_pixel_put(t_img *img, int x, int y, int color);
 void	free_cub(t_cub *cub);
 void	free_tab(char **s);
 void	end_cub(t_cub *cub, t_map **map);
+/*		KEYS			*/
+int		ft_close(t_cub *cub);
+void	set_hooks(t_cub *cub);
+int		check_key(int keycode, t_cub *cub);
+/*		MINI MAP		*/
+int		draw_mini_map(t_cub *cub);
+/*		BRES		*/
+void	ft_bresenham(t_cords *cords, t_cub *cub);
+void	set_data(t_cords *cords, t_line *data);
+void	ft_bresenham_bis(t_cords *cords, t_cub *cub, t_line *data);
+int		draw_grid(t_cub *cub, t_cords *cords, int fill);
+int		full_square(t_cords *cords, t_cub *cub);
 
 #endif

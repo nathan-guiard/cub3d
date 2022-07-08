@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/04 17:54:36 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/07 16:23:07 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -21,6 +21,9 @@ SRC = srcs/main.c \
 	srcs/fc_colors.c \
 	srcs/let_it_go.c \
 	srcs/launch_cub3d.c \
+	srcs/keys.c \
+	srcs/draw_mini_map.c \
+	srcs/bres.c \
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\
