@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 10:31:20 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/06 14:38:19 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 10:33:24 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,6 +56,8 @@ static char	*put_new_str(t_menu *menu, char *str, int key)
 
 static char	*del(t_menu *menu, char *str)
 {
+	if (ft_strlen(str) == 0)
+		return (str);
 	mlx_putstr(&menu->img, str,
 		(t_co){.x = 200, .y = 430, .color = BLACK}, 4);
 	mlx_putstr(&menu->img, str,

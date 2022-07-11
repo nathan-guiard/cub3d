@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/05 12:06:08 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 10:29:52 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 t_menu	init_menu(int argc, char **argv)
 {
-	t_menu	res;
+	t_menu					res;
 	static pthread_mutex_t	mutex;
 
 	res.base_time = get_elapsedtime(0);
