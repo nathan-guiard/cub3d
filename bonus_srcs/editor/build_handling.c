@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 10:41:47 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 17:35:20 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:44:41 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,10 @@ void	build_handling(t_menu *menu, int key)
 {
 	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
 		move_cursor(menu, key);
+	else if (key == 'q')
+		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = '1';
+	else if (key == DEL)
+		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = '0';
 	draw_charmap(menu);
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
-	// else if (key == 'q')
 }

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 16:47:18 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 17:38:49 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -212,5 +212,6 @@ void	draw_editor(t_menu *menu, char *map);
 void	init_charmap(t_menu *menu);
 void	draw_charmap(t_menu *menu);
 void	build_handling(t_menu *menu, int key);
+void	draw_wall_square(t_menu *menu, t_co co);
 
 #endif
