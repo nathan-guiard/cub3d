@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/08 15:10:56 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/11 15:52:07 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,17 +54,29 @@ int	create_map(t_map *map, t_cub *cub)
 {
 	char	**tab;
 	int		i;
+	int		j;
 	t_map	*temp;
 
+	j = 0;
 	temp = map;
 	i = 0;
 	cub->height = ft_my_lstsize(map);
 	cub->width = ft_lst_width(map);
-/* 	if (verify_borders(map, cub) == -1)
-		ft_error(cub, &cub->map, "ERROR : Check map borders"); */
-	tab = malloc(sizeof(char *) * (cub->height + 1));
+	if (cub->height < 3)
+		ft_error(cub, &cub->map, "ERROR : map too short");
+	tab = malloc(sizeof(char *) * (cub->height + 3));
 	if (!tab)
 		ft_error(cub, &cub->map, "ERROR : malloc error");
+	tab[i] = malloc(sizeof(char) * cub->width + 1);
+	if (!tab)
+		ft_error(cub, &cub->map, "ERROR : malloc error");
+	while (j < cub->width)
+	{
+		tab[i][j] = 'v';
+		j++;
+	}
+	tab[i][j] = '\0';
+	i++;
 	cub->char_map = tab;
 	while (temp != NULL)
 	{
@@ -72,7 +84,20 @@ int	create_map(t_map *map, t_cub *cub)
 		i++;
 		temp = temp->next;
 	}
+	j = 0;
+	tab[i] = malloc(sizeof(char) * cub->width + 1);
+	if (!tab)
+		ft_error(cub, &cub->map, "ERROR : malloc error");
+	while (j < cub->width)
+	{
+		tab[i][j] = 'v';
+		j++;
+	}
+	tab[i][j] = '\0';
+	i++;
 	cub->char_map[i] = '\0';
+	if (verify_borders(map, cub) == -1)
+		ft_error(cub, &cub->map, "ERROR : Check map borders");
 	return (1);
 }
 
@@ -108,6 +133,5 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		tab[*i][k] = 'v';
 		k++;
 	}
-	tab[*i][k] = '\0';
-	
+	tab[*i][k] = '\0';	
 }

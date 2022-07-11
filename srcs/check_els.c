@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/08 15:10:34 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:24:57 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,21 +14,74 @@
 
 int	verify_borders(t_map *map, t_cub *cub)
 {
-	t_map	*temp;
-	int		ret;
+	int	i;
+	int	j;
+	int	closed;
 
-	(void)cub;
-	temp = map;
-	ret = 1;
-	while (temp->next != NULL && ret != -1)
+	(void)map;
+	i = 1;
+	j = 0;
+	ft_isspace(cub->char_map[i], &j);
+	if (cub->char_map[i][j] != '1')
+		return (-1);
+	closed = 0;
+	while (i <= cub->height)
 	{
-		if (temp->next->len > temp->len && ret != -1)
-			ret = compare_strings(temp->next->line, temp->line);
-		else if (temp->next->len < temp->len && ret != -1)
-			ret = compare_strings(temp->line, temp->next->line);
-		temp = temp->next;
+		j = 0;
+		while (cub->char_map[i][j] != '\0' && cub->char_map[i][j] != 'v')
+		{
+			if (cub->char_map[i][j] == '1')
+			{
+				if (closed == 1 || closed == 2)
+					closed = 2;
+				else
+					closed = 1;
+			}
+			else
+			{
+				if (closed == 2)
+					closed = 1;
+				if (i == 1)
+					return (-1);
+			}
+			j++;
+		}
+		if (closed != 2)
+			return (-1);
+		i++;
+		closed = 0;
 	}
-	return (ret);
+	i = 1;
+	j = 0;
+	while (j <= cub->width - 1)
+	{
+		i = 1;
+		while (cub->char_map[i][j] && cub->char_map[i][j] != 'v')
+		{
+			if (cub->char_map[i][j] == '1')
+			{
+				if (closed == 1 || closed == 2)
+					closed = 2;
+				else
+					closed = 1;
+			}
+			else
+			{
+				if (cub->char_map[i][j] == 32 && closed != 2)
+					return (-1);
+				else if (cub->char_map[i][j] == '0' && cub->char_map[i - 1][j] == 32)
+					return (-1);
+				else if (closed == 2 && cub->char_map[i][j] != 32)
+					closed = 1;
+			}
+			i++;
+		}
+		if (closed != 2)
+			return (-1);
+		j++;
+		closed = 0;
+	}
+	return (1);
 }
 
 int	compare_strings(char *s_long, char *s_short)

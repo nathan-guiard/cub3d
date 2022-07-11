@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/08 12:36:58 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/11 17:33:49 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,6 @@ void	ft_bresenham(t_cords *cords, t_cub *cub);
 void	set_data(t_cords *cords, t_line *data);
 void	ft_bresenham_bis(t_cords *cords, t_cub *cub, t_line *data);
 int		draw_grid(t_cub *cub, t_cords *cords, int fill);
-int		full_square(t_cords *cords, t_cub *cub);
+int		full_square(t_cords *cords, t_cub *cub, int fill);
 
 #endif
