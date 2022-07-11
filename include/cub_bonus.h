@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/06 16:44:05 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:47:18 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,7 @@ typedef struct s_menu
 	int					key_pressed;
 	char				**argv;
 	char				*basemap;
-	t_co				last_button;
+	t_co				button_co;
 	t_status			status;
 	pthread_mutex_t		*mutex_img;
 	unsigned long long	base_time;
@@ -211,5 +211,6 @@ void	init_editor(t_menu *menu, char *last);
 void	draw_editor(t_menu *menu, char *map);
 void	init_charmap(t_menu *menu);
 void	draw_charmap(t_menu *menu);
+void	build_handling(t_menu *menu, int key);
 
 #endif

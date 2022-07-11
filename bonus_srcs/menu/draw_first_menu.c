@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/29 19:00:11 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 10:30:18 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:47:18 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	draw_3(t_img *img, int x, int y, int color);
 
 void	draw_first_menu(t_menu *menu)
 {
-	menu->last_button = (t_co){.x = 400, .y = 500};
+	menu->button_co = (t_co){.x = 400, .y = 500};
 	menu->button = 0;
 	draw_menu(menu);
 	draw_menu_button(menu, DOWN_KEY);

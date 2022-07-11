@@ -92,7 +92,7 @@ typedef struct s_menu
 	int					key_pressed;
 	char				**argv;
 	char				*basemap;
-	t_co				last_button;
+	t_co				button_co;
 	t_status			status;
 	pthread_mutex_t		*mutex_img;
 	unsigned long long	base_time;

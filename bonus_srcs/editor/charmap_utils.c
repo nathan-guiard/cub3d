@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:49:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 10:28:25 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:49:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,10 +47,10 @@ void	draw_charmap(t_menu *menu)
 
 	x = 0;
 	y = 0;
-	draw_box(menu, menu->last_button,
-		(t_co){.x = menu->last_button.x + 50, menu->last_button.y + 50});
-	draw_box(menu, (t_co){.x = menu->last_button.x + 1, menu->last_button.y + 1, .color = BLACK},
-		(t_co){.x = menu->last_button.x + 49, menu->last_button.y + 49});
+	draw_box(menu, menu->button_co,
+		(t_co){.x = menu->button_co.x + 50, menu->button_co.y + 50});
+	draw_box(menu, (t_co){.x = menu->button_co.x + 1, menu->button_co.y + 1, .color = BLACK},
+		(t_co){.x = menu->button_co.x + 49, menu->button_co.y + 49});
 	while (x < MAX_COL)
 	{
 		y = 0;

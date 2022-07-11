@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:56:01 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 10:24:40 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:47:18 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	draw_editor(t_menu *menu, char *map)
 {
 	draw_box(menu, (t_co){.x = 0, .y = 0, .color = BLACK},
 		(t_co){.x = WIDTH, .y = HEIGTH});
-	menu->last_button = (t_co){.x = 50, .y = 200, .color = GREEN};
+	menu->button_co = (t_co){.x = 50, .y = 200, .color = GREEN};
 	header(menu, map);
 	grid(menu);
 	init_charmap(menu);
@@ -51,7 +51,6 @@ static void	grid(t_menu *menu)
 		(t_co){.x = WIDTH - 50, .y = HEIGTH - 50});
 	draw_box(menu, (t_co){.x = 51, .y = 201, .color = BLACK},
 		(t_co){.x = WIDTH - 51, .y = HEIGTH - 51});
-	ft_printf("color: %x\n", THREE_BLUE);
 	while (i <= WIDTH - 100)
 	{
 		straight_line(&menu->img, (t_co){.x = i, .y = 200,

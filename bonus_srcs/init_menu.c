@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 10:29:52 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/11 16:47:18 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ t_menu	init_menu(int argc, char **argv)
 	if (argv && argv[1])
 		res.basemap = argv[1];
 	res.status = start;
-	res.last_button = (t_co){.x = 400, .y = 500};
+	res.button_co = (t_co){.x = 400, .y = 500};
 	res.button = 0;
 	res.key_pressed = 0;
 	pthread_mutex_init(&mutex, NULL);
