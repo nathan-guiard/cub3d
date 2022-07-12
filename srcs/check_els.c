@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/11 17:24:57 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/12 14:12:10 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,8 @@ int	verify_borders(t_map *map, t_cub *cub)
 		j = 0;
 		while (cub->char_map[i][j] != '\0' && cub->char_map[i][j] != 'v')
 		{
+			if (ft_isset(cub->char_map[i][j],  "NSEW01 v") == -1)
+				ft_error(cub, &cub->map, "invalid character in map");
 			if (cub->char_map[i][j] == '1')
 			{
 				if (closed == 1 || closed == 2)
@@ -58,6 +60,8 @@ int	verify_borders(t_map *map, t_cub *cub)
 		i = 1;
 		while (cub->char_map[i][j] && cub->char_map[i][j] != 'v')
 		{
+			if (ft_isset(cub->char_map[i][j], "NSEW01 v") == -1)
+				ft_error(cub, &cub->map, "invalid character in map");
 			if (cub->char_map[i][j] == '1')
 			{
 				if (closed == 1 || closed == 2)
