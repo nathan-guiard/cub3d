@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/14 17:21:23 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:24:48 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,8 +113,8 @@ int	is_wall(char **tab, int	xinter, int yinter)
 	int	i;
 	int	j;
 
-	i = floor(xinter / 32);
-	j = floor(yinter / 32);
+	j = floor(xinter / 32);
+	i = floor(yinter / 32);
 	if (tab[i][j] == '1')
 		return (1);
 	else
