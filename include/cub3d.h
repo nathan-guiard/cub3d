@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 17:33:49 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/14 17:12:05 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,10 @@
 # define CARELAGE_COLOR	0x00007070
 # define CARELAGE_RATIO 10
 
+# define TILE_SIZE 32
+# define PI 3.14159265
+# define TWO_PI 6.28318530
+
 struct	s_map;
 struct	s_cub;
 
@@ -74,22 +78,6 @@ typedef enum e_status
 	start,
 	play,
 }	t_status;
-
-typedef struct s_menu
-{
-	void				*init;
-	void				*win;
-	t_img				img;
-	int					argc;
-	int					button;
-	int					key_pressed;
-	char				**argv;
-	char				*basemap;
-	t_co				last_button;
-	t_status			status;
-	pthread_mutex_t		*mutex_img;
-	unsigned long long	base_time;
-}	t_menu;
 
 typedef struct s_line
 {
@@ -180,8 +168,41 @@ typedef struct s_cub
 	unsigned int	c_color;
 	struct s_map	*map;
 	char			**char_map;
+	int				fov_an;
+	float			col_width;
+	int				no_rays;
+	float			ray_angle;
 	t_mlx			mlx;
 }	t_cub;
+
+typedef struct s_pos
+{
+	float	x;
+	float	y;
+	char	dir;
+}	t_pos;
+
+typedef struct s_player
+{
+	t_pos	player_pos;
+	float	width;
+	float	height;
+	int		direction;
+	int		walk_dir;
+	float	rotation_angle;
+}	t_player;
+
+typedef struct s_ray
+{
+	float	ray_angle;
+	float	hit_x;
+	float	hit_y;
+	int		up;
+	int		down;
+	int		left;
+	int		right;
+	int		wall;
+}	t_ray;
 
 /*    PARSING                 */
 int		parse_map(int fd);
@@ -227,6 +248,7 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 void	ft_error(t_cub *cub, t_map **map, char *str);
 void	ft_error2(t_cub *cub, t_map **map, char *res, char *str);
 void	ft_error_cub(t_cub *cub, t_map **map, char *str);
+void	ft_ray_error(t_cub *cub, t_ray *ray, t_player *player, char *str);
 /*		LAUCNH_CUB3d		*/
 int		launch_cub3d(t_cub *cub);
 t_mlx	init_mlx(t_cub *cub);
@@ -247,5 +269,16 @@ void	set_data(t_cords *cords, t_line *data);
 void	ft_bresenham_bis(t_cords *cords, t_cub *cub, t_line *data);
 int		draw_grid(t_cub *cub, t_cords *cords, int fill);
 int		full_square(t_cords *cords, t_cub *cub, int fill);
+int		ft_swap_up(char **tab);
+void	move_player(t_cub *cub, int keycode);
+int		raycasting(t_cub *cub);
 
+/*		raycasting		*/
+int		cast_all_rays(t_cub *cub, t_player *player, t_ray *ray);
+int		cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
+int		ray_direction(t_ray *ray, int col_id, float ray_angle);
+float	normalize_angle(float ray_angle);
+t_pos	find_player(char **tab);
+int		init_player(t_cub *cub, t_player *player);
+int		is_wall(char **tab, int	xinter, int yinter);
 #endif

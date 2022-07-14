@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/07 16:23:07 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/13 14:27:47 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -24,6 +24,7 @@ SRC = srcs/main.c \
 	srcs/keys.c \
 	srcs/draw_mini_map.c \
 	srcs/bres.c \
+	srcs/raycasting.c \
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\
