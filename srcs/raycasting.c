@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clodaghmurphy <clodaghmurphy@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/14 17:24:48 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/20 15:01:47 by clodaghmurp      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 	/* HORIZONTAL delta */
 	h_delta_x = TILE_SIZE / tan(cub->ray_angle);
 	h_delta_y = TILE_SIZE;
+	h_delta_x
 	/* VERTICAL delta */
 	//delta_x = TILE_SIZE * tan(cub->ray_angle);
 	//delta_y = TILE_SIZE;
@@ -78,9 +79,15 @@ int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 	/* if the ray is pointing down ned to add 32 to go to next horizontal line
 	as + 32 will make the line go down one */
 	if (ray[col_id].down)
+	{
 		yintercept += TILE_SIZE;
+		
+	
 	if (ray[col_id].up == 1)
+	{
+		h_delta_y *= -1;
 		yintercept *= -1;
+	}
 	if (ray[col_id].left && xintercept > 0)
 		xintercept *= -1;
 	if (ray[col_id].right && xintercept < 0)
@@ -160,6 +167,7 @@ t_pos	find_player(char **tab)
 	while (tab[i] && flag == 0)
 	{
 		i++;
+		j =0;
 		while (tab[i][j])
 		{
 			if (ft_isset(tab[i][j], "NSEW") == 1)
