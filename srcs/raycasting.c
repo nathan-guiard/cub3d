@@ -6,7 +6,7 @@
 /*   By: clodaghmurphy <clodaghmurphy@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/20 15:01:47 by clodaghmurp      ###   ########.fr       */
+/*   Updated: 2022/07/20 18:56:39 by clodaghmurp      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,10 +20,6 @@ int	raycasting(t_cub *cub)
 	cub->fov_an = 60 * (PI / 180);
 	cub->col_width = 4;
 	cub->no_rays = WIDTH / cub->col_width;
-	ray = malloc(sizeof(ray) * cub->no_rays);
-	player = malloc(sizeof(t_player));
-	if (!player || !ray)
-		ft_ray_error(cub, ray, player, "malloc error");
 	init_player(cub, player);
 	cast_all_rays(cub, player, ray);
 	return (0);
@@ -37,6 +33,7 @@ int	cast_all_rays(t_cub *cub, t_player *player, t_ray *ray)
 	cub->ray_angle = player->rotation_angle - (cub->fov_an / 2);
 	while (i < cub->no_rays)
 	{
+		init_ray(cub);
 		cast_ray(ray, player, cub, i);
 		cub->ray_angle += cub->fov_an;
 		i++;
@@ -44,78 +41,64 @@ int	cast_all_rays(t_cub *cub, t_player *player, t_ray *ray)
 	return (0);
 }
 
+void	init_ray(t_cub *cub)
+{
+	cub->ray.hit_x = 0;
+	cub->ray.hit_y = 0;
+	cub->ray.xstep;
+	cub->ray.ystep = 0;
+	cub->ray.yintercept = 0;
+	cub->ray.xintercept = 0;
+	cub->ray.up = 0;
+	cub->ray.down = 0;
+	cub->ray.left = 0;
+	cub->ray.right;
+	cub->ray.wall;
+}
+
 int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 {
-	float	h_delta_x;
-	float	h_delta_y;
-	//float	delta_x;
-	//float	delta_y;
-	float	xintercept;
-	float	yintercept;
-	float	next_xintercept;
-	float	next_yintercept;
-	int		hit;
-
-	hit = 0;
-	/*calculate where ray First hits x horixzontal intercept*/
-	/* take where the player is standing and divide by tile size whilst rounding it up,
-	then times it agian by tile size to get the exact intersect */
-	yintercept = floor(player->player_pos.y / TILE_SIZE) * TILE_SIZE;
-	/* to get the x intercept you need to add x to you get the distance between both y coors
-	which will give you opposite side of traingle which will alllow you to calculate the adjacent
-	which is the distance between the x points */
-	xintercept = player->player_pos.x + ((player->player_pos.y - yintercept) \
-	/ tan(cub->ray_angle));
-	/* HORIZONTAL delta */
-	h_delta_x = TILE_SIZE / tan(cub->ray_angle);
-	h_delta_y = TILE_SIZE;
-	h_delta_x
-	/* VERTICAL delta */
-	//delta_x = TILE_SIZE * tan(cub->ray_angle);
-	//delta_y = TILE_SIZE;
-	ray[col_id].ray_angle = normalize_angle(cub->ray_angle);
-	/*	ray direction to be able to calulcate next intercept */
+	cub->ray_angle = normalize_angle(cub->ray_angle);
 	ray_direction(ray, col_id, cub->ray_angle);
-	/* if the ray is pointing down ned to add 32 to go to next horizontal line
-	as + 32 will make the line go down one */
-	if (ray[col_id].down)
+	horizontal_colis(&cub->ray, col_id, cub->ray_angle);
+}
+
+int horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
+{
+	int	h_wall_hit;
+	float	horz_wall_hit_x;
+	float	horz_wall_hit_y;
+
+	ray->yintercept = floorf(player->pos.y) * TILE_SIZE;
+	if (ray->down == 1)
+		ray->yintercept += TILE_SIZE;
+	ray->xintercept = player->pos.x (player->pos.y - ray->yintercept) \
+	/ tan(ray_angle);
+	ray->yintercept = TILE_SIZE;
+	if (ray->up == 1)
+		ray->yintercept *= -1;
+	ray->xstep = TILE_SIZE / tan(cub->fov_angle);
+	if(ray.left == 1 && ray->xstep > 0 || \
+	ray.right && ray->xstep < 0)
+		ray->xstep *= -1;
+	while (ray->xintercept > 0 && ray->xintercept < (cub->width * 32) \
+	&& ray->yintercept > 0 && ray->yintercept < (cub->height * 32))
 	{
-		yintercept += TILE_SIZE;
-		
-	
-	if (ray[col_id].up == 1)
-	{
-		h_delta_y *= -1;
-		yintercept *= -1;
-	}
-	if (ray[col_id].left && xintercept > 0)
-		xintercept *= -1;
-	if (ray[col_id].right && xintercept < 0)
-		xintercept *= -1;
-	next_xintercept = xintercept;
-	next_yintercept = yintercept;
-	/*   find horisontal wall	*/
-	while (next_xintercept <= WIDTH && next_yintercept <= \
-	HEIGTH && next_xintercept >= 0 && next_yintercept >= 0 && hit == 0)
-	{
-		if (is_wall(cub->char_map, next_xintercept, next_yintercept))
+		if (is_wall(cub->char_map, ray->xintercept, (ray->yintercept - ray->up)
 		{
-			hit = 1;
-			ray[col_id].hit_x = next_xintercept;
-			ray[col_id].hit_y = next_xintercept;
-			my_pixel_put(&cub->mlx.img, next_xintercept, next_yintercept, cub->f_color);
+			ray->hit_x = ray->xintercept;
+			ray->hit_y = ray->yintercept;
 			break ;
 		}
 		else
 		{
-			next_xintercept += h_delta_x;
-			next_yintercept += h_delta_y;
-		}			
-	}
-	return (0);
+			ray->xintercept += ray->xintercept;
+			ray->yintercept += ray->yintercept;
+		}
+	}	
 }
 
-int	is_wall(char **tab, int	xinter, int yinter)
+	int is_wall(char **tab, int xinter, int yinter)
 {
 	int	i;
 	int	j;

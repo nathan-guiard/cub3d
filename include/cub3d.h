@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: clodaghmurphy <clodaghmurphy@student.42    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/14 17:12:05 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/20 16:59:00 by clodaghmurp      ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -173,6 +173,8 @@ typedef struct s_cub
 	int				no_rays;
 	float			ray_angle;
 	t_mlx			mlx;
+	t_ray			ray;
+	t_player		player;
 }	t_cub;
 
 typedef struct s_pos
@@ -184,7 +186,7 @@ typedef struct s_pos
 
 typedef struct s_player
 {
-	t_pos	player_pos;
+	t_pos	pos;
 	float	width;
 	float	height;
 	int		direction;
@@ -197,6 +199,10 @@ typedef struct s_ray
 	float	ray_angle;
 	float	hit_x;
 	float	hit_y;
+	float	xstep;
+	float	ystep;
+	float	yintercept;
+	float	xintercept;
 	int		up;
 	int		down;
 	int		left;
@@ -281,4 +287,5 @@ float	normalize_angle(float ray_angle);
 t_pos	find_player(char **tab);
 int		init_player(t_cub *cub, t_player *player);
 int		is_wall(char **tab, int	xinter, int yinter);
+void 	init_ray(t_cub *cub);
 #endif
