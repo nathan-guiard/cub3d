@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clodaghmurphy <clodaghmurphy@student.42    +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/20 16:59:00 by clodaghmurp      ###   ########.fr       */
+/*   Updated: 2022/07/21 18:23:02 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -155,28 +155,6 @@ typedef struct s_cords
 	float	temp_x;
 	float	temp_y;
 }	t_cords;
-
-typedef struct s_cub
-{
-	int				width;
-	int				height;
-	char			*n_path;
-	char			*s_path;
-	char			*w_path;
-	char			*e_path;
-	unsigned int	f_color;
-	unsigned int	c_color;
-	struct s_map	*map;
-	char			**char_map;
-	int				fov_an;
-	float			col_width;
-	int				no_rays;
-	float			ray_angle;
-	t_mlx			mlx;
-	t_ray			ray;
-	t_player		player;
-}	t_cub;
-
 typedef struct s_pos
 {
 	float	x;
@@ -208,7 +186,28 @@ typedef struct s_ray
 	int		left;
 	int		right;
 	int		wall;
+	int		distance;
 }	t_ray;
+typedef struct s_cub
+{
+	int				width;
+	int				height;
+	char			*n_path;
+	char			*s_path;
+	char			*w_path;
+	char			*e_path;
+	unsigned int	f_color;
+	unsigned int	c_color;
+	struct s_map	*map;
+	char			**char_map;
+	int				fov_an;
+	float			col_width;
+	int				no_rays;
+	float			ray_angle;
+	t_mlx			mlx;
+	struct s_ray			ray;
+	struct  s_player		player;
+}	t_cub;
 
 /*    PARSING                 */
 int		parse_map(int fd);
@@ -280,12 +279,16 @@ void	move_player(t_cub *cub, int keycode);
 int		raycasting(t_cub *cub);
 
 /*		raycasting		*/
-int		cast_all_rays(t_cub *cub, t_player *player, t_ray *ray);
+int		cast_all_rays(t_cub *cub, t_player *player);
 int		cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
 int		ray_direction(t_ray *ray, int col_id, float ray_angle);
 float	normalize_angle(float ray_angle);
 t_pos	find_player(char **tab);
-int		init_player(t_cub *cub, t_player *player);
-int		is_wall(char **tab, int	xinter, int yinter);
-void 	init_ray(t_cub *cub);
+t_player	*init_player(t_cub *cub);
+int		is_wall(char **tab, int xinter, int yinter);
+void	init_ray(t_cub *cub);
+int		project_wall(t_cub *cub);
+int		vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle);
+int		horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle);
+
 #endif
