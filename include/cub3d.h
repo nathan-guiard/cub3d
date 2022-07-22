@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/21 18:23:02 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/22 17:16:24 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -290,5 +290,6 @@ void	init_ray(t_cub *cub);
 int		project_wall(t_cub *cub);
 int		vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle);
 int		horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle);
+void	DrawCircle(int x, int y, int r, t_cub *cub);
 
 #endif
