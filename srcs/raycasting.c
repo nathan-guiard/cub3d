@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/22 19:05:30 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/23 20:08:15 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,13 +46,13 @@ int	cast_all_rays(t_cub *cub, t_player *player)
 	int		i;
 
 	i = 0;
-	cub->ray_angle = (player->rotation_angle * PI / 180) - (cub->fov_an / 2);
-	while (i < cub->no_rays)
+	cub->ray_angle = player->rotation_angle - (cub->fov_an / 2);
+	while (i < 3)
 	{
 		init_ray(cub);
 		cast_ray(&cub->ray, player, cub, i);
 	//	project_wall(cub);
-		cub->ray_angle += cub->fov_an;
+		cub->ray_angle += cub->fov_an / cub->no_rays;
 		i++;
 	}
 	return (0);
@@ -89,10 +89,8 @@ int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 {
 	cub->ray_angle = normalize_angle(cub->ray_angle);
 	ray_direction(ray, col_id, cub->ray_angle);
-	horizontal_colis(&cub->ray, player, cub, cub->ray_angle);
-	DrawCircle(cub->ray.xintercept, cub->ray.yintercept, 2, cub);
-	vertical_colis(&cub->ray, player, cub, cub->ray_angle);
-	DrawCircle(cub->ray.xintercept, cub->ray.yintercept, 2, cub);
+	//horizontal_colis(&cub->ray, player, cub, cub->ray_angle);
+	//vertical_colis(&cub->ray, player, cub, cub->ray_angle);
 	return (0);
 }
 
@@ -101,21 +99,20 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->xintercept = floorf(player->pos.x / TILE_SIZE) * TILE_SIZE;
 	if (ray->right == 1)
 		ray->xintercept += TILE_SIZE;
-	ray->yintercept = player->pos.y + (player->pos.x - ray->xintercept) \
+	ray->yintercept = player->pos.y + (ray->xintercept - player->pos.x) \
 	* tan(ray_angle);
 	ray->yintercept = TILE_SIZE;
 	if (ray->up == 1)
 		ray->yintercept *= -1;
 	ray->ystep = TILE_SIZE * tan(ray_angle);
 	ray->xstep = TILE_SIZE;
-	if ((ray->left == 1 && ray->xstep > 0) || \
-	(ray->right && ray->xstep < 0))
-		ray->xstep *= -1;
+	if ((ray->up == 1 && ray->ystep > 0) || \
+	(ray->down && ray->ystep < 0))
+		ray->ystep *= -1;
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * 32) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * 32))
 	{
-	DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
-
+		//DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
 		if (is_wall(cub->char_map, ray->xintercept, \
 		(ray->yintercept - ray->up)))
 		{
@@ -144,7 +141,6 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->xintercept = player->pos.x + (player->pos.y - ray->yintercept) \
 	/ tan(ray_angle);
 	ray->yintercept = TILE_SIZE;
-	DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
 	if (ray->up == 1)
 		ray->yintercept *= -1;
 	ray->ystep = TILE_SIZE;
@@ -155,6 +151,7 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * 32) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * 32))
 	{
+		DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
 		if (is_wall(cub->char_map, ray->xintercept, \
 		(ray->yintercept - ray->up)))
 		{
@@ -208,10 +205,10 @@ int	ray_direction(t_ray *ray, int col_id, float ray_angle)
 float	normalize_angle(float ray_angle)
 {
 	// make sure that angle doesn't go over one roation
-	if (ray_angle > 2 * PI)
-		ray_angle -= 2 * PI;
-	if (ray_angle < 0)
-		ray_angle += 2 * PI;
+	ray_angle = remainder(ray_angle, TWO_PI);
+    if (ray_angle < 0) {
+        ray_angle = TWO_PI + ray_angle;
+    }
 	return (ray_angle);
 }
 
@@ -239,8 +236,8 @@ t_pos	find_player(char **tab)
 			j++;
 		}
 	}
-	pos.x = j * TILE_SIZE;
-	pos.y = i * TILE_SIZE;
+	pos.x = (j * TILE_SIZE) + TILE_SIZE / 2;
+	pos.y = (i * TILE_SIZE) - TILE_SIZE / 2;
 	pos.dir = tab[i][j];
 	return (pos);
 }
@@ -252,7 +249,7 @@ t_player	*init_player(t_cub *cub)
 	player = malloc(sizeof(player));
 	player->pos = find_player(cub->char_map);
 	if (player->pos.dir == 'N')
-		player->rotation_angle = 270;
+		player->rotation_angle = (3 *PI) * 0.5;
 	if (player->pos.dir == 'E')
 		player->rotation_angle = 0;
 	if (player->pos.dir == 'S')
