@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/25 11:14:17 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/25 16:54:36 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -185,7 +185,8 @@ typedef struct s_ray
 	int		down;
 	int		left;
 	int		right;
-	int		wall;
+	int		wall_x;
+	int		wall_y;
 	int		distance;
 }	t_ray;
 typedef struct s_cub
@@ -200,7 +201,7 @@ typedef struct s_cub
 	unsigned int	c_color;
 	struct s_map	*map;
 	char			**char_map;
-	int				fov_an;
+	float				fov_an;
 	float			col_width;
 	int				no_rays;
 	float			ray_angle;
