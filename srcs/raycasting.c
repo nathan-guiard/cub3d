@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/25 10:43:41 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/25 10:47:16 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,7 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	* tan(ray_angle);
 	ray->yintercept = TILE_SIZE;
 	if (ray->up == 1)
-		ray->yintercept *= -1;
+		ray->ystep *= -1;
 	ray->ystep = TILE_SIZE * tan(ray_angle);
 	ray->xstep = TILE_SIZE;
 	if ((ray->up == 1 && ray->ystep > 0) || \
