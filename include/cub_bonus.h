@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 17:38:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/12 11:42:38 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@
 # define LIL_SHDW_DIFF	0x00002f1f
 # define THREE_DIFF		0x00003f7f
 # define THREE_BLUE		MENU_COLOR + THREE_DIFF
+# define PLAYER_COLOR	0x00ff00ff
 
 # define TITLE_X		210
 # define TITLE_Y		85
@@ -213,5 +214,6 @@ void	init_charmap(t_menu *menu);
 void	draw_charmap(t_menu *menu);
 void	build_handling(t_menu *menu, int key);
 void	draw_wall_square(t_menu *menu, t_co co);
+void	draw_player(t_menu *menu, char key, int x, int y);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 10:41:47 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 17:44:41 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/12 11:24:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ void	build_handling(t_menu *menu, int key)
 		move_cursor(menu, key);
 	else if (key == 'q')
 		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = '1';
+	else if (key == 'w')
+		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = 'N';
 	else if (key == DEL)
 		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = '0';
 	draw_charmap(menu);

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:49:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 16:49:43 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/07/12 11:31:25 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,7 +103,9 @@ static void	draw_the_square(t_menu *menu, int x, int y)
 		return ;
 	if (menu->char_map[y][x] == '1')
 		draw_wall_square(menu, (t_co){.x = 51 + x * 50, .y = 201 + y * 50});
-	//if (menu->char_map[y][x] == 'N')
+	if (menu->char_map[y][x] == 'N' || menu->char_map[y][x] == 'W' ||
+		menu->char_map[y][x] == 'S' || menu->char_map[y][x] == 'E')
+		draw_player(menu, menu->char_map[y][x], x, y);
 	if (menu->char_map[y][x] == '0')
 	{
 		draw_box(menu, (t_co){.x = 51 + x * 50, .y = 201 + y * 50,
