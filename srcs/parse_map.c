@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/11 15:52:07 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/25 12:02:01 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ int	create_map(t_map *map, t_cub *cub)
 	tab = malloc(sizeof(char *) * (cub->height + 3));
 	if (!tab)
 		ft_error(cub, &cub->map, "ERROR : malloc error");
-	tab[i] = malloc(sizeof(char) * cub->width + 1);
+	tab[i] = malloc(sizeof(char) * cub->width + 2);
 	if (!tab)
 		ft_error(cub, &cub->map, "ERROR : malloc error");
 	while (j < cub->width)

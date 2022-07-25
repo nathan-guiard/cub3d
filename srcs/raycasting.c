@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/25 10:47:16 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/25 11:53:49 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,22 @@ void	DrawCircle(int x, int y, int r, t_cub *cub)
 		x1 = r * cos(angle * PI / 180);
 		y1 = r * sin(angle * PI / 180);
 		my_pixel_put(&cub->mlx.img, x + x1, y + y1, 0x00FF0000);
+	}
+}
+
+void	DrawCircle2(int x, int y, int r, t_cub *cub)
+{
+	double	i;
+	double	angle;
+	double	x1;
+	double	y1;
+
+	for(i = 0; i < 360; i += 0.1)
+	{
+		angle = i;
+		x1 = r * cos(angle * PI / 180);
+		y1 = r * sin(angle * PI / 180);
+		my_pixel_put(&cub->mlx.img, x + x1, y + y1, 0x800080);
 	}
 }
 
@@ -101,16 +117,15 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 		ray->xintercept += TILE_SIZE;
 	ray->yintercept = player->pos->y + (ray->xintercept - player->pos->x) \
 	* tan(ray_angle);
-	ray->yintercept = TILE_SIZE;
-	if (ray->up == 1)
-		ray->ystep *= -1;
 	ray->ystep = TILE_SIZE * tan(ray_angle);
 	ray->xstep = TILE_SIZE;
+	if (ray->left == 1)
+		ray->xstep *= -1;
 	if ((ray->up == 1 && ray->ystep > 0) || \
 	(ray->down && ray->ystep < 0))
 		ray->ystep *= -1;
-	while (ray->xintercept > 0 && ray->xintercept < (cub->width * 32) \
-	&& ray->yintercept > 0 && ray->yintercept < (cub->height * 32))
+	while (ray->xintercept > 0 && ray->xintercept < WIDTH \
+	&& ray->yintercept > 0 && ray->yintercept < HEIGTH)
 	{
 		DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
 		if (is_wall(cub->char_map, ray->xintercept, \
@@ -140,21 +155,20 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 		ray->yintercept += TILE_SIZE;
 	ray->xintercept = player->pos->x + (player->pos->y - ray->yintercept) \
 	/ tan(ray_angle);
-	ray->yintercept = TILE_SIZE;
-	if (ray->up == 1)
-		ray->ystep *= -1;
-	DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
+	DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
 	ray->ystep = TILE_SIZE;
 	ray->xstep = TILE_SIZE / tan(cub->fov_an);
+	if (ray->up == 1)
+		ray->ystep *= -1;
 	if ((ray->left == 1 && ray->xstep > 0) || \
 	(ray->right && ray->xstep < 0))
 		ray->xstep *= -1;
-	while (ray->xintercept > 0 && ray->xintercept < (cub->width * 32) \
-	&& ray->yintercept > 0 && ray->yintercept < (cub->height * 32))
+	while (ray->xintercept > 0 && ray->xintercept < WIDTH \
+	&& ray->yintercept > 0 && ray->yintercept < HEIGTH)
 	{
-		DrawCircle(ray->xintercept, ray->yintercept, 2, cub);
+		DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
 		if (is_wall(cub->char_map, ray->xintercept, \
-		(ray->yintercept - ray->up)))
+		(ray->yintercept + ray->up)))
 		{
 			if (ray->distance > hypot((player->pos->x - ray->xintercept), \
 			(player->pos->y - ray->yintercept)))
@@ -166,8 +180,8 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 		}
 		else
 		{
-			ray->xintercept += ray->xintercept;
-			ray->yintercept += ray->yintercept;
+			ray->xintercept += ray->xstep;
+			ray->yintercept += ray->ystep;
 		}
 	}
 	return (0);	
@@ -178,8 +192,8 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	int	i;
 	int	j;
 
-	j = floor(xinter / 32);
-	i = floor(yinter / 32);
+	j = floorf(xinter / TILE_SIZE);
+	i = floorf(yinter / TILE_SIZE);
 	if (tab[i][j] == '1')
 		return (1);
 	else
