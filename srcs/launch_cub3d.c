@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/23 19:26:28 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/25 10:23:33 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,6 @@ t_mlx	init_mlx(t_cub *cub)
 	t_mlx	mlx;
 
 	(void)cub;
-/* 	mlx = ft_calloc(sizeof(mlx), 1);
-	if (!mlx)
-		ft_error_cub(cub, &cub->map, "malloc error"); */
 	mlx.init = mlx_init();
 	mlx.win = mlx_new_window(mlx.init, WIDTH, HEIGTH, "cub3d");
 	mlx.img.img = mlx_new_image(mlx.init, WIDTH, HEIGTH);

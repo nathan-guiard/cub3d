@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/22 17:16:24 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/25 10:20:13 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ typedef struct s_pos
 
 typedef struct s_player
 {
-	t_pos	pos;
+	t_pos	*pos;
 	float	width;
 	float	height;
 	int		direction;
@@ -283,7 +283,7 @@ int		cast_all_rays(t_cub *cub, t_player *player);
 int		cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
 int		ray_direction(t_ray *ray, int col_id, float ray_angle);
 float	normalize_angle(float ray_angle);
-t_pos	find_player(char **tab);
+t_pos	*find_player(char **tab);
 t_player	*init_player(t_cub *cub);
 int		is_wall(char **tab, int xinter, int yinter);
 void	init_ray(t_cub *cub);
