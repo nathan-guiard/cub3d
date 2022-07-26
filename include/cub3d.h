@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/26 15:06:15 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:52:39 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -207,7 +207,7 @@ typedef struct s_cub
 	float				ray_angle;
 	t_mlx				mlx;
 	struct s_ray		ray;
-	struct s_player		player;
+	struct s_player		*player;
 }	t_cub;
 
 /*    PARSING                 */

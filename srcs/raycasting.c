@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/26 17:49:51 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:45:13 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,12 @@
 
 int	raycasting(t_cub *cub)
 {
-	t_player	*player;
-
 	cub->fov_an = 60 * (PI / 180);
-	cub->col_width = 4;
+	cub->col_width = 2;
 	cub->no_rays = WIDTH / cub->col_width;
-	player = init_player(cub);
-	DrawCircle(player->pos->x, player->pos->y, 2, cub);
-	cast_all_rays(cub, player);
+	cub->player = init_player(cub);
+	//DrawCircle(player->pos->x, player->pos->y, 2, cub);
+	cast_all_rays(cub, cub->player);
 	//draw_mini_map(cub);
 	return (0);
 }
@@ -86,7 +84,7 @@ int	project_wall(t_cub *cub, int col_id)
 	int		bottom_p;
 	float	cost;
 
-	cost = cos(cub->player.rotation_angle - cub->ray.ray_angle);
+	cost = cos(cub->player->rotation_angle - cub->ray_angle);
 	ray_distance = cub->ray.distance * cost;
 	dist_pp = (WIDTH / 2) / tan(cub->fov_an / 2);
 	proj_wall_height = (TILE_SIZE / ray_distance) * dist_pp;
@@ -194,12 +192,13 @@ void	init_ray(t_cub *cub)
 
 int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 {
+	(void)player;
 	cub->ray_angle = normalize_angle(cub->ray_angle);
 	ray_direction(ray, col_id, cub->ray_angle);
-	horizontal_colis(&cub->ray, player, cub, cub->ray_angle);
+	horizontal_colis(&cub->ray, cub->player, cub, cub->ray_angle);
 	//if (cub->ray.wall_x == 1)
 	//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
-	vertical_colis(&cub->ray, player, cub, cub->ray_angle);
+	vertical_colis(&cub->ray, cub->player, cub, cub->ray_angle);
 //	if (ray->wall_y == 1)
 	//DrawCircle2(ray->hit_x, ray->hit_y, 2, cub);
 	return (0);
@@ -210,7 +209,7 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->xintercept = floorf(player->pos->x / TILE_SIZE) * TILE_SIZE;
 	if (ray->right == 1)
 		ray->xintercept += TILE_SIZE;
-	ray->yintercept = (player->pos->y + (player->pos->x - ray->xintercept)) \
+	ray->yintercept = player->pos->y + (ray->xintercept - player->pos->x) \
 	* tan(ray_angle);
 	ray->ystep = TILE_SIZE * tan(ray_angle);
 	ray->xstep = TILE_SIZE;

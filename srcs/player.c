@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/25 14:22:14 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/26 18:39:11 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,6 +28,8 @@ t_pos	*find_player(char **tab)
 	while (tab[i] && flag == 0)
 	{
 		i++;
+		if (!tab[i])
+			exit(0);
 		j = 0;
 		while (tab[i][j])
 		{
