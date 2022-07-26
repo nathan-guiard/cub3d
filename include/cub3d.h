@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/26 14:41:28 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/26 15:06:15 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -296,5 +296,7 @@ int			horizontal_colis(t_ray *ray, t_player *player, \
 void		DrawCircle(int x, int y, int r, t_cub *cub);
 void		DrawCircle2(int x, int y, int r, t_cub *cub);
 int			cast_col(int top_p, int bottom_p, t_cub *cub, int col_id);
+int			cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id);
+int			cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id);
 
 #endif

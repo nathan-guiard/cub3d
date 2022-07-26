@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/26 14:46:27 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/26 17:49:51 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ int	raycasting(t_cub *cub)
 	player = init_player(cub);
 	DrawCircle(player->pos->x, player->pos->y, 2, cub);
 	cast_all_rays(cub, player);
+	//draw_mini_map(cub);
 	return (0);
 }
 
@@ -80,11 +81,15 @@ int	project_wall(t_cub *cub, int col_id)
 	float	proj_wall_height;
 	float	wall_height;
 	float	dist_pp;
+	float	ray_distance;
 	int		top_p;
 	int		bottom_p;
+	float	cost;
 
+	cost = cos(cub->player.rotation_angle - cub->ray.ray_angle);
+	ray_distance = cub->ray.distance * cost;
 	dist_pp = (WIDTH / 2) / tan(cub->fov_an / 2);
-	proj_wall_height = (TILE_SIZE / cub->ray.distance) * dist_pp;
+	proj_wall_height = (TILE_SIZE / ray_distance) * dist_pp;
 	wall_height = (int)proj_wall_height;
 	top_p = (HEIGTH / 2) - (wall_height / 2);
 	if (top_p < 0)
@@ -92,28 +97,80 @@ int	project_wall(t_cub *cub, int col_id)
 	bottom_p = (HEIGTH / 2) + (wall_height / 2);
 	if (bottom_p > HEIGTH)
 		bottom_p = HEIGTH;
-	cast_col(top_p, bottom_p, cub, col_id);
+	cast_col(bottom_p, top_p, cub, col_id);
 	return (0);
 }
 
 int	cast_col(int top_p, int bottom_p, t_cub *cub, int	col_id)
 {
-	int	save_b;
+	int	save;
 	int	x;
 	int	i;
+	int	color;
 
-	save_b = bottom_p;
+	if (cub->ray.wall_x)
+		color = 0xFFFFFF;
+	if (cub->ray.wall_y)
+		color = 0xD3D3D3;
+	cast_cel(top_p, bottom_p, cub, col_id);
+	cast_floor(top_p, bottom_p, cub, col_id);
+	save = bottom_p;
 	x = col_id * cub->col_width;
-	printf("x is %d save b = %d\n, top_p = %d\n\n", x, save_b, top_p);
-	while (save_b >= top_p)
+	while (save <= top_p)
 	{
 		i = 0;
 		while (i < cub->col_width)
 		{
-			my_pixel_put(&cub->mlx.img, x + i, save_b, 0x800080);
+			my_pixel_put(&cub->mlx.img, x + i, save, color);
 			i++;
 		}
-		save_b--;
+		save++;
+	}
+	return (0);
+}
+
+int	cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id)
+{
+	int	i;
+	int	x;
+	int	save;
+
+	x = col_id * cub->col_width;
+	save = 0;
+	printf("x is %d save b = %d\n, top_p = %d\n\n", x, save, top_p);
+	(void)bottom_p;
+	while (save <= bottom_p)
+	{
+		i = 0;
+		while (i < cub->width)
+		{
+			my_pixel_put(&cub->mlx.img, x + i, save, cub->c_color);
+			i++;
+		}
+		save++;
+	}
+	return (0);
+}
+
+int	cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id)
+{
+	int	i;
+	int	x;
+	int	save;
+
+	x = col_id * cub->col_width;
+	save = top_p;
+	printf("x is %d save b = %d\n, top_p = %d\n\n", x, save, top_p);
+	(void)bottom_p;
+	while (save <= HEIGTH)
+	{
+		i = 0;
+		while (i < cub->width)
+		{
+			my_pixel_put(&cub->mlx.img, x + i, save, cub->f_color);
+			i++;
+		}
+		save++;
 	}
 	return (0);
 }
@@ -165,7 +222,7 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * TILE_SIZE) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
-		if (is_wall(cub->char_map, (ray->xintercept + ray->left), \
+		if (is_wall(cub->char_map, (ray->xintercept - ray->left), \
 		ray->yintercept))
 		{
 			if (ray->distance > hypot((player->pos->x - ray->xintercept), \
@@ -174,6 +231,7 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 				ray->distance = hypot((player->pos->x - ray->xintercept), \
 			(player->pos->y - ray->yintercept));
 				ray->wall_y = 1;
+				ray->wall_x = 0;
 				ray->hit_x = ray->xintercept;
 				ray->hit_y = ray->yintercept;
 			}			
@@ -213,7 +271,8 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 			{
 				ray->distance = hypot((player->pos->x - ray->xintercept), \
 			(player->pos->y - ray->yintercept));
-				ray->wall_x = 1;		
+				ray->wall_x = 1;
+				ray->wall_y = 0;
 			ray->hit_x = ray->xintercept;
 			ray->hit_y = ray->yintercept;
 			}
