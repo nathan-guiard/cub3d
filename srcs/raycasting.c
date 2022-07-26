@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/25 17:15:44 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/26 14:46:27 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,20 +69,52 @@ int	cast_all_rays(t_cub *cub, t_player *player)
 		init_ray(cub);
 		cast_ray(&cub->ray, player, cub, i);
 		cub->ray_angle += cub->fov_an / cub->no_rays;
-	//	project_wall(cub);
+		project_wall(cub, i);
 		i++;
 	}
 	return (0);
 }
 
-int	project_wall(t_cub *cub)
+int	project_wall(t_cub *cub, int col_id)
 {
+	float	proj_wall_height;
 	float	wall_height;
 	float	dist_pp;
+	int		top_p;
+	int		bottom_p;
 
-	dist_pp = ((cub->width * 32) / 2) / tan(cub->fov_an);
-	wall_height = (TILE_SIZE / cub->ray.distance) * dist_pp;
-	printf("wall height is %f\n", wall_height);
+	dist_pp = (WIDTH / 2) / tan(cub->fov_an / 2);
+	proj_wall_height = (TILE_SIZE / cub->ray.distance) * dist_pp;
+	wall_height = (int)proj_wall_height;
+	top_p = (HEIGTH / 2) - (wall_height / 2);
+	if (top_p < 0)
+		top_p = 0;
+	bottom_p = (HEIGTH / 2) + (wall_height / 2);
+	if (bottom_p > HEIGTH)
+		bottom_p = HEIGTH;
+	cast_col(top_p, bottom_p, cub, col_id);
+	return (0);
+}
+
+int	cast_col(int top_p, int bottom_p, t_cub *cub, int	col_id)
+{
+	int	save_b;
+	int	x;
+	int	i;
+
+	save_b = bottom_p;
+	x = col_id * cub->col_width;
+	printf("x is %d save b = %d\n, top_p = %d\n\n", x, save_b, top_p);
+	while (save_b >= top_p)
+	{
+		i = 0;
+		while (i < cub->col_width)
+		{
+			my_pixel_put(&cub->mlx.img, x + i, save_b, 0x800080);
+			i++;
+		}
+		save_b--;
+	}
 	return (0);
 }
 
@@ -108,11 +140,11 @@ int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 	cub->ray_angle = normalize_angle(cub->ray_angle);
 	ray_direction(ray, col_id, cub->ray_angle);
 	horizontal_colis(&cub->ray, player, cub, cub->ray_angle);
-	if (cub->ray.wall_x == 1)
-		DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+	//if (cub->ray.wall_x == 1)
+	//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 	vertical_colis(&cub->ray, player, cub, cub->ray_angle);
-	if (ray->wall_y == 1)
-		DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+//	if (ray->wall_y == 1)
+	//DrawCircle2(ray->hit_x, ray->hit_y, 2, cub);
 	return (0);
 }
 
@@ -121,7 +153,7 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->xintercept = floorf(player->pos->x / TILE_SIZE) * TILE_SIZE;
 	if (ray->right == 1)
 		ray->xintercept += TILE_SIZE;
-	ray->yintercept = player->pos->y + (player->pos->x - ray->xintercept) \
+	ray->yintercept = (player->pos->y + (player->pos->x - ray->xintercept)) \
 	* tan(ray_angle);
 	ray->ystep = TILE_SIZE * tan(ray_angle);
 	ray->xstep = TILE_SIZE;
@@ -142,9 +174,9 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 				ray->distance = hypot((player->pos->x - ray->xintercept), \
 			(player->pos->y - ray->yintercept));
 				ray->wall_y = 1;
-			}
-			ray->hit_x = ray->xintercept;
-			ray->hit_y = ray->yintercept;
+				ray->hit_x = ray->xintercept;
+				ray->hit_y = ray->yintercept;
+			}			
 			break ;
 		}
 		else
