@@ -6,7 +6,7 @@
 #    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/25 10:28:34 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/07/29 16:07:39 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,8 @@ SRC = srcs/main.c \
 	srcs/bres.c \
 	srcs/raycasting.c \
 	srcs/player.c \
+	srcs/ray_utils.c \
+	srcs/project_wall.c \
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\

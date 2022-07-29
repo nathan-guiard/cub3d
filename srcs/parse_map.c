@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/25 12:02:01 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/29 12:10:54 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -103,25 +103,14 @@ int	create_map(t_map *map, t_cub *cub)
 
 void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 {
-	/* int	ret;
+	int	k;
 
-	ret = 0;
-	if (*i == 0 || *i == cub->height)
-		ret = check_first_and_last_line(map->line);
-	ret = check_line(map->line, ret);
-	if (ret == -1)
-	{
-		tab[*i] = NULL;
-		ft_error(cub, &cub->map, "ERROR : map error");
-	}*/
-	tab[*i] = malloc(sizeof(char) * (cub->width + 1));
+	tab[*i] = malloc(sizeof(char) * (cub->width) + 2);
 	if (!tab[*i])
 	{
 		tab[*i] = NULL;
 		ft_error(cub, &cub->map, "ERROR : malloc error");
 	}
-	int	k;
-
 	k = 0;
 	while (k < cub->width)
 	{
@@ -133,5 +122,5 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		tab[*i][k] = 'v';
 		k++;
 	}
-	tab[*i][k] = '\0';	
+	tab[*i][k] = '\0';
 }

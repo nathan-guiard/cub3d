@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/08 14:33:54 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/27 17:14:55 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ int	set_path(char *str, int *i, t_cub *cub)
 {
 	int		j;
 	char	*res;
+	//t_img	textures[4];
 
 	j = *i;
 	*i += 2;
@@ -78,6 +79,7 @@ int	set_path(char *str, int *i, t_cub *cub)
 		if (cub->n_path)
 			ft_error2(cub, &cub->map, res, "ERROR : duplicte path names");
 		cub->n_path = res;
+		//textures[0] = get_text(cub, 0);
 		return (1);
 	}
 	if (set_path2(str, res, cub, j) == -1)

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/26 17:52:39 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/29 14:03:59 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,11 @@
 # define TILE_SIZE 32
 # define PI 3.14159265
 # define TWO_PI 6.28318530
+
+# define N 1
+# define S 2
+# define E 3
+# define W 4
 
 struct	s_map;
 struct	s_cub;
@@ -157,18 +162,17 @@ typedef struct s_cords
 }	t_cords;
 typedef struct s_pos
 {
-	float	x;
-	float	y;
-	char	dir;
+	int		x;
+	int		y;
 }	t_pos;
 
 typedef struct s_player
 {
-	t_pos	*pos;
+	float	x;
+	float	y;
+	char	dir;
 	float	width;
 	float	height;
-	int		direction;
-	int		walk_dir;
 	float	rotation_angle;
 }	t_player;
 
@@ -270,9 +274,12 @@ int			check_key(int keycode, t_cub *cub);
 /*		MINI MAP		*/
 int			draw_mini_map(t_cub *cub);
 /*		BRES		*/
-void		ft_bresenham(t_cords *cords, t_cub *cub);
-void		set_data(t_cords *cords, t_line *data);
-void		ft_bresenham_bis(t_cords *cords, t_cub *cub, t_line *data);
+void		ft_bresenham(int x1, int y1, int x2, int y2, t_cub *cub);
+void		set_data(int x1, int y1, int x2, int y2, t_line *data);
+void		ft_bresenham_bis(t_line *data, t_cub *cub, int y2);
+void		ft_bresenham2(int x1, int y1, int x2, int y2, t_cub *cub);
+void		set_data2(int x1, int y1, int x2, int y2, t_line *data);
+void		ft_bresenham_bis2(t_line *data, t_cub *cub, int y2);
 int			draw_grid(t_cub *cub, t_cords *cords, int fill);
 int			full_square(t_cords *cords, t_cub *cub, int fill);
 int			ft_swap_up(char **tab);
@@ -284,7 +291,7 @@ int			cast_all_rays(t_cub *cub, t_player *player);
 int			cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
 int			ray_direction(t_ray *ray, int col_id, float ray_angle);
 float		normalize_angle(float ray_angle);
-t_pos		*find_player(char **tab);
+int			*find_player(char **tab, t_player *player);
 t_player	*init_player(t_cub *cub);
 int			is_wall(char **tab, int xinter, int yinter);
 void		init_ray(t_cub *cub);

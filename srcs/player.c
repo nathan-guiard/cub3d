@@ -6,25 +6,21 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/26 18:39:11 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/07/29 16:59:21 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-t_pos	*find_player(char **tab)
+int	*find_player(char **tab, t_player *player)
 {
 	int		i;
 	int		j;
 	int		flag;
-	t_pos	*pos;
 
 	i = 0;
 	j = 0;
 	flag = 0;
-	pos = malloc(sizeof(t_pos *));
-	if (!pos)
-		return (NULL);
 	while (tab[i] && flag == 0)
 	{
 		i++;
@@ -41,27 +37,27 @@ t_pos	*find_player(char **tab)
 			j++;
 		}
 	}
-	pos->x = (j * TILE_SIZE) + TILE_SIZE / 2;
-	pos->y = (i * TILE_SIZE) - TILE_SIZE / 2;
-	pos->dir = tab[i][j];
-	return (pos);
+	player->dir = tab[i][j];
+	player->x = (j * TILE_SIZE) + TILE_SIZE / 32;
+	player->y = (i * TILE_SIZE) - TILE_SIZE / 32;
+	return (0);
 }
 
 t_player	*init_player(t_cub *cub)
 {
 	t_player	*player;
 
-	player = malloc(sizeof(player));
+	player = (t_player *)malloc(sizeof(player) * 3);
 	if (!player)
 		return (NULL);
-	player->pos = find_player(cub->char_map);
-	if (player->pos->dir == 'N')
-		player->rotation_angle = (PI) * 0.5;
-	if (player->pos->dir == 'E')
+	find_player(cub->char_map, player);
+	if (player->dir == 'N')
+		player->rotation_angle = PI / 2;
+	if (player->dir == 'E')
 		player->rotation_angle = 0;
-	if (player->pos->dir == 'S')
+	if (player->dir == 'S')
 		player->rotation_angle = (3 * PI) * 0.5;
-	if (player->pos->dir == 'W')
+	if (player->dir == 'W')
 		player->rotation_angle = PI;
 	return (player);
 }
