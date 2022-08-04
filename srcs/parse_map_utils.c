@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/27 17:14:55 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:58:53 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ int	set_path(char *str, int *i, t_cub *cub)
 {
 	int		j;
 	char	*res;
-	//t_img	textures[4];
+	int		len;
 
 	j = *i;
 	*i += 2;
@@ -78,8 +78,10 @@ int	set_path(char *str, int *i, t_cub *cub)
 	{
 		if (cub->n_path)
 			ft_error2(cub, &cub->map, res, "ERROR : duplicte path names");
+		len = ft_strlen(res);
+		if (res[len - 1] != 'x' && res[len -2] != 'p' && res[len -3])
+			ft_error2(cub, &cub->map, res, "ERROR : invalid xpm");
 		cub->n_path = res;
-		//textures[0] = get_text(cub, 0);
 		return (1);
 	}
 	if (set_path2(str, res, cub, j) == -1)
@@ -111,4 +113,15 @@ int	set_path2(char *str, char *res, t_cub *cub, int j)
 		return (1);
 	}
 	return (0);
+}
+
+char	*get_text(t_cub *cub, char *path, int id)
+{
+	t_tex	text[4];
+	char	*res;
+
+	res = mlx_xpm_file_to_image(cub->mlx.init, path, &text[id].w, \
+	&text[id].h);
+	printf("%s\n", res);
+	return (res);
 }

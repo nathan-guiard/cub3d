@@ -6,13 +6,13 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/29 16:59:21 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/04 15:22:48 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	*find_player(char **tab, t_player *player)
+int	find_player(char **tab, t_player *player)
 {
 	int		i;
 	int		j;
@@ -25,7 +25,7 @@ int	*find_player(char **tab, t_player *player)
 	{
 		i++;
 		if (!tab[i])
-			exit(0);
+			return (-1);
 		j = 0;
 		while (tab[i][j])
 		{
@@ -50,7 +50,8 @@ t_player	*init_player(t_cub *cub)
 	player = (t_player *)malloc(sizeof(player) * 3);
 	if (!player)
 		return (NULL);
-	find_player(cub->char_map, player);
+	if (find_player(cub->char_map, player) == -1)
+		ft_error_ray(cub, "ERROR: player error");
 	if (player->dir == 'N')
 		player->rotation_angle = PI / 2;
 	if (player->dir == 'E')

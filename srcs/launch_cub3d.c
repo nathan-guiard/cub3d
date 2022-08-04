@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/29 13:21:20 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/04 16:23:51 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ int	launch_cub3d(t_cub *cub)
 	print_map(cub);
 	cub->mlx = init_mlx(cub);
 	set_hooks(cub);
-	if (raycasting(cub) == -1)
-		return (-1);
+	/* if (raycasting(cub) == -1)
+		return (-1); */
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win, \
 	cub->mlx.img.img, 0, 0);
 	mlx_loop(cub->mlx.init);

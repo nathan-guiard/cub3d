@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/29 14:03:59 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:36:43 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,6 +143,14 @@ typedef struct s_mlx
 	t_img	img;
 }	t_mlx;
 
+typedef struct s_tex
+{
+	void	*img;
+	char	*addr;
+	int		w;
+	int		h;
+}	t_tex;
+
 typedef struct s_cords
 {
 	int		scr_width;
@@ -239,6 +247,8 @@ int			ft_isset(char c, char *set);
 int			ft_isspace(char *str, int *i);
 char		*my_strdup(const char *s);
 int			my_atoi(const char *nptr);
+int			tablen(char	**tab);
+char		*get_text(t_cub *cub, char *path, int id);
 /*			CHECK_ERRORS	*/
 int			check_arguments(int ac, char **av);
 int			check_file_ext(char *file);
@@ -259,6 +269,7 @@ void		ft_error(t_cub *cub, t_map **map, char *str);
 void		ft_error2(t_cub *cub, t_map **map, char *res, char *str);
 void		ft_error_cub(t_cub *cub, t_map **map, char *str);
 void		ft_ray_error(t_cub *cub, t_ray *ray, t_player *player, char *str);
+void		ft_error_ray(t_cub *cub, char *str);
 /*		LAUCNH_CUB3d		*/
 int			launch_cub3d(t_cub *cub);
 t_mlx		init_mlx(t_cub *cub);
@@ -291,7 +302,7 @@ int			cast_all_rays(t_cub *cub, t_player *player);
 int			cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
 int			ray_direction(t_ray *ray, int col_id, float ray_angle);
 float		normalize_angle(float ray_angle);
-int			*find_player(char **tab, t_player *player);
+int			find_player(char **tab, t_player *player);
 t_player	*init_player(t_cub *cub);
 int			is_wall(char **tab, int xinter, int yinter);
 void		init_ray(t_cub *cub);

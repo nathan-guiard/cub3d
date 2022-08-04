@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:51:45 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/05 13:47:48 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/04 18:35:31 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	set_color(char *str, t_cub *cub, char c)
 	i = 1;
 	ft_isspace(str, &i);
 	tab = ft_split(str + i, ',');
-	if (!tab)
+	if (!tab || tablen(tab) != 3)
 		return (-1);
 	i = 0;
 	while (i < 3)
@@ -50,4 +50,16 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c)
 		cub->f_color = *rgb;
 	if (c == 'C')
 		cub->c_color = *rgb;
+}
+
+int	tablen(char	**tab)
+{
+	int	i;
+
+	i = 0;
+	if (!tab)
+		return (-1);
+	while (tab[i])	
+		i++;
+	return (i);
 }
