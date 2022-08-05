@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/04 18:58:53 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:04:23 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,28 +22,15 @@ int	configs_filled(t_cub *cub)
 	return (0);
 }
 
-int	check_line(char *str, int ret)
+int	check_line(char *str)
 {
-	int	i;
 	int	size;
 
-	if (ret == -1)
-		return (-1);
 	size = ft_strlen(str);
-	if (str[size - 1] == '\n')
-		size = size - 1;
-	i = 0;
-	if (!str)
+	if (str[0] != '1')
 		return (-1);
-	ft_isspace(str, &i);
-	if (str[i] == '0' || str[size - 1] == '0')
+	if (str[size - 1] != '1')
 		return (-1);
-	while (i < size)
-	{
-		if (ft_isset(str[i], "01NSEW") == -1)
-			return (-1);
-		i++;
-	}
 	return (1);
 }
 

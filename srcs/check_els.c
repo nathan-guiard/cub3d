@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 10:37:33 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:33:20 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,36 +14,29 @@
 
 int	verify_borders(char **tab, t_cub *cub)
 {
-	print_map(cub);
 	int	i;
 	int	j;
+	int	open;
 
+	open = 0;
+	j = 0;
 	i = 1;
-	j = 0;
-	while (tab[i][j] != '\0' || tab[i][j] != 'v')
+	while (tab[i][j])
 	{
-		if (tab[i][j] != '1')
+		i = 1;
+		while (tab[i])
+		{
+			if (tab[i][j] == 'v')
+				break ;
+			if (tab[i][j] == '1')
+				open = 1;
+			else
+				open = 0;
+			i++;
+		}
+		if (open == 0)
 			return (-1);
 		j++;
-	}
-	j = 0;
-	while (i < cub->height)
-	{
-		if (tab[i][j] != '1')
-			return (-1);
-		i++;
-	}
-	while (tab[i][j] != '\0' || tab[i][j] != 'v')
-	{
-		if (tab[i][j] != '1')
-			return (-1);
-		j++;
-	}
-	while (i >= 1)
-	{
-		if (tab[i][j] != '1')
-			return (-1);
-		i--;
 	}
 	return (1);
 }

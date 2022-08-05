@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/05 10:32:48 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 12:03:04 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -230,7 +230,7 @@ t_cub		*init_cub(void);
 int			configs_filled(t_cub *cub);
 int			set_path(char *str, int *i, t_cub *cub);
 int			check_first_and_last_line(char *str);
-int			check_line(char *str, int ret);
+int			check_line(char *str);
 int			create_map(t_map *map, t_cub *cub);
 void		set_tab(char **tab, int *i, t_cub *cub, t_map *map);
 int			create_list(char *line, t_map **map);
