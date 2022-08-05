@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/05 12:03:04 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 14:20:13 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -149,6 +149,9 @@ typedef struct s_tex
 	char	*addr;
 	int		w;
 	int		h;
+	int		bpp;
+	int		len;
+	int		endian;
 }	t_tex;
 
 typedef struct s_cords
@@ -217,6 +220,7 @@ typedef struct s_cub
 	float				col_width;
 	int					no_rays;
 	float				ray_angle;
+	t_tex				text[3];
 	t_mlx				mlx;
 	struct s_ray		ray;
 	struct s_player		*player;
@@ -248,7 +252,8 @@ int			ft_isspace(char *str, int *i);
 char		*my_strdup(const char *s);
 int			my_atoi(const char *nptr);
 int			tablen(char	**tab);
-char		*get_text(t_cub *cub, char *path, int id);
+void		get_text(t_cub *cub);
+void		get_text_addr(t_cub *cub);
 /*			CHECK_ERRORS	*/
 int			check_arguments(int ac, char **av);
 int			check_file_ext(char *file);

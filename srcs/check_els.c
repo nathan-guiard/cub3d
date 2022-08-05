@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 13:33:20 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:35:13 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	verify_borders(char **tab, t_cub *cub)
 	int	j;
 	int	open;
 
+	(void)cub;
 	open = 0;
 	j = 0;
 	i = 1;

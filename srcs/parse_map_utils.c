@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 12:04:23 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 14:19:04 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,13 +102,26 @@ int	set_path2(char *str, char *res, t_cub *cub, int j)
 	return (0);
 }
 
-char	*get_text(t_cub *cub, char *path, int id)
+void	get_text(t_cub *cub)
 {
-	t_tex	text[4];
-	char	*res;
+	cub->text[0].img = mlx_xpm_file_to_image(cub->mlx.init, cub->n_path, \
+	&(cub->text[0].w), &(cub->text[0].h));
+	cub->text[1].img = mlx_xpm_file_to_image(cub->mlx.init, cub->e_path, \
+	&(cub->text[1].w), &(cub->text[1].h));
+	cub->text[2].img = mlx_xpm_file_to_image(cub->mlx.init, cub->s_path, \
+	&(cub->text[2].w), &(cub->text[2].h));
+	cub->text[3].img = mlx_xpm_file_to_image(cub->mlx.init, cub->w_path, \
+	&(cub->text[3].w), &(cub->text[3].h));
+}
 
-	res = mlx_xpm_file_to_image(cub->mlx.init, path, &text[id].w, \
-	&text[id].h);
-	printf("%s\n", res);
-	return (res);
+void	get_text_addr(t_cub *cub)
+{
+	cub->text[0].addr = mlx_get_data_addr(cub->text[0].img, \
+	&(cub->text[0].bpp), &(cub->text[0].len), &(cub->text[0].endian));
+	cub->text[1].addr = mlx_get_data_addr(cub->text[1].img, \
+	&(cub->text[1].bpp), &(cub->text[1].len), &(cub->text[1].endian));
+	cub->text[2].addr = mlx_get_data_addr(cub->text[2].img, \
+	&(cub->text[2].bpp), &(cub->text[2].len), &(cub->text[2].endian));
+	cub->text[3].addr = mlx_get_data_addr(cub->text[3].img, \
+	&(cub->text[3].bpp), &(cub->text[3].len), &(cub->text[3].endian));
 }

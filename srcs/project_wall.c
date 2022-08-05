@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:06:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/29 16:08:49 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 13:36:57 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int	col_id)
 		color = 0xFFFFFF;
 	if (cub->ray.wall_y)
 		color = 0xD3D3D3;
-	//cast_cel(top_p, bottom_p, cub, col_id);
-	//cast_floor(top_p, bottom_p, cub, col_id);
+	cast_cel(top_p, bottom_p, cub, col_id);
+	cast_floor(top_p, bottom_p, cub, col_id);
 	save = bottom_p;
 	x = WIDTH - (col_id * cub->col_width);
 	while (save <= top_p)
