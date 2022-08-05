@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/29 12:10:54 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 11:49:21 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,7 +96,7 @@ int	create_map(t_map *map, t_cub *cub)
 	tab[i][j] = '\0';
 	i++;
 	cub->char_map[i] = '\0';
-	if (verify_borders(map, cub) == -1)
+	if (verify_borders(cub->char_map, cub) == -1)
 		ft_error(cub, &cub->map, "ERROR : Check map borders");
 	return (1);
 }
@@ -105,6 +105,8 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 {
 	int	k;
 
+	if (!map)
+		ft_error(cub, &cub->map, "ERROR : map error");
 	tab[*i] = malloc(sizeof(char) * (cub->width) + 2);
 	if (!tab[*i])
 	{
@@ -116,7 +118,10 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 	{
 		while (map->line[k])
 		{
-			tab[*i][k] = map->line[k];
+			if (map->line[k] == 32)
+				tab[*i][k] = '1';
+			else
+				tab[*i][k] = map->line[k];
 			k++;
 		}
 		tab[*i][k] = 'v';

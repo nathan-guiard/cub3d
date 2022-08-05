@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/04 18:36:43 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/05 10:32:48 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -259,7 +259,7 @@ int			check_elems(t_map **map);
 int			check_borders(t_map **map);
 void		print_map(t_cub *cub);
 int			compare_strings(char *s_long, char *s_short);
-int			verify_borders(t_map *map, t_cub *cub);
+int			verify_borders(char **tab, t_cub *cub);
 void		check_pathnames(t_map *temp, t_cub *cub, int *i);
 /*			FC_COLOR		*/
 int			set_color(char *str, t_cub *cub, char c);
