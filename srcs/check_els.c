@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 13:35:13 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/08 11:08:09 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -94,6 +94,7 @@ void	check_pathnames(t_map *temp, t_cub *cub, int *i)
 		if (set_path(temp->line, i, cub) == -1)
 			ft_error(cub, &cub->map, "ERROR : texture path error");
 	}
+
 	if ((temp->line[*i] == 'F' && temp->line[*i + 1] == 32) || \
 		(temp->line[*i] == 'C' && temp->line[*i + 1] == 32))
 	{

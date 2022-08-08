@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 13:34:52 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/08 14:07:28 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,6 +16,8 @@ int	launch_cub3d(t_cub *cub)
 {
 	print_map(cub);
 	cub->mlx = init_mlx(cub);
+	if (get_text(cub) == -1)
+		ft_error(cub, &cub->map, "ERROR : MLX texture path error");
 	set_hooks(cub);
 	if (raycasting(cub) == -1)
 		return (-1);

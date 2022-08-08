@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 14:19:04 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/08 16:59:01 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -102,16 +102,26 @@ int	set_path2(char *str, char *res, t_cub *cub, int j)
 	return (0);
 }
 
-void	get_text(t_cub *cub)
+int	get_text(t_cub *cub)
 {
 	cub->text[0].img = mlx_xpm_file_to_image(cub->mlx.init, cub->n_path, \
 	&(cub->text[0].w), &(cub->text[0].h));
-	cub->text[1].img = mlx_xpm_file_to_image(cub->mlx.init, cub->e_path, \
+	if (!cub->text[0].img)
+		return (-1);
+	cub->text[1].img = mlx_xpm_file_to_image(cub->mlx.init, cub->s_path, \
 	&(cub->text[1].w), &(cub->text[1].h));
-	cub->text[2].img = mlx_xpm_file_to_image(cub->mlx.init, cub->s_path, \
+	if (!cub->text[1].img)
+		return (-1);
+	cub->text[2].img = mlx_xpm_file_to_image(cub->mlx.init, cub->e_path, \
 	&(cub->text[2].w), &(cub->text[2].h));
+	if (!cub->text[2].img)
+		return (-1);
 	cub->text[3].img = mlx_xpm_file_to_image(cub->mlx.init, cub->w_path, \
 	&(cub->text[3].w), &(cub->text[3].h));
+	if (!cub->text[3].img)
+		return (-1);
+	get_text_addr(cub);
+	return (0);
 }
 
 void	get_text_addr(t_cub *cub)

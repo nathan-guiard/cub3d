@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:06:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/05 13:36:57 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:23:38 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,31 +33,62 @@ int	project_wall(t_cub *cub, int col_id)
 	bottom_p = (HEIGTH / 2) + (wall_height / 2);
 	if (bottom_p > HEIGTH)
 		bottom_p = HEIGTH;
-	cast_col(bottom_p, top_p, cub, col_id);
+	set_wall_id(cub);
+	cast_col(top_p, bottom_p, cub, col_id, proj_wall_height);
 	return (0);
 }
 
-int	cast_col(int top_p, int bottom_p, t_cub *cub, int	col_id)
+void	set_wall_id(t_cub *cub)
+{
+	if (cub->ray.up == 1)
+		cub->ray.w_id = 0;
+	else if (cub->ray.down == 1)
+		cub->ray.w_id = 1;
+	else if (cub->ray.right == 1)
+		cub->ray.w_id = 2;
+	else if (cub->ray.left == 1)
+		cub->ray.w_id = 3;
+}
+int	get_xoffset(t_cub *cub)
+{
+	int	offsetx;
+
+	if (cub->ray.wall_y == 1)
+		offsetx = (int)cub->ray.hit_y % TILE_SIZE;
+	else
+		offsetx = (int)cub->ray.hit_x % TILE_SIZE;
+	return (offsetx);
+}
+
+int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height)
 {
 	int	save;
-	int	x;
+	int	offset_x;
+	int	offset_y;
+	int	img_addr;
+//	int	color;
 	int	i;
-	int	color;
 
-	if (cub->ray.wall_x)
+	offset_x = get_xoffset(cub);
+/* 	if (cub->ray.wall_x)
 		color = 0xFFFFFF;
 	if (cub->ray.wall_y)
-		color = 0xD3D3D3;
-	cast_cel(top_p, bottom_p, cub, col_id);
-	cast_floor(top_p, bottom_p, cub, col_id);
-	save = bottom_p;
-	x = WIDTH - (col_id * cub->col_width);
-	while (save <= top_p)
+		color = 0xD3D3D3; */
+	//cast_cel(top_p, bottom_p, cub, col_id);
+	//cast_floor(top_p, bottom_p, cub, col_id);
+	while (top_p++ <= bottom_p)
 	{
+		offset_y = (top_p) + (w_height / 2) - (HEIGTH / 2);
+		offset_y = offset_y * ((float)cub->text[cub->ray.w_id].h / w_height);
 		i = 0;
+		//printf("offest x %d offset y %d\n", offset_x, offset_y);
+		(void)offset_x;
+		(void)offset_y;
 		while (i < cub->col_width)
 		{
-			my_pixel_put(&cub->mlx.img, x + i, save, color);
+			img_addr = (bottom_p * cub->mlx.img.line_len / 4) + \
+			(col_id * 4 + i);
+			cub->mlx.img.addr[img_addr] = (char)0xFFFF00;
 			i++;
 		}
 		save++;

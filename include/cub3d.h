@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/05 14:20:13 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/08 17:08:31 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -203,6 +203,7 @@ typedef struct s_ray
 	int		wall_x;
 	int		wall_y;
 	float	distance;
+	int		w_id;
 }	t_ray;
 typedef struct s_cub
 {
@@ -220,7 +221,7 @@ typedef struct s_cub
 	float				col_width;
 	int					no_rays;
 	float				ray_angle;
-	t_tex				text[3];
+	t_tex				text[4];
 	t_mlx				mlx;
 	struct s_ray		ray;
 	struct s_player		*player;
@@ -252,7 +253,7 @@ int			ft_isspace(char *str, int *i);
 char		*my_strdup(const char *s);
 int			my_atoi(const char *nptr);
 int			tablen(char	**tab);
-void		get_text(t_cub *cub);
+int			get_text(t_cub *cub);
 void		get_text_addr(t_cub *cub);
 /*			CHECK_ERRORS	*/
 int			check_arguments(int ac, char **av);
@@ -318,8 +319,9 @@ int			horizontal_colis(t_ray *ray, t_player *player, \
 			t_cub *cub, float ray_angle);
 void		DrawCircle(int x, int y, int r, t_cub *cub);
 void		DrawCircle2(int x, int y, int r, t_cub *cub);
-int			cast_col(int top_p, int bottom_p, t_cub *cub, int col_id);
+int			cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height);
 int			cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id);
 int			cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id);
-
+int			get_xoffset(t_cub *cub);
+void		set_wall_id(t_cub *cub);
 #endif
