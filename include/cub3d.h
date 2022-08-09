@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 09:55:43 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 11:35:30 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -317,7 +317,7 @@ int			cast_all_rays(t_cub *cub, t_player *player);
 int			cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
 int			ray_direction(t_ray *ray, int col_id, float ray_angle);
 float		normalize_angle(float ray_angle);
-int			find_player(char **tab, t_player *player);
+int			find_player(char **tab, t_player *player, t_cub *cub);
 t_player	*init_player(t_cub *cub);
 int			is_wall(char **tab, int xinter, int yinter);
 void		init_ray(t_cub *cub);
@@ -333,4 +333,5 @@ int			cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id);
 int			cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id);
 int			get_xoffset(t_cub *cub);
 void		set_wall_id(t_cub *cub);
+unsigned int	get_color(t_cub *cub, int id, int offset_y);
 #endif

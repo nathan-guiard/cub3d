@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:06:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 10:00:52 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 11:41:40 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,43 +54,58 @@ int	get_xoffset(t_cub *cub)
 	int	offsetx;
 
 	if (cub->ray.wall_y == 1)
-		offsetx = (int)cub->ray.hit_y % TILE_SIZE;
+		offsetx = ((int)cub->ray.hit_y * \
+		cub->text[cub->ray.w_id].w / TILE_SIZE) % cub->text[cub->ray.w_id].w;
 	else
-		offsetx = (int)cub->ray.hit_x % TILE_SIZE;
+		offsetx = ((int)cub->ray.hit_x * \
+		cub->text[cub->ray.w_id].w / TILE_SIZE) % cub->text[cub->ray.w_id].w;
+
 	return (offsetx);
 }
 
 int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height)
 {
-	int	save;
+	unsigned int color;
+	int	x;
 	int	offset_x;
 	int	offset_y;
-//	int	color;
 	int	i;
 
+	set_wall_id(cub);
 	offset_x = get_xoffset(cub);
-/* 	if (cub->ray.wall_x)
-		color = 0xFFFFFF;
-	if (cub->ray.wall_y)
-		color = 0xD3D3D3; */
 	cast_cel(top_p, bottom_p, cub, col_id);
 	cast_floor(top_p, bottom_p, cub, col_id);
-	while (top_p++ <= bottom_p)
+	x = WIDTH - (col_id * cub->col_width);
+	while (top_p++ < bottom_p)
 	{
-		offset_y = (top_p) + (w_height / 2) - (HEIGTH / 2);
-		offset_y = offset_y * ((float)cub->text[cub->ray.w_id].h / w_height);
 		i = 0;
-		//printf("offest x %d offset y %d\n", offset_x, offset_y);
-		(void)offset_x;
-		(void)offset_y;
+		offset_y = top_p + (w_height / 2) - (HEIGTH / 2);
+		offset_y = offset_x * (float)cub->text[cub->ray.w_id].h;
 		while (i < cub->col_width)
 		{
-			//cub->mlx.img.addr[img_addr] = (int)0xFFFF00;
+			color = get_color(cub, cub->ray.w_id, offset_y);
+			my_pixel_put(&cub->mlx.img, x + i, top_p, color);
 			i++;
 		}
-		save++;
 	}
 	return (0);
+}
+
+unsigned int	get_color(t_cub *cub, int id, int offset_y)
+{
+	unsigned int	color;
+	(void)cub;
+	(void)id;
+	(void)offset_y;
+	/*int				offset_x;
+	int				calc;
+
+	offset_x = get_xoffset(cub);
+	calc = (cub->text[id].w * offset_y) \
+	+ offset_x;
+	color = cub->text[id].addr[calc];*/
+	color = 0xFFFFFF;
+	return (color);
 }
 
 int	cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id)

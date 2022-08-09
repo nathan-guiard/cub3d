@@ -6,13 +6,13 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 10:03:22 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:34:17 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	find_player(char **tab, t_player *player)
+int	find_player(char **tab, t_player *player, t_cub *cub)
 {
 	int		i;
 	int		j;
@@ -20,6 +20,7 @@ int	find_player(char **tab, t_player *player)
 
 	i = 0;
 	j = 0;
+	(void)cub;
 	flag = 0;
 	while (tab[i] && flag == 0)
 	{
@@ -38,8 +39,10 @@ int	find_player(char **tab, t_player *player)
 		}
 	}
 	player->dir = tab[i][j];
-	player->x = (j * TILE_SIZE) + TILE_SIZE / 2;
-	player->y = (i * TILE_SIZE) - TILE_SIZE / 2;
+ 	player->x = (j * TILE_SIZE) + TILE_SIZE / 2;
+	player->y = (i * TILE_SIZE) - TILE_SIZE / 2; 
+/* 	player->x = (cub->width * TILE_SIZE)/ 2;
+	player->y = (cub->height * TILE_SIZE) / 2; */
 	return (0);
 }
 
@@ -50,7 +53,7 @@ t_player	*init_player(t_cub *cub)
 	player = (t_player *)malloc(sizeof(player) * 3);
 	if (!player)
 		return (NULL);
-	if (find_player(cub->char_map, player) == -1)
+	if (find_player(cub->char_map, player, cub) == -1)
 		ft_error_ray(cub, "ERROR: player error");
 	if (player->dir == 'N')
 		player->rotation_angle = PI / 2;
