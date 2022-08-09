@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:17:58 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:23:40 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ void	move_player(t_cub *cub, int key)
 	{
 		cub->player->x += 5;
 	}
-	print_map(cub);
+	draw_mini_map(cub);
 }
 
 int	ft_close(t_cub *cub)
