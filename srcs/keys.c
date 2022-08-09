@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:52:39 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 16:20:44 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@ int	check_key(int key, t_cub *cub)
 {
 	if (key == ESC)
 		ft_close(cub);
-	else if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY
-		|| key == RIGHT_KEY)
+	else if (key == LEFT_KEY || key == RIGHT_KEY || key == A_KEY || key == 'd'
+		|| key == W_KEY || key == S_KEY)
 		move_player(cub, key);
 	return (0);
 }
@@ -32,14 +32,18 @@ void	move_player(t_cub *cub, int key)
 {
 	draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
 		(t_co){.x = WIDTH, .y = HEIGTH});
-	if (key == UP_KEY)
+	if (key == W_KEY)
 		cub->player->y -= 5;
-	if (key == DOWN_KEY)
+	if (key == S_KEY)
 		cub->player->y += 5;
-	if (key == LEFT_KEY)
+	if (key == A_KEY)
 		cub->player->x -= 5;
-	if (key == RIGHT_KEY)
+	if (key == D_KEY)
 		cub->player->x += 5;
+	if (key == LEFT_KEY)
+		cub->player->rotation_angle += PI_DIV_16;
+	if (key == RIGHT_KEY)
+		cub->player->rotation_angle -= PI_DIV_16;
 	draw_mini_map(cub);
 	cast_all_rays(cub, cub->player);
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win,
@@ -49,11 +53,11 @@ void	move_player(t_cub *cub, int key)
 int	ft_close(t_cub *cub)
 {
     (void)cub;
-	//free_cub(cub);
-	//mlx_destroy_image(cub->mlx.init, cub->mlx.img.img);
-	//mlx_destroy_window(cub->mlx.init, cub->mlx.win);
-	//mlx_destroy_display(cub->mlx.init);
-	//free(cub->mlx.init);
+	free_cub(cub);
+	mlx_destroy_image(cub->mlx.init, cub->mlx.img.img);
+	mlx_destroy_window(cub->mlx.init, cub->mlx.win);
+	mlx_destroy_display(cub->mlx.init);
+	free(cub->mlx.init);
 	exit(0);
 	return (0);
 }

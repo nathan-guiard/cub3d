@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:12:54 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:20:17 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 16:08:05 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	free_tab(char **s)
 void	free_cub(t_cub *cub)
 {
 	set_layout(C_RED, C_RESET, C_BOLD);
-	ft_printf("||||| ENtREE FREE CUB |||||\n");
 	set_layout(C_RESET, C_RESET, C_RESET);
 	free_tab(cub->char_map);
 	cub->char_map = NULL;
