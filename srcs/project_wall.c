@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:06:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/08 17:23:38 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 10:00:52 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,7 +65,6 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height)
 	int	save;
 	int	offset_x;
 	int	offset_y;
-	int	img_addr;
 //	int	color;
 	int	i;
 
@@ -74,8 +73,8 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height)
 		color = 0xFFFFFF;
 	if (cub->ray.wall_y)
 		color = 0xD3D3D3; */
-	//cast_cel(top_p, bottom_p, cub, col_id);
-	//cast_floor(top_p, bottom_p, cub, col_id);
+	cast_cel(top_p, bottom_p, cub, col_id);
+	cast_floor(top_p, bottom_p, cub, col_id);
 	while (top_p++ <= bottom_p)
 	{
 		offset_y = (top_p) + (w_height / 2) - (HEIGTH / 2);
@@ -86,9 +85,7 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height)
 		(void)offset_y;
 		while (i < cub->col_width)
 		{
-			img_addr = (bottom_p * cub->mlx.img.line_len / 4) + \
-			(col_id * 4 + i);
-			cub->mlx.img.addr[img_addr] = (char)0xFFFF00;
+			//cub->mlx.img.addr[img_addr] = (int)0xFFFF00;
 			i++;
 		}
 		save++;
@@ -104,8 +101,8 @@ int	cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id)
 
 	x = WIDTH - (col_id * cub->col_width);
 	save = 0;
-	(void)top_p;
-	while (save <= bottom_p)
+	(void)bottom_p;
+	while (save <= top_p)
 	{
 		i = 0;
 		while (i < cub->width)
@@ -125,9 +122,9 @@ int	cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id)
 	int	save;
 
 	x = WIDTH - (col_id * cub->col_width);
-	save = top_p;
+	save = bottom_p;
 	//printf("x is %d save b = %d\n, top_p = %d\n\n", x, save, top_p);
-	(void)bottom_p;
+	(void)top_p;
 	while (save <= HEIGTH)
 	{
 		i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   font.h                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 14:03:56 by nguiard           #+#    #+#             */
-/*   Updated: 2022/05/31 14:54:52 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 09:56:43 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ typedef struct s_co
 typedef struct s_img
 {
 	void	*img;
-	char	*addr;
+	char 	*addr;
 	int		bpp;
 	int		line_len;
 	int		endian;

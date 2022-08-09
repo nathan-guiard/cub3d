@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/08 14:07:28 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:57:23 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ t_mlx	init_mlx(t_cub *cub)
 	return (mlx);
 }
 
-void	my_pixel_put(t_img *img, int x, int y, int color)
+void	my_pixel_put(t_img *img, int x, int y, unsigned int color)
 {
 	char	*dst;
 

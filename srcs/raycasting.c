@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/08 15:21:04 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:49:12 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	raycasting(t_cub *cub)
 	cub->player = init_player(cub);
 	//draw_mini_map(cub);
 	cast_all_rays(cub, cub->player);
-	DrawCircle(cub->player->x, cub->player->y, 2, cub);
+	//DrawCircle(cub->player->x, cub->player->y, 2, cub);
 	return (0);
 }
 

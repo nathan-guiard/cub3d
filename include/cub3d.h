@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 17:08:31 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 09:55:43 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,7 +135,16 @@ typedef struct s_map
 	int				len;
 	struct s_map	*next;
 }	t_map;
-
+/* 
+typedef struct s_img
+{
+	void	*img;
+	int 	*addr;
+	int		bpp;
+	int		line_len;
+	int		endian;
+}	t_img;
+*/
 typedef struct s_mlx
 {
 	void	*init;
@@ -279,7 +288,7 @@ void		ft_error_ray(t_cub *cub, char *str);
 /*		LAUCNH_CUB3d		*/
 int			launch_cub3d(t_cub *cub);
 t_mlx		init_mlx(t_cub *cub);
-void		my_pixel_put(t_img *img, int x, int y, int color);
+void		my_pixel_put(t_img *img, int x, int y, unsigned int color);
 /*		LET_IT_GO		*/
 void		free_cub(t_cub *cub);
 void		free_tab(char **s);
