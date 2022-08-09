@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 14:51:51 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:54:49 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	cast_all_rays(t_cub *cub, t_player *player)
 
 	i = 0;
 	cub->ray_angle = player->rotation_angle - (cub->fov_an * 0.5);
-	while (i < cub->no_rays)
+	while (i < 1000)
 	{
 		init_ray(cub);
 		cast_ray(&cub->ray, player, cub, i);
@@ -50,15 +50,15 @@ int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 	vertical_colis(&cub->ray, cub->player, cub, cub->ray_angle);
 	if (ray->wall_x == 1)
 	{
-		ft_bresenham(player->x, player->y, ray->hit_x, ray->hit_y, cub);
-		DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+		//ft_bresenham(player->x, player->y, ray->hit_x, ray->hit_y, cub);
+		//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 		//printf("ray angle = cub->ray_angle %f\n", cub->ray_angle);
 		//printf("X  %f\nY : %f\n\n", ray->hit_x, ray->hit_y);
 	}
 	else if (ray->wall_y == 1)
 	{
-		ft_bresenham2(player->x, player->y, ray->hit_x, ray->hit_y, cub);
-		DrawCircle2(ray->hit_x, ray->hit_y, 2, cub);
+		//ft_bresenham2(player->x, player->y, ray->hit_x, ray->hit_y, cub);
+		//DrawCircle2(ray->hit_x, ray->hit_y, 2, cub);
 	//	printf("ray angle = cub->ray_angle %f\n", cub->ray_angle);
 		//printf("X  %f\nY : %f\n\n", ray->hit_x, ray->hit_y);
 	}
@@ -89,13 +89,14 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * TILE_SIZE) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
-		if (is_wall(cub->char_map, (ray->xintercept + ray->left), \
+		DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
+		DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+		if (is_wall(cub->char_map, (ray->xintercept - ray->left), \
 		ray->yintercept))
 		{
 			if (ray->distance > hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y)))
 			{
-				DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
 				ray->distance = hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y));
 				ray->wall_y = 1;
@@ -122,7 +123,7 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->yintercept = floorf(player->y / TILE_SIZE) * TILE_SIZE;
 	if (ray->down == 1)
 		ray->yintercept += TILE_SIZE;
-	ray->xintercept = player->x + (ray->yintercept - player->y) \
+	ray->xintercept = player->x + (player->y - ray->yintercept) \
 	/ tan_an;
 	ray->ystep = TILE_SIZE;
 	ray->xstep = TILE_SIZE / tan_an;
@@ -134,13 +135,15 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * TILE_SIZE) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
+	DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
+	DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+
 		if (is_wall(cub->char_map, ray->xintercept, \
-		(ray->yintercept + ray->up)))
+		(ray->yintercept - ray->up)))
 		{
 			if (ray->distance > hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y)))
 			{
-			DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 				ray->distance = hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y));
 			ray->wall_x = 1;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:35:43 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:41:32 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,7 @@ void	draw_box(t_cub *cub, t_co start, t_co end)
 		start.x = save;
 		while (start.x < end.x)
 		{
-			my_pixel_put(cub->mlx.img.img, start.x, start.y, start.color);
+			my_pixel_put(&cub->mlx.img, start.x, start.y, start.color);
 			start.x++;
 		}
 		start.y++;
