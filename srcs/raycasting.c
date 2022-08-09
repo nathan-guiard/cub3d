@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 16:31:23 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:36:09 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,8 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * TILE_SIZE) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
-		DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
-		DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+		//DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
+		//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 		if (is_wall(cub->char_map, (ray->xintercept - ray->left), \
 		ray->yintercept))
 		{
@@ -135,8 +135,8 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * TILE_SIZE) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
-	DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
-	DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
+	//DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
+	//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 
 		if (is_wall(cub->char_map, ray->xintercept, \
 		(ray->yintercept - ray->up)))
