@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 17:00:39 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:21:13 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,6 @@ int	raycasting(t_cub *cub)
 {
 	cub->fov_an = 60 * (PI / 180);
 	cub->col_width = 3;
-	cub->no_rays = WIDTH;
 	cub->player = init_player(cub);
 	draw_mini_map(cub);
 	cast_all_rays(cub, cub->player);
@@ -30,12 +29,12 @@ int	cast_all_rays(t_cub *cub, t_player *player)
 
 	i = 0;
 	cub->ray_angle = player->rotation_angle - (cub->fov_an * 0.5);
-	while (i < 1000)
+	while (i < 450) //quelle est la vrae valeu de cette ligne? ~450 = bon affichage
 	{
 		init_ray(cub);
 		cast_ray(&cub->ray, player, cub, i);
 		project_wall(cub, i);
-		cub->ray_angle += cub->fov_an / cub->no_rays;
+		cub->ray_angle += cub->fov_an / WIDTH;
 		i++;
 	}
 	return (0);
