@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 12:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 14:56:25 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -334,4 +334,7 @@ int			cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id);
 int			get_xoffset(t_cub *cub);
 void		set_wall_id(t_cub *cub);
 unsigned int	get_color(t_cub *cub, int id, int offset_y);
+
+/*	movement	*/
+void	draw_box(t_cub *cub, t_co start, t_co end);
 #endif
