@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/09 12:38:39 by nguiard          ###   ########.fr        #
+#    Updated: 2022/08/09 13:12:05 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -121,7 +121,9 @@ save_percent ?= 0
 
 len := $(shell echo ${NAME} | wc -c)
 
-all: Makefile
+both:	all bonus
+
+all:
 	@${MY_MAKE} setup
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
