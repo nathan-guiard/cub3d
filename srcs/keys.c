@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:23:40 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:35:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	set_hooks(t_cub *cub)
 {
 	mlx_hook(cub->mlx.win, 17, 0, ft_close, &cub->mlx);
-	mlx_hook(cub->mlx.win, 2, 1L << 0, check_key, &cub->mlx);
+	mlx_hook(cub->mlx.win, 2, 1L << 0, check_key, cub);
 }
 
 int	check_key(int key, t_cub *cub)
@@ -36,7 +36,7 @@ void	move_player(t_cub *cub, int key)
 	{
 		cub->player->x += 5;
 	}
-	draw_mini_map(cub);
+	raycasting(cub);
 }
 
 int	ft_close(t_cub *cub)
