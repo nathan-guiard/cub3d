@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:35:43 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 15:52:39 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,10 +33,17 @@ void	move_player(t_cub *cub, int key)
 	draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
 		(t_co){.x = WIDTH, .y = HEIGTH});
 	if (key == UP_KEY)
-	{
+		cub->player->y -= 5;
+	if (key == DOWN_KEY)
+		cub->player->y += 5;
+	if (key == LEFT_KEY)
+		cub->player->x -= 5;
+	if (key == RIGHT_KEY)
 		cub->player->x += 5;
-	}
-	raycasting(cub);
+	draw_mini_map(cub);
+	cast_all_rays(cub, cub->player);
+	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win,
+		cub->mlx.img.img, 0, 0);
 }
 
 int	ft_close(t_cub *cub)
@@ -61,7 +68,7 @@ void	draw_box(t_cub *cub, t_co start, t_co end)
 		start.x = save;
 		while (start.x < end.x)
 		{
-			my_pixel_put(cub->mlx.img.img, start.x, start.y, start.color);
+			my_pixel_put(&cub->mlx.img, start.x, start.y, start.color);
 			start.x++;
 		}
 		start.y++;
