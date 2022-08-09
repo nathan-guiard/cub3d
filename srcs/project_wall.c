@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:06:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 11:41:40 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:52:52 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,23 +67,28 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height)
 {
 	unsigned int color;
 	int	x;
-	int	offset_x;
-	int	offset_y;
+	//int	offset_x;
+	//int	offset_y;
 	int	i;
 
+	(void)w_height;
+	if (cub->ray.wall_x)
+		color = 0xFFFFFF;
+	if (cub->ray.wall_y)
+		color = 0xD3D3D3;
 	set_wall_id(cub);
-	offset_x = get_xoffset(cub);
+	//offset_x = get_xoffset(cub);
 	cast_cel(top_p, bottom_p, cub, col_id);
 	cast_floor(top_p, bottom_p, cub, col_id);
 	x = WIDTH - (col_id * cub->col_width);
 	while (top_p++ < bottom_p)
 	{
 		i = 0;
-		offset_y = top_p + (w_height / 2) - (HEIGTH / 2);
-		offset_y = offset_x * (float)cub->text[cub->ray.w_id].h;
+		//offset_y = top_p + (w_height / 2) - (HEIGTH / 2);
+		//offset_y = offset_x * (float)cub->text[cub->ray.w_id].h;
 		while (i < cub->col_width)
 		{
-			color = get_color(cub, cub->ray.w_id, offset_y);
+			//color = get_color(cub, cub->ray.w_id, offset_y);
 			my_pixel_put(&cub->mlx.img, x + i, top_p, color);
 			i++;
 		}

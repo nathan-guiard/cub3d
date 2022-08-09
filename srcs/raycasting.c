@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 16:36:09 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 17:00:39 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,20 +44,20 @@ int	cast_all_rays(t_cub *cub, t_player *player)
 int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 {
 	(void)player;
-	//cub->ray_angle = normalize_angle(cub->ray_angle);
+	cub->ray_angle = normalize_angle(cub->ray_angle);
 	ray_direction(ray, col_id, cub->ray_angle);
 	horizontal_colis(&cub->ray, cub->player, cub, cub->ray_angle);
 	vertical_colis(&cub->ray, cub->player, cub, cub->ray_angle);
 	if (ray->wall_x == 1)
 	{
-		//ft_bresenham(player->x, player->y, ray->hit_x, ray->hit_y, cub);
+		ft_bresenham(player->x, player->y, ray->hit_x, ray->hit_y, cub);
 		//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 		//printf("ray angle = cub->ray_angle %f\n", cub->ray_angle);
 		//printf("X  %f\nY : %f\n\n", ray->hit_x, ray->hit_y);
 	}
 	else if (ray->wall_y == 1)
 	{
-		//ft_bresenham2(player->x, player->y, ray->hit_x, ray->hit_y, cub);
+		ft_bresenham2(player->x, player->y, ray->hit_x, ray->hit_y, cub);
 		//DrawCircle2(ray->hit_x, ray->hit_y, 2, cub);
 	//	printf("ray angle = cub->ray_angle %f\n", cub->ray_angle);
 		//printf("X  %f\nY : %f\n\n", ray->hit_x, ray->hit_y);
@@ -73,7 +73,7 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->xintercept = floorf(player->x / TILE_SIZE) * TILE_SIZE;
 	if (ray->right == 1)
 		ray->xintercept += TILE_SIZE;
-	if (ray->up)
+	//if (ray->up)
 		ray->yintercept = player->y + (player->x - ray->xintercept) \
 	* tan_an;
 	/* else
