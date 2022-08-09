@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 14:56:25 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 16:20:35 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@
 # define TILE_SIZE 32
 # define PI 3.14159265
 # define TWO_PI 6.28318530
+# define PI_DIV_16		0.19635
 
 # define N 1
 # define S 2

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:54:49 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 16:31:23 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,7 +34,7 @@ int	cast_all_rays(t_cub *cub, t_player *player)
 	{
 		init_ray(cub);
 		cast_ray(&cub->ray, player, cub, i);
-		//project_wall(cub, i);
+		project_wall(cub, i);
 		cub->ray_angle += cub->fov_an / cub->no_rays;
 		i++;
 	}
