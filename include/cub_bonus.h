@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 12:39:20 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 13:23:04 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -168,7 +168,7 @@ typedef struct s_cub
 
 t_menu	init_menu(int argc, char **argv);
 void	menu_hooks(t_menu *menu);
-int		quit_everything(void);
+int		quit_everything(t_menu *menu);
 int		key_handling(int key, void *arg);
 void	start_handling(int key, t_menu *menu);
 

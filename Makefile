@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/09 12:38:39 by nguiard          ###   ########.fr        #
+#    Updated: 2022/08/09 15:21:10 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -95,7 +95,7 @@ CC		= gcc
 
 INCLUDE = -Iinclude/
 
-CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g #-fsanitize=address
+CFLAGS	= -Wall -Werror -Wextra ${INCLUDE} -g -fsanitize=address
 
 NAME	= cub3d
 
@@ -121,7 +121,7 @@ save_percent ?= 0
 
 len := $(shell echo ${NAME} | wc -c)
 
-all: Makefile
+all:
 	@${MY_MAKE} setup
 	@${MY_MAKE} libft_rule
 	@${MY_MAKE} mlx_rule
@@ -131,6 +131,8 @@ all: Makefile
 	@echo -ne "\033[16;H"
 	@make --silent ${NAME}
 	@${MY_MAKE} end_make
+
+both:	all bonus
 
 obj/%.o: srcs/%.c
 	@printf "\033[10;2H                                                  \033[10;3H%s" $< ${<:.c=⠀⠀}

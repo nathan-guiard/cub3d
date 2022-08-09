@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   launch_cub3d.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 09:57:23 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:54:16 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,11 @@ t_mlx	init_mlx(t_cub *cub)
 
 	(void)cub;
 	mlx.init = mlx_init();
+	if (!mlx.init)
+		printf("ERREUR MLX!!!!!!!!");
 	mlx.win = mlx_new_window(mlx.init, WIDTH, HEIGTH, "cub3d");
+	if (!mlx.win)
+		printf("ERREUR WINDOW!!!!");
 	mlx.img.img = mlx_new_image(mlx.init, WIDTH, HEIGTH);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img, \
 	&mlx.img.bpp, &mlx.img.line_len, &mlx.img.endian);

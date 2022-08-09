@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/12 15:12:18 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 15:23:40 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,56 +18,25 @@ void	set_hooks(t_cub *cub)
 	mlx_hook(cub->mlx.win, 2, 1L << 0, check_key, &cub->mlx);
 }
 
-int	check_key(int keycode, t_cub *cub)
+int	check_key(int key, t_cub *cub)
 {
-	if (keycode == 65307)
+	if (key == ESC)
 		ft_close(cub);
-	if (keycode == UP_KEY)
-		move_player(cub, keycode);
+	else if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY
+		|| key == RIGHT_KEY)
+		move_player(cub, key);
 	return (0);
 }
 
-void	move_player(t_cub *cub, int keycode)
+void	move_player(t_cub *cub, int key)
 {
-	if (keycode == UP_KEY)
+	draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
+		(t_co){.x = WIDTH, .y = HEIGTH});
+	if (key == UP_KEY)
 	{
-		if (ft_swap_up(cub->char_map) == -1)
-			printf("hit wall\n");
-		draw_mini_map(cub);
-		mlx_put_image_to_window(cub->mlx.init, cub->mlx.win, \
-		cub->mlx.img.img, 0, 0);
+		cub->player->x += 5;
 	}
-}
-
-int	ft_swap_up(char **tab)
-{
-	int i;
-	int	j;
-	int	flag;
-	char	temp;
-
-	i = 0;
-	j = 0;
-	flag = 0;
-	while (tab[i] && flag == 0)
-	{
-		i++;
-		while (tab[i][j])
-		{
-			if (ft_isset(tab[i][j], "NSEW") == 1)
-			{
-				flag = 1;
-				break ;
-			}
-			j++;
-		}
-	}
-	if (tab[i - 1][j] != '0')
-		return (-1);
-	temp = tab[i][j];
-	tab[i][j] = tab[i - 1][j];
-	tab[i - 1][j] = temp;
-	return (0);
+	draw_mini_map(cub);
 }
 
 int	ft_close(t_cub *cub)
@@ -80,4 +49,21 @@ int	ft_close(t_cub *cub)
 	//free(cub->mlx.init);
 	exit(0);
 	return (0);
+}
+
+void	draw_box(t_cub *cub, t_co start, t_co end)
+{
+	int	save;
+
+	save = start.x;
+	while (start.y < end.y)
+	{
+		start.x = save;
+		while (start.x < end.x)
+		{
+			my_pixel_put(cub->mlx.img.img, start.x, start.y, start.color);
+			start.x++;
+		}
+		start.y++;
+	}
 }
