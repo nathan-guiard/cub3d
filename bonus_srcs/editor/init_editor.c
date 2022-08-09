@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_editor.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 12:36:50 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/06 11:35:50 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:39:10 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,11 @@ void	init_editor(t_menu *menu, char *str)
 		mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 		return ;
 	}
+	menu->map_name = ft_substr(str, 5, ft_strlen(str) - 9);
 	menu->fd = fd;
 	menu->status = editor_building;
-	draw_editor(menu);
+	draw_editor(menu, str);
+	free(str);
 }
 
 static char	*transform_str(char *str)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   init_menu.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/07 09:50:44 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:38:47 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,10 +28,13 @@ t_menu	init_menu(int argc, char **argv)
 	if (argv && argv[1])
 		res.basemap = argv[1];
 	res.status = start;
-	res.last_button = (t_co){.x = 400, .y = 500};
+	res.button_co = (t_co){.x = 400, .y = 500};
 	res.button = 0;
 	res.key_pressed = 0;
 	pthread_mutex_init(&mutex, NULL);
 	res.mutex_img = &mutex;
+	res.char_map = NULL;
+	res.fd = -1;
+	res.map_name = 0;
 	return (res);
 }

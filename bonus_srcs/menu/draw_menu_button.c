@@ -22,18 +22,18 @@ void	draw_menu_button(t_menu *menu, int key)
 		;
 	else
 		return ;
-	remove_border(&menu->img, menu->last_button);
+	remove_border(&menu->img, menu->button_co);
 	if (menu->button == 1 && key != 0)
 	{
 		draw_borders(&menu->img, (t_co){.x = 400, 
 			.y = 250 + ((menu->button - 1) * 250), .color = MENU_COLOR});
-		menu->last_button = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
+		menu->button_co = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
 	}
 	else if (menu->button == 2 && key != 0)
 	{
 		draw_borders(&menu->img, (t_co){.x = 400, 
 			.y = 250 + ((menu->button - 1) * 250), .color = MENU_COLOR});
-		menu->last_button = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
+		menu->button_co = (t_co){.x = 400, .y = 250 + ((menu->button - 1) * 250)};
 	}
 
 }

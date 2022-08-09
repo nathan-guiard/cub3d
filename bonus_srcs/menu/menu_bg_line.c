@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:53:56 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/08 13:12:44 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,11 +31,7 @@ int	is_pos_ok(t_set set)
 		&& set.b.x > WIDTH) || (set.a.y > HEIGTH && set.b.y > HEIGTH))
 		return (0);;
 	if ((set.a.x < 0 && set.b.x < 0) || (set.a.y < 0 && set.b.y < 0)
-		|| (set.a.x > WIDTH || set.a.y > HEIGTH)
-		|| ((set.a.x >= TITLE_X - 20 && set.a.x <= TITLE_X + 800)
-		&& (set.a.y >= TITLE_Y - 20 && set.a.y <= TITLE_Y + 100))
-		|| ((set.a.x >= 400 && set.a.x <= 800) && ((set.a.y >= 250
-		&& set.a.y <= 450) || (set.a.y >= 500 && set.a.y <= 700))))
+		|| (set.a.x > WIDTH || set.a.y > HEIGTH))
 		return (2);
 	return (1);
 }

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub_bonus.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/07 11:47:01 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 12:39:20 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@
 # define W_KEY			119
 # define D_KEY			100
 # define S_KEY			115
+# define DEL			65288
 
 # define GREEN			0x0000ff00
 # define BLACK			0x00000000
@@ -56,6 +57,8 @@
 # define SHADOW_DIFF	0x00007f2f
 # define LIL_SHDW_DIFF	0x00002f1f
 # define THREE_DIFF		0x00003f7f
+# define THREE_BLUE		0x0000af3f + 0x00003f7f //faire l'addition
+# define PLAYER_COLOR	GREEN
 
 # define TITLE_X		210
 # define TITLE_Y		85
@@ -65,14 +68,23 @@
 # define CARELAGE_COLOR	0x00007070
 # define CARELAGE_RATIO 10
 
-struct	s_map;
-struct	s_cub;
 # define MAX_STR_LEN	14
+
+# define MAX_ROW		13
+# define MAX_COL		22
+
+# define MAP_COLOR_STR	"F 0,0,0\nC 120,0,120\n"
+# define MAP_TPATH1_STR	"SO ./textures/eagle.xpm\nNO ./textures/eagle.xpm\n"
+# define MAP_TPATH2_STR	"EA ./textures/eagle.xpm\nWE ./textures/eagle.xpm\n"
 
 typedef enum e_status
 {
-	start,
-	play,
+	start = 1,
+	play = 2,
+	editor = 10,
+	editor_ask_name = 11,
+	editor_building = 12,
+	editor_create_map = 13,
 }	t_status;
 
 typedef struct s_flags
@@ -93,10 +105,13 @@ typedef struct s_menu
 	int					key_pressed;
 	char				**argv;
 	char				*basemap;
-	t_co				last_button;
+	t_co				button_co;
 	t_status			status;
 	pthread_mutex_t		*mutex_img;
 	unsigned long long	base_time;
+	char				**char_map;
+	char				*map_name;
+	int					fd;
 }	t_menu;
 
 typedef struct s_bres
@@ -194,5 +209,19 @@ char	*treated_string(char *str);
 void	custom_free_tabtab(char **tab);
 t_list	*destroy_map_list(t_list *lst);
 int		exec_map(t_list *lst, int index);
+
+/*	Editor					*/
+void	editor_handling(t_menu *menu, int key);
+void	draw_ask_name(t_menu *menu);
+char	*ask_name_handling(t_menu *menu, int key, char *last);
+void	init_editor(t_menu *menu, char *last);
+void	draw_editor(t_menu *menu, char *map);
+void	init_charmap(t_menu *menu);
+void	draw_charmap(t_menu *menu);
+void	build_handling(t_menu *menu, int key);
+void	draw_wall_square(t_menu *menu, t_co co);
+void	draw_player(t_menu *menu, char key, int x, int y);
+void	draw_create_map(t_menu *menu);
+void	create_map_handling(t_menu *menu, int key);
 
 #endif
