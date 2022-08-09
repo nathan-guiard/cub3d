@@ -6,11 +6,13 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:36:32 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 12:08:47 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:23:58 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
+
+static void	write_map(t_menu *menu);
 
 void	draw_create_map(t_menu *menu)
 {
@@ -45,7 +47,7 @@ void	create_map_handling(t_menu *menu, int key)
 
 	if (key == 'y' || key == ENTER)
 	{
-		ft_putstr_fd(menu->map_name, menu->fd);
+		write_map(menu);
 		free(menu->map_name);
 		menu->map_name = NULL;
 		close(menu->fd);
@@ -67,4 +69,27 @@ void	create_map_handling(t_menu *menu, int key)
 		menu->status = editor_building;
 	}
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
+}
+
+static void	write_map(t_menu *menu)
+{
+	int	i;
+	int	j;
+
+	i = 0;
+	ft_putendl_fd(MAP_COLOR_STR, menu->fd);
+	ft_putstr_fd(MAP_TPATH1_STR, menu->fd);
+	ft_putendl_fd(MAP_TPATH2_STR, menu->fd);
+	ft_putchar_fd('\n', menu->fd);
+	while (i < MAX_ROW)
+	{
+		j = 0;
+		while (j < MAX_COL)
+		{
+			ft_putchar_fd(menu->char_map[i][j], menu->fd);
+			j++;
+		}
+		ft_putchar_fd('\n', menu->fd);
+		i++;
+	}
 }

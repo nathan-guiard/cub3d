@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 11:36:12 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 12:20:27 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define SHADOW_DIFF	0x00007f2f
 # define LIL_SHDW_DIFF	0x00002f1f
 # define THREE_DIFF		0x00003f7f
-# define THREE_BLUE		MENU_COLOR + THREE_DIFF
+# define THREE_BLUE		0x0000af3f + 0x00003f7f //faire l'addition
 # define PLAYER_COLOR	GREEN
 
 # define TITLE_X		210
@@ -72,6 +72,10 @@
 
 # define MAX_ROW		13
 # define MAX_COL		22
+
+# define MAP_COLOR_STR	"F 0,0,0\nC 120,0,120\n"
+# define MAP_TPATH1_STR	"SO ./textures/eagle.xpm\nNO ./textures/eagle.xpm\n"
+# define MAP_TPATH2_STR	"EA ./textures/eagle.xpm\nWE ./textures/eagle.xpm\n"
 
 typedef enum e_status
 {
