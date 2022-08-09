@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/29 16:06:37 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/29 16:07:19 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:23:38 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -91,7 +91,8 @@ int	ray_direction(t_ray *ray, int col_id, float ray_angle)
 float	normalize_angle(float ray_angle)
 {
 	ray_angle = remainder(ray_angle, TWO_PI);
-    if (ray_angle < 0) {
+    if (ray_angle < 0) 
+	{
         ray_angle = TWO_PI + ray_angle;
     }
     return ray_angle;

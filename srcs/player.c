@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 12:34:17 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:57:17 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ int	find_player(char **tab, t_player *player, t_cub *cub)
 	}
 	player->dir = tab[i][j];
  	player->x = (j * TILE_SIZE) + TILE_SIZE / 2;
-	player->y = (i * TILE_SIZE) - TILE_SIZE / 2; 
+	player->y = (i * TILE_SIZE) - 16; 
 /* 	player->x = (cub->width * TILE_SIZE)/ 2;
 	player->y = (cub->height * TILE_SIZE) / 2; */
 	return (0);

@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 13:35:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/29 14:11:27 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 13:52:20 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,6 @@ void	ft_bresenham(int x1, int y1, int x2, int y2, t_cub *cub)
 		data.err = data.dx / 2;
 		while (data.x != x2)
 		{
-			if (data.x == x2 - 1)
-				printf("hi\n");
 			my_pixel_put(&cub->mlx.img, data.x, data.y, 0xff0000);
 			data.err -= data.dy;
 			if (data.err < 0)

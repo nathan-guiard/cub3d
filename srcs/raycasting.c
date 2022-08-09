@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 12:34:28 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/09 14:51:51 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,8 +73,12 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	ray->xintercept = floorf(player->x / TILE_SIZE) * TILE_SIZE;
 	if (ray->right == 1)
 		ray->xintercept += TILE_SIZE;
-	ray->yintercept = player->y + (ray->xintercept - player->x) \
+	if (ray->up)
+		ray->yintercept = player->y + (player->x - ray->xintercept) \
 	* tan_an;
+	/* else
+		ray->yintercept = player->y + (ray->xintercept - player->x) \
+	* tan_an; */
 	ray->ystep = TILE_SIZE * tan_an;
 	ray->xstep = TILE_SIZE;
 	if (ray->left == 1)
@@ -85,13 +89,13 @@ int	vertical_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	while (ray->xintercept > 0 && ray->xintercept < (cub->width * TILE_SIZE) \
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
-		if (is_wall(cub->char_map, (ray->xintercept - ray->left), \
+		if (is_wall(cub->char_map, (ray->xintercept + ray->left), \
 		ray->yintercept))
 		{
-			//DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
 			if (ray->distance > hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y)))
 			{
+				DrawCircle2(ray->xintercept, ray->yintercept, 2, cub);
 				ray->distance = hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y));
 				ray->wall_y = 1;
@@ -131,12 +135,12 @@ int	horizontal_colis(t_ray *ray, t_player *player, t_cub *cub, float ray_angle)
 	&& ray->yintercept > 0 && ray->yintercept < (cub->height * TILE_SIZE))
 	{
 		if (is_wall(cub->char_map, ray->xintercept, \
-		(ray->yintercept - ray->up)))
+		(ray->yintercept + ray->up)))
 		{
-			//DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 			if (ray->distance > hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y)))
 			{
+			DrawCircle(ray->hit_x, ray->hit_y, 2, cub);
 				ray->distance = hypot((ray->xintercept - player->x), \
 			(ray->yintercept - player->y));
 			ray->wall_x = 1;
