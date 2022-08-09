@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 19:51:01 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 18:37:14 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/08 18:31:42 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,7 @@
 
 int	menu_loop(t_menu *menu)
 {
-	ft_printf("\n");
 	menu_bg_animation(menu);
-
 	return (0);
 }
 

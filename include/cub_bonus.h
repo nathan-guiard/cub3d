@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 16:59:59 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:36:12 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ typedef enum e_status
 	editor = 10,
 	editor_ask_name = 11,
 	editor_building = 12,
+	editor_create_map = 13,
 }	t_status;
 
 typedef struct s_flags
@@ -105,6 +106,7 @@ typedef struct s_menu
 	pthread_mutex_t		*mutex_img;
 	unsigned long long	base_time;
 	char				**char_map;
+	char				*map_name;
 	int					fd;
 }	t_menu;
 
@@ -215,5 +217,7 @@ void	draw_charmap(t_menu *menu);
 void	build_handling(t_menu *menu, int key);
 void	draw_wall_square(t_menu *menu, t_co co);
 void	draw_player(t_menu *menu, char key, int x, int y);
+void	draw_create_map(t_menu *menu);
+void	create_map_handling(t_menu *menu, int key);
 
 #endif

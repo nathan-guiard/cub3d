@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/07/12 11:35:43 by nguiard          ###   ########.fr        #
+#    Updated: 2022/08/08 17:39:24 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -63,6 +63,7 @@ BONUSSRC =	$(addsuffix .c, \
 		charmap_utils		\
 		build_handling		\
 		draw_player			\
+		create_map_editor	\
 		)					\
 		draw_box			\
 		main				\

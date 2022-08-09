@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 10:41:47 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 17:16:04 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/08 18:32:37 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ static void	move_cursor(t_menu *menu, int key)
 
 void	build_handling(t_menu *menu, int key)
 {
+	if (key == ENTER)
+	{
+		menu->status = editor_create_map;
+		draw_create_map(menu);
+		return ;
+	}
 	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
 		move_cursor(menu, key);
 	else if (key == 'q')

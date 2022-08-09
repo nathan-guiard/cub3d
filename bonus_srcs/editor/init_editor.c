@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 12:36:50 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 10:38:25 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/08 18:20:08 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	init_editor(t_menu *menu, char *str)
 		mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 		return ;
 	}
+	menu->map_name = ft_substr(str, 5, ft_strlen(str) - 9);
 	menu->fd = fd;
 	menu->status = editor_building;
 	draw_editor(menu, str);

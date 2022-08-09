@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/11 16:47:18 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/08 18:09:40 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,6 @@ t_menu	init_menu(int argc, char **argv)
 	res.mutex_img = &mutex;
 	res.char_map = NULL;
 	res.fd = -1;
+	res.map_name = 0;
 	return (res);
 }

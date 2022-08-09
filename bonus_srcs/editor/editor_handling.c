@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:09:45 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/13 12:03:02 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:45:19 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,12 @@ void	editor_handling(t_menu *menu, int key)
 	if (key == ESC)
 	{
 		if (menu->char_map)
+		{
 			free_tabtab(menu->char_map);
+			menu->char_map = NULL;
+		}
 		if (menu->fd != -1)
 			close(menu->fd);
-		ft_printf("quitte editor\n");
 		draw_box(menu, (t_co){.x = 0, .y = 0, .color = BLACK},
 			(t_co){.x = WIDTH, .y = HEIGTH});
 		draw_first_menu(menu);
@@ -30,10 +32,15 @@ void	editor_handling(t_menu *menu, int key)
 		if (name)
 			free(name);
 		name = NULL;
+		if (menu->map_name != 0)
+			free(menu->map_name);
+		menu->map_name = NULL;
 		start_handling(UP_KEY, menu);
 	}
 	else if (menu->status == editor_ask_name)
 		name = ask_name_handling(menu, key, name);
 	else if (menu->status == editor_building)
 		build_handling(menu, key);
+	else if (menu->status == editor_create_map)
+		create_map_handling(menu, key);
 }

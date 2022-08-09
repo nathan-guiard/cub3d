@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:49:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/12 11:31:25 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/09 11:47:57 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@ void	init_charmap(t_menu *menu)
 	int		i;
 
 	i = 0;
+	if (menu->char_map != NULL)
+		return ;
 	map = ft_calloc(sizeof(char *), MAX_ROW);
 	while (i < MAX_ROW)
 	{
@@ -36,7 +38,6 @@ void	init_charmap(t_menu *menu)
 		map[MAX_ROW - 1][i] = '1';
 		i++;
 	}
-	ft_printf("%s\n", map[0]);
 	menu->char_map = map;
 }
 

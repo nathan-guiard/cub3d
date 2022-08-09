@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:18:36 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/08 18:31:30 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,6 @@ void	*menu_bg_animation(void *arg)
 		put_carelage_x(menu);
 		pthread_mutex_unlock(menu->mutex_img);
 		mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
-		ft_printf("test %d\n", i);
 		if (i == 100)
 			i = 0;
 	}
