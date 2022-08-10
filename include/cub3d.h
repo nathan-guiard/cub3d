@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 19:06:00 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 19:17:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FALSE			-42
 # define ERROR			-420
 
-# define WIDTH			1200
-# define HEIGTH			900
+# define WIDTH			1280
+# define HEIGTH			800
 
 # define DIR_X			0
 # define DIR_Y			1
@@ -66,10 +66,10 @@
 # define CARELAGE_COLOR	0x00007070
 # define CARELAGE_RATIO 10
 
-# define TILE_SIZE 32
-# define PI 3.14159265
-# define TWO_PI 6.28318530
-# define PI_DIV_16		0.19635
+# define TILE_SIZE		32
+# define PI 			3.14159265
+# define TWO_PI			6.28318530
+# define PI_DIV_16		0.125663706
 
 # define N 1
 # define S 2

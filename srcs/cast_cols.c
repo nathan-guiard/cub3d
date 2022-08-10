@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:12:20 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 19:03:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 19:18:51 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,24 +64,17 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id)
 {
 	unsigned int	color;
 	int				offset_y;
-	int				i;
 
 	col_id = WIDTH - (col_id);
 	cast_cel(top_p, cub, col_id);
 	cast_floor(bottom_p, cub, col_id);
 	while (top_p++ < bottom_p)
 	{
-		i = 0;
 		offset_y = top_p + (cub->ray.w_height / 2) - (HEIGTH / 2);
 		offset_y = offset_y * \
 		(float)cub->text[cub->ray.w_id].h / cub->ray.w_height;
-		while (i < 1)
-		{
-			color = get_color(cub, cub->ray.w_id, offset_y, i);
-			// cub->mlx.img.addr[(top_p * WIDTH * 4) + col_id * 4 + i] = color;
-			my_pixel_put(&cub->mlx.img, col_id, top_p, color);
-			i++;
-		}
+		color = get_color(cub, cub->ray.w_id, offset_y, 0);
+		my_pixel_put(&cub->mlx.img, col_id, top_p, color);
 	}
 	return (0);
 }
