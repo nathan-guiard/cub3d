@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 15:14:38 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 12:00:16 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -120,6 +120,11 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		{
 			while (map->line[k])
 			{
+				if (ft_isset(map->line[k], "10 NSEW\0") == -1)
+				{
+					tab[*i + 1] = NULL;
+					ft_error(cub, &cub->map, "ERROR : invalid character");
+				}
 				if (map->line[k] == 32)
 					map->line[k] = '1';
 				tab[*i][k] = map->line[k];
@@ -130,9 +135,11 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		{
 			tab[*i + 1] = NULL;
 			ft_error(cub, &cub->map, "ERROR : map border error");
-		}
+		}	
 		tab[*i][k] = 'v';
 		k++;
 	}
 	tab[*i][k] = '\0';
+	free(map->line);
+	map->line = NULL;
 }

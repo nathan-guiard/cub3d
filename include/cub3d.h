@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 16:20:35 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 11:23:55 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ typedef struct s_ray
 	int		wall_y;
 	float	distance;
 	int		w_id;
+	int		w_height;
 }	t_ray;
 typedef struct s_cub
 {
@@ -238,104 +239,109 @@ typedef struct s_cub
 }	t_cub;
 
 /*    PARSING                 */
-int			parse_map(int fd);
-int			check_arguments(int ac, char **av);
-int			check_chars(t_map **map, t_cub *cub);
-t_cub		*init_cub(void);
-int			configs_filled(t_cub *cub);
-int			set_path(char *str, int *i, t_cub *cub);
-int			check_first_and_last_line(char *str);
-int			check_line(char *str);
-int			create_map(t_map *map, t_cub *cub);
-void		set_tab(char **tab, int *i, t_cub *cub, t_map *map);
-int			create_list(char *line, t_map **map);
-int			set_path2(char *str, char *res, t_cub *cub, int j);
+int				parse_map(int fd);
+int				check_arguments(int ac, char **av);
+int				check_chars(t_map **map, t_cub *cub);
+t_cub			*init_cub(void);
+int				configs_filled(t_cub *cub);
+int				set_path(char *str, int *i, t_cub *cub);
+int				check_first_and_last_line(char *str);
+int				check_line(char *str);
+int				create_map(t_map *map, t_cub *cub);
+void			set_tab(char **tab, int *i, t_cub *cub, t_map *map);
+int				create_list(char *line, t_map **map);
+int				set_path2(char *str, char *res, t_cub *cub, int j);
 /*    LIST                     */
-void		ft_my_lstadd_back(t_map **alst, t_map *new);
-t_map		*ft_my_lstnew(char *line);
-void		ft_my_lstclear(t_map **lst);
-int			ft_my_lstsize(t_map *lst);
-int			ft_lst_width(t_map *map);
+void			ft_my_lstadd_back(t_map **alst, t_map *new);
+t_map			*ft_my_lstnew(char *line);
+void			ft_my_lstclear(t_map **lst);
+int				ft_my_lstsize(t_map *lst);
+int				ft_lst_width(t_map *map);
 
 /*          PARSE_UTILS    */
-int			ft_isset(char c, char *set);
-int			ft_isspace(char *str, int *i);
-char		*my_strdup(const char *s);
-int			my_atoi(const char *nptr);
-int			tablen(char	**tab);
-int			get_text(t_cub *cub);
-void		get_text_addr(t_cub *cub);
+int				ft_isset(char c, char *set);
+int				ft_isspace(char *str, int *i);
+char			*my_strdup(const char *s);
+int				my_atoi(const char *nptr);
+int				tablen(char	**tab);
+int				get_text(t_cub *cub);
+void			get_text_addr(t_cub *cub);
 /*			CHECK_ERRORS	*/
-int			check_arguments(int ac, char **av);
-int			check_file_ext(char *file);
-int			check_arguments2(int ac, char **av);
+int				check_arguments(int ac, char **av);
+int				check_file_ext(char *file);
+int				check_arguments2(int ac, char **av);
 
 /*        CHECK_ELS        */
-int			check_elems(t_map **map);
-int			check_borders(t_map **map);
-void		print_map(t_cub *cub);
-int			compare_strings(char *s_long, char *s_short);
-int			verify_borders(char **tab, t_cub *cub);
-void		check_pathnames(t_map *temp, t_cub *cub, int *i);
+int				check_elems(t_map **map);
+int				check_borders(t_map **map);
+void			print_map(t_cub *cub);
+int				compare_strings(char *s_long, char *s_short);
+int				verify_borders(char **tab, t_cub *cub);
+void			check_pathnames(t_map *temp, t_cub *cub, int *i);
 /*			FC_COLOR		*/
-int			set_color(char *str, t_cub *cub, char c);
-void		assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
+int				set_color(char *str, t_cub *cub, char c);
+void			assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c);
 /*         ERROR    */
-void		ft_error(t_cub *cub, t_map **map, char *str);
-void		ft_error2(t_cub *cub, t_map **map, char *res, char *str);
-void		ft_error_cub(t_cub *cub, t_map **map, char *str);
-void		ft_ray_error(t_cub *cub, t_ray *ray, t_player *player, char *str);
-void		ft_error_ray(t_cub *cub, char *str);
+void			ft_error(t_cub *cub, t_map **map, char *str);
+void			ft_error2(t_cub *cub, t_map **map, char *res, char *str);
+void			ft_error_cub(t_cub *cub, t_map **map, char *str);
+void			ft_ray_error(t_cub *cub, t_ray *ray, t_player *player, \
+				char *str);
+void			ft_error_ray(t_cub *cub, char *str);
 /*		LAUCNH_CUB3d		*/
-int			launch_cub3d(t_cub *cub);
-t_mlx		init_mlx(t_cub *cub);
-void		my_pixel_put(t_img *img, int x, int y, unsigned int color);
+int				launch_cub3d(t_cub *cub);
+t_mlx			init_mlx(t_cub *cub);
+void			my_pixel_put(t_img *img, int x, int y, unsigned int color);
 /*		LET_IT_GO		*/
-void		free_cub(t_cub *cub);
-void		free_tab(char **s);
-void		end_cub(t_cub *cub, t_map **map);
+void			free_cub(t_cub *cub);
+void			free_tab(char **s);
+void			end_cub(t_cub *cub, t_map **map);
 /*		KEYS			*/
-int			ft_close(t_cub *cub);
-void		set_hooks(t_cub *cub);
-int			check_key(int keycode, t_cub *cub);
+int				ft_close(t_cub *cub);
+void			set_hooks(t_cub *cub);
+int				check_key(int keycode, t_cub *cub);
 /*		MINI MAP		*/
-int			draw_mini_map(t_cub *cub);
+int				draw_mini_map(t_cub *cub);
 /*		BRES		*/
-void		ft_bresenham(int x1, int y1, int x2, int y2, t_cub *cub);
-void		set_data(int x1, int y1, int x2, int y2, t_line *data);
-void		ft_bresenham_bis(t_line *data, t_cub *cub, int y2);
-void		ft_bresenham2(int x1, int y1, int x2, int y2, t_cub *cub);
-void		set_data2(int x1, int y1, int x2, int y2, t_line *data);
-void		ft_bresenham_bis2(t_line *data, t_cub *cub, int y2);
-int			draw_grid(t_cub *cub, t_cords *cords, int fill);
-int			full_square(t_cords *cords, t_cub *cub, int fill);
-int			ft_swap_up(char **tab);
-void		move_player(t_cub *cub, int keycode);
-int			raycasting(t_cub *cub);
+void			ft_bresenham(int x1, int y1, int x2, int y2, t_cub *cub);
+void			set_data(int x1, int y1, int x2, int y2, t_line *data);
+void			ft_bresenham_bis(t_line *data, t_cub *cub, int y2);
+void			ft_bresenham2(int x1, int y1, int x2, int y2, t_cub *cub);
+void			set_data2(int x1, int y1, int x2, int y2, t_line *data);
+void			ft_bresenham_bis2(t_line *data, t_cub *cub, int y2);
+int				draw_grid(t_cub *cub, t_cords *cords, int fill);
+int				full_square(t_cords *cords, t_cub *cub, int fill);
+int				ft_swap_up(char **tab);
+void			move_player(t_cub *cub, int keycode);
+int				raycasting(t_cub *cub);
 
 /*		raycasting		*/
-int			cast_all_rays(t_cub *cub, t_player *player);
-int			cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
-int			ray_direction(t_ray *ray, int col_id, float ray_angle);
-float		normalize_angle(float ray_angle);
-int			find_player(char **tab, t_player *player, t_cub *cub);
-t_player	*init_player(t_cub *cub);
-int			is_wall(char **tab, int xinter, int yinter);
-void		init_ray(t_cub *cub);
-int			project_wall(t_cub *cub, int col_id);
-int			vertical_colis(t_ray *ray, t_player *player, \
-			t_cub *cub, float ray_angle);
-int			horizontal_colis(t_ray *ray, t_player *player, \
-			t_cub *cub, float ray_angle);
-void		DrawCircle(int x, int y, int r, t_cub *cub);
-void		DrawCircle2(int x, int y, int r, t_cub *cub);
-int			cast_col(int top_p, int bottom_p, t_cub *cub, int col_id, int w_height);
-int			cast_cel(int top_p, int bottom_p, t_cub *cub, int col_id);
-int			cast_floor(int top_p, int bottom_p, t_cub *cub, int col_id);
-int			get_xoffset(t_cub *cub);
-void		set_wall_id(t_cub *cub);
-unsigned int	get_color(t_cub *cub, int id, int offset_y);
+int				cast_all_rays(t_cub *cub, t_player *player);
+int				cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id);
+int				ray_direction(t_ray *ray, int col_id, float ray_angle);
+float			normalize_angle(float ray_angle);
+int				find_player(char **tab, t_player *player);
+void			set_pos(char **tab, t_player *player, int i, int j);
+t_player		*init_player(t_cub *cub);
+int				is_wall(char **tab, int xinter, int yinter);
+void			init_ray(t_cub *cub);
+int				project_wall(t_cub *cub, int col_id);
+int				vertical_colis(t_ray *ray, t_player *player, \
+				t_cub *cub, float ray_angle);
+int				vertical_colis2(t_ray *ray, t_player *player, t_cub *cub);
+int				horizontal_colis(t_ray *ray, t_player *player, \
+				t_cub *cub, float ray_angle);
+int				horizontal_colis2(t_ray *ray, t_player *player, t_cub *cub);
+void			DrawCircle(int x, int y, int r, t_cub *cub);
+void			DrawCircle2(int x, int y, int r, t_cub *cub);
+int				cast_col(int top_p, int bottom_p, t_cub *cub, \
+				int col_id);
+int				cast_cel(int top_p, t_cub *cub, int col_id);
+int				cast_floor( int bottom_p, t_cub *cub, int col_id);
+int				get_xoffset(t_cub *cub);
+void			set_wall_id(t_cub *cub);
+unsigned int	get_color(t_cub *cub, int id, int offset_y, int rgb);
 
 /*	movement	*/
-void	draw_box(t_cub *cub, t_co start, t_co end);
+void			draw_box(t_cub *cub, t_co start, t_co end);
 #endif

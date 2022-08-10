@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
+#    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/09 15:42:57 by nguiard          ###   ########.fr        #
+#    Updated: 2022/08/10 11:12:15 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,8 @@ SRC = srcs/main.c \
 	srcs/player.c \
 	srcs/ray_utils.c \
 	srcs/project_wall.c \
+	srcs/cast_rays.c \
+	srcs/cast_cols.c \
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\

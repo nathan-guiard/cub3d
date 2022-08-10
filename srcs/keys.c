@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 16:31:25 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:59:10 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ int	check_key(int key, t_cub *cub)
 
 void	move_player(t_cub *cub, int key)
 {
-	draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
+ 	draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
 		(t_co){.x = WIDTH, .y = HEIGTH});
 	if (key == W_KEY)
 		cub->player->y -= 5;
@@ -44,7 +44,7 @@ void	move_player(t_cub *cub, int key)
 		cub->player->rotation_angle += PI_DIV_16;
 	if (key == RIGHT_KEY)
 		cub->player->rotation_angle -= PI_DIV_16;
-	draw_mini_map(cub);
+	//draw_mini_map(cub);
 	cast_all_rays(cub, cub->player);
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win,
 		cub->mlx.img.img, 0, 0);
@@ -52,12 +52,19 @@ void	move_player(t_cub *cub, int key)
 
 int	ft_close(t_cub *cub)
 {
-    (void)cub;
-	free_cub(cub);
+	int	i;
+
+	i = 0;
+	while (i < 4)
+	{
+		mlx_destroy_image(cub->mlx.init, cub->text[i].img);
+		i++;
+	}
 	mlx_destroy_image(cub->mlx.init, cub->mlx.img.img);
 	mlx_destroy_window(cub->mlx.init, cub->mlx.win);
 	mlx_destroy_display(cub->mlx.init);
 	free(cub->mlx.init);
+	free_cub(cub);
 	exit(0);
 	return (0);
 }

@@ -6,13 +6,13 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 16:31:18 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 11:23:08 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	find_player(char **tab, t_player *player, t_cub *cub)
+int	find_player(char **tab, t_player *player)
 {
 	int		i;
 	int		j;
@@ -20,7 +20,6 @@ int	find_player(char **tab, t_player *player, t_cub *cub)
 
 	i = 0;
 	j = 0;
-	(void)cub;
 	flag = 0;
 	while (tab[i] && flag == 0)
 	{
@@ -38,12 +37,15 @@ int	find_player(char **tab, t_player *player, t_cub *cub)
 			j++;
 		}
 	}
-	player->dir = tab[i][j];
- 	player->x = (j * TILE_SIZE) + TILE_SIZE / 2;
-	player->y = (i * TILE_SIZE) - 16; 
-/* 	player->x = (cub->width * TILE_SIZE)/ 2;
-	player->y = (cub->height * TILE_SIZE) / 2; */
+	set_pos(tab, player, i, j);
 	return (0);
+}
+
+void	set_pos(char **tab, t_player *player, int i, int j)
+{
+	player->dir = tab[i][j];
+	player->x = (j * TILE_SIZE) + TILE_SIZE / 2;
+	player->y = (i * TILE_SIZE) - TILE_SIZE / 2;
 }
 
 t_player	*init_player(t_cub *cub)
@@ -53,10 +55,10 @@ t_player	*init_player(t_cub *cub)
 	player = (t_player *)malloc(sizeof(player) * 3);
 	if (!player)
 		return (NULL);
-	if (find_player(cub->char_map, player, cub) == -1)
+	if (find_player(cub->char_map, player) == -1)
 		ft_error_ray(cub, "ERROR: player error");
 	if (player->dir == 'N')
-		player->rotation_angle = PI / 2;
+		player->rotation_angle = 0.5 * PI;
 	if (player->dir == 'E')
 		player->rotation_angle = 0;
 	if (player->dir == 'S')

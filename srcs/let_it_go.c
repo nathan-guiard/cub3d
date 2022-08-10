@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   let_it_go.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:12:54 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/09 16:08:05 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 11:26:21 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,6 +40,7 @@ void	free_cub(t_cub *cub)
 	free(cub->e_path);
 	free(cub->w_path);
 	ft_my_lstclear(&cub->map);
+	free(cub->player);
 	free(cub);
 }
 
