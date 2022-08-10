@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 14:39:45 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:14:31 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FALSE			-42
 # define ERROR			-420
 
-# define WIDTH			1200
-# define HEIGTH			900
+# define WIDTH			960
+# define HEIGTH			600
 
 # define DIR_X			0
 # define DIR_Y			1
@@ -216,6 +216,7 @@ typedef struct s_ray
 	int		w_id;
 	int		w_height;
 }	t_ray;
+
 typedef struct s_cub
 {
 	int					width;
@@ -236,6 +237,7 @@ typedef struct s_cub
 	t_mlx				mlx;
 	struct s_ray		ray;
 	struct s_player		*player;
+	int					fd;
 }	t_cub;
 
 /*    PARSING                 */

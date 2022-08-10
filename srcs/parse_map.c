@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 14:14:32 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:16:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ int	parse_map(int fd)
 	char	*line;
 
 	cub = init_cub();
+	cub->fd = fd;
 	map = NULL;
 	line = get_next_line(fd);
 	while (line != NULL)

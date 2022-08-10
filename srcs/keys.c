@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   keys.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 13:42:41 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 17:16:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ int	ft_close(t_cub *cub)
 	mlx_destroy_display(cub->mlx.init);
 	free(cub->mlx.init);
 	free_cub(cub);
+	close(cub->fd);
 	exit(0);
 	return (0);
 }
