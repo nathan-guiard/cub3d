@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 17:19:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 19:06:00 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FALSE			-42
 # define ERROR			-420
 
-# define WIDTH			960
-# define HEIGTH			600
+# define WIDTH			1200
+# define HEIGTH			900
 
 # define DIR_X			0
 # define DIR_Y			1
