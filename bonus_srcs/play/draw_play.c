@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:35:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 22:22:22 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:28:14 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,14 @@
 
 static void	draw_arrow(t_menu *menu, int color);
 static void	draw_arrow2(t_menu *menu, int color);
-void	draw_first_maps_name(t_menu *menu);
+void		draw_first_maps_name(t_menu *menu);
 
 void	draw_play(t_menu *menu)
 {
 	draw_box(menu, (t_co){.x = 0, .y = 0, .color = 0},
 		(t_co){.x = WIDTH, .y = HEIGTH});
-	mlx_putstr(&menu->img, "Choose a map", (t_co){.x = 240, .y = 50, .color = GREEN}, 6);
+	mlx_putstr(&menu->img, "Choose a map",
+		(t_co){.x = 240, .y = 50, .color = GREEN}, 6);
 	draw_box(menu, (t_co){.x = 300, .y = 200, .color = 0x00004000},
 		(t_co){.x = 900, .y = 300});
 	draw_box(menu, (t_co){.x = 300, .y = 300, .color = 0x00006000},

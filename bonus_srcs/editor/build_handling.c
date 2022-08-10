@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/11 10:41:47 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 18:32:37 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 23:26:40 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ static void	move_cursor(t_menu *menu, int key)
 	if (key == RIGHT_KEY && menu->button_co.x < WIDTH - 101)
 		menu->button_co.x += 50;
 	if (key == LEFT_KEY && menu->button_co.x > 50)
-		menu->button_co.x -= 50;		
+		menu->button_co.x -= 50;
 }
 
 void	build_handling(t_menu *menu, int key)
@@ -44,14 +44,16 @@ void	build_handling(t_menu *menu, int key)
 	if (key == UP_KEY || key == DOWN_KEY || key == LEFT_KEY || key == RIGHT_KEY)
 		move_cursor(menu, key);
 	else if (key == 'q')
-		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = '1';
+		menu->char_map[(menu->button_co.y - 200) / 50]
+		[(menu->button_co.x - 50) / 50] = '1';
 	else if (key == W_KEY || key == D_KEY || key == S_KEY || key == A_KEY)
 	{
 		replace_old_player(menu);
 		charmap_player_handling(menu, key);
 	}
 	else if (key == DEL)
-		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = '0';
+		menu->char_map[(menu->button_co.y - 200) / 50]
+		[(menu->button_co.x - 50) / 50] = '0';
 	draw_charmap(menu);
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 }
@@ -59,13 +61,17 @@ void	build_handling(t_menu *menu, int key)
 static void	charmap_player_handling(t_menu *menu, int key)
 {
 	if (key == W_KEY)
-		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = 'N';
+		menu->char_map[(menu->button_co.y - 200) / 50]
+		[(menu->button_co.x - 50) / 50] = 'N';
 	else if (key == D_KEY)
-		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = 'E';
+		menu->char_map[(menu->button_co.y - 200) / 50]
+		[(menu->button_co.x - 50) / 50] = 'E';
 	else if (key == S_KEY)
-		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = 'S';
+		menu->char_map[(menu->button_co.y - 200) / 50]
+		[(menu->button_co.x - 50) / 50] = 'S';
 	else if (key == A_KEY)
-		menu->char_map[(menu->button_co.y - 200) / 50][(menu->button_co.x - 50) / 50] = 'W';
+		menu->char_map[(menu->button_co.y - 200) / 50]
+		[(menu->button_co.x - 50) / 50] = 'W';
 }
 
 static void	replace_old_player(t_menu *menu)

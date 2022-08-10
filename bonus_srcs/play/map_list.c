@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:12:20 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/23 22:21:55 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:32:48 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ static bool	is_a_good_map_name(char *str);
 
 t_list	*get_map_list(void)
 {
-	DIR 			*d;
+	DIR				*d;
 	struct dirent	*dir;
 	t_list			*res;
 
@@ -24,10 +24,12 @@ t_list	*get_map_list(void)
 	d = opendir("maps");
 	if (d)
 	{
-		while ((dir = readdir(d)) != NULL)
-    	{
+		dir = readdir(d);
+		while (dir != NULL)
+		{
 			if (is_a_good_map_name(dir->d_name) == TRUE)
 				ft_lstadd_back(&res, ft_lstnew(dir->d_name));
+			dir = readdir(d);
 		}
 		closedir(d);
 	}
@@ -70,11 +72,11 @@ char	*treated_string(char *str)
 void	custom_free_tabtab(char **tab)
 {
 	if (tab[0])
-		free(tab[0]);	
+		free(tab[0]);
 	if (tab[1])
-		free(tab[1]);	
+		free(tab[1]);
 	if (tab[2])
-		free(tab[2]);	
+		free(tab[2]);
 	if (tab[3])
 		free(tab[3]);
 	if (tab[4])

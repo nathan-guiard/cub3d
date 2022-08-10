@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:18:57 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:37:09 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	*refresh_rate(void *arg)
 int	animation_thread(void *arg)
 {
 	pthread_t	tid;
-	//pthread_t	tid2;
 	t_menu		*menu;
 	static int	test;
 
@@ -39,6 +38,5 @@ int	animation_thread(void *arg)
 	test = 1;
 	menu = (t_menu *)arg;
 	pthread_create(&tid, NULL, menu_bg_animation, menu);
-	//pthread_create(&tid2, NULL, refresh_rate, menu);
 	return (0);
 }

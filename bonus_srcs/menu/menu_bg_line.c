@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/01 18:53:56 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 13:12:44 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:28:36 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,8 @@ void	menu_bg_line(t_img img, t_co start, t_co end)
 int	is_pos_ok(t_set set)
 {
 	if ((set.a.x == set.b.x && set.a.y == set.b.y) || (set.a.x > WIDTH
-		&& set.b.x > WIDTH) || (set.a.y > HEIGTH && set.b.y > HEIGTH))
-		return (0);;
+			&& set.b.x > WIDTH) || (set.a.y > HEIGTH && set.b.y > HEIGTH))
+		return (0);
 	if ((set.a.x < 0 && set.b.x < 0) || (set.a.y < 0 && set.b.y < 0)
 		|| (set.a.x > WIDTH || set.a.y > HEIGTH))
 		return (2);

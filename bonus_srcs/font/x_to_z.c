@@ -6,13 +6,13 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 19:39:12 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:08:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-static void x_diag(t_img *img, t_co co, int size);
+static void	x_diag(t_img *img, t_co co, int size);
 
 void	ft_x(t_img *img, t_co co, int size)
 {
@@ -35,24 +35,24 @@ void	ft_x(t_img *img, t_co co, int size)
 	x_diag(img, co, size);
 }
 
-static void x_diag(t_img *img, t_co co, int size)
+static void	x_diag(t_img *img, t_co co, int size)
 {
 	diagonale(img, (t_co){.x = co.x + size * 3, .y = co.y,
-		.color = co.color},2 * size, DOWNSIDE);
+		.color = co.color}, 2 * size, DOWNSIDE);
 	diagonale(img, (t_co){.x = co.x + size * 8, .y = co.y + size * 5,
-		.color = co.color},2 * size, DOWNSIDE);
+		.color = co.color}, 2 * size, DOWNSIDE);
 	diagonale(img, (t_co){.x = co.x, .y = co.y + size * 3,
-		.color = co.color},2 * size, DOWNSIDE);
+		.color = co.color}, 2 * size, DOWNSIDE);
 	diagonale(img, (t_co){.x = co.x + size * 5, .y = co.y + size * 8,
-		.color = co.color},2 * size, DOWNSIDE);
-	diagonale(img, (t_co){.x = co.x, .y = co.y + size * 7, 
-		.color = co.color},2 * size, UPSIDE);
-	diagonale(img, (t_co){.x = co.x + size * 3, .y = co.y + size * 10, 
-		.color = co.color},2 * size, UPSIDE);
-	diagonale(img, (t_co){.x = co.x + size * 5, .y = co.y + size * 2, 
-		.color = co.color},2 * size, UPSIDE);
-	diagonale(img, (t_co){.x = co.x + size * 8, .y = co.y + size * 5, 
-		.color = co.color},2 * size, UPSIDE);
+		.color = co.color}, 2 * size, DOWNSIDE);
+	diagonale(img, (t_co){.x = co.x, .y = co.y + size * 7,
+		.color = co.color}, 2 * size, UPSIDE);
+	diagonale(img, (t_co){.x = co.x + size * 3, .y = co.y + size * 10,
+		.color = co.color}, 2 * size, UPSIDE);
+	diagonale(img, (t_co){.x = co.x + size * 5, .y = co.y + size * 2,
+		.color = co.color}, 2 * size, UPSIDE);
+	diagonale(img, (t_co){.x = co.x + size * 8, .y = co.y + size * 5,
+		.color = co.color}, 2 * size, UPSIDE);
 }
 
 void	ft_y(t_img *img, t_co co, int size)

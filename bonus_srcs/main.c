@@ -6,17 +6,11 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 19:51:01 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 18:31:42 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:06:39 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
-
-int	menu_loop(t_menu *menu)
-{
-	menu_bg_animation(menu);
-	return (0);
-}
 
 int	main(int argc, char **argv)
 {
@@ -26,7 +20,5 @@ int	main(int argc, char **argv)
 	menu_hooks(&menu);
 	draw_first_menu(&menu);
 	mlx_put_image_to_window(menu.init, menu.win, menu.img.img, 0, 0);
-	//animation_thread(&menu);
-	//mlx_loop_hook(menu.init, animation_thread, &menu);
 	mlx_loop(menu.init);
 }

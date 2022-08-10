@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 19:24:06 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/05 17:16:09 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:26:03 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,12 +14,12 @@
 
 void	erase_play_maps(t_menu *menu, char **tab);
 
-int roulette(t_menu *menu, t_list *lst, int key, int index)
+int	roulette(t_menu *menu, t_list *lst, int key, int index)
 {
-    char	**last;
+	char	**last;
 	char	**now;
 
-    last = define_map_tab(lst, index);
+	last = define_map_tab(lst, index);
 	if (key == UP_KEY || key == RIGHT_KEY)
 		index++;
 	else

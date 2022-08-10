@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:49:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 11:47:57 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 23:23:50 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,8 @@ void	draw_charmap(t_menu *menu)
 	y = 0;
 	draw_box(menu, menu->button_co,
 		(t_co){.x = menu->button_co.x + 50, menu->button_co.y + 50});
-	draw_box(menu, (t_co){.x = menu->button_co.x + 1, menu->button_co.y + 1, .color = BLACK},
+	draw_box(menu, (t_co){.x = menu->button_co.x + 1,
+		menu->button_co.y + 1, .color = BLACK},
 		(t_co){.x = menu->button_co.x + 49, menu->button_co.y + 49});
 	while (x < MAX_COL)
 	{
@@ -58,16 +59,16 @@ void	draw_charmap(t_menu *menu)
 		while (y < MAX_ROW)
 		{
 			draw_the_square(menu, x, y);
-			y++;	
+			y++;
 		}
 		x++;
 	}
 }
 
-void draw_wall_square(t_menu *menu, t_co co)
+void	draw_wall_square(t_menu *menu, t_co co)
 {
 	draw_box(menu, (t_co){.x = co.x, .y = co.y, .color = BLACK},
-			(t_co){.x = co.x + 48, .y = co.y + 48});
+		(t_co){.x = co.x + 48, .y = co.y + 48});
 	straight_line(&menu->img, (t_co){.x = co.x + 4, .y = co.y + 4,
 		.color = THREE_BLUE}, 40, DIR_X);
 	straight_line(&menu->img, (t_co){.x = co.x + 4, .y = co.y + 4,

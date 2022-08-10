@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 17:49:13 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:11:54 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,8 @@ void	ft_p(t_img *img, t_co co, int size)
 		.color = co.color}, size, DOWNSIDE);
 	straight_line(img, (t_co){.x = co.x + 10 * size, .y = co.y + size,
 		.color = co.color}, size * 4, DIR_Y);
-	straight_line(img, (t_co){.x = co.x + 6 * size, .y = co.y +  2 *size,
+	straight_line(img, (t_co){.x = co.x + 6 * size,
+		.y = co.y + 2 * size,
 		.color = co.color}, size * 2, DIR_Y);
 }
 

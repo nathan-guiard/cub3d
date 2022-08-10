@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/12 11:27:58 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/08 17:01:23 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 23:24:42 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ void	draw_player(t_menu *menu, char key, int x, int y)
 	if (key == 'N')
 		draw_north(menu, x, y);
 	else if (key == 'E')
-	 	draw_east(menu, x, y);
+		draw_east(menu, x, y);
 	else if (key == 'S')
 		draw_south(menu, x, y);
 	else
@@ -34,7 +34,7 @@ static void	draw_north(t_menu *menu, int x, int y)
 	t_co	co;
 
 	co = (t_co){.x = 50 + (x * 50), .y = 200 + (y * 50), .color = PLAYER_COLOR};
-	mlx_putstr(&menu->img, "N", (t_co){.x =co.x + 5, .y = co.y + 35,
+	mlx_putstr(&menu->img, "N", (t_co){.x = co.x + 5, .y = co.y + 35,
 		.color = PLAYER_COLOR}, 1);
 	straight_line(&menu->img, (t_co){.x = co.x + 20, .y = co.y + 25,
 		.color = co.color}, 20, DIR_Y);
@@ -57,7 +57,7 @@ static void	draw_east(t_menu *menu, int x, int y)
 	t_co	co;
 
 	co = (t_co){.x = 50 + (x * 50), .y = 200 + (y * 50), .color = PLAYER_COLOR};
-	mlx_putstr(&menu->img, "E", (t_co){.x =co.x + 5, .y = co.y + 35,
+	mlx_putstr(&menu->img, "E", (t_co){.x = co.x + 5, .y = co.y + 35,
 		.color = PLAYER_COLOR}, 1);
 	straight_line(&menu->img, (t_co){.x = co.x + 5, .y = co.y + 20,
 		.color = co.color}, 20, DIR_X);
@@ -80,7 +80,7 @@ static void	draw_south(t_menu *menu, int x, int y)
 	t_co	co;
 
 	co = (t_co){.x = 50 + (x * 50), .y = 200 + (y * 50), .color = PLAYER_COLOR};
-	mlx_putstr(&menu->img, "S", (t_co){.x =co.x + 35, .y = co.y + 5,
+	mlx_putstr(&menu->img, "S", (t_co){.x = co.x + 35, .y = co.y + 5,
 		.color = PLAYER_COLOR}, 1);
 	straight_line(&menu->img, (t_co){.x = co.x + 20, .y = co.y + 5,
 		.color = co.color}, 20, DIR_Y);
@@ -103,7 +103,7 @@ static void	draw_west(t_menu *menu, int x, int y)
 	t_co	co;
 
 	co = (t_co){.x = 50 + (x * 50), .y = 200 + (y * 50), .color = PLAYER_COLOR};
-	mlx_putstr(&menu->img, "W", (t_co){.x =co.x + 35, .y = co.y + 5,
+	mlx_putstr(&menu->img, "W", (t_co){.x = co.x + 35, .y = co.y + 5,
 		.color = PLAYER_COLOR}, 1);
 	straight_line(&menu->img, (t_co){.x = co.x + 25, .y = co.y + 20,
 		.color = co.color}, 20, DIR_X);

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/31 14:26:37 by nguiard           #+#    #+#             */
-/*   Updated: 2022/06/22 17:39:33 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 22:23:54 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,10 +15,10 @@
 static char	real_toupper(unsigned int i, char c)
 {
 	(void)i;
-	return(ft_toupper(c));
+	return (ft_toupper(c));
 }
 
-typedef	void	(*t_fnc)(t_img*, t_co, int);
+typedef void	(*t_fnc)(t_img*, t_co, int);
 void			init_fnc_tab(t_fnc tab[38]);
 
 void	mlx_putstr(t_img *img, char *str, t_co co, int size)
@@ -33,17 +33,15 @@ void	mlx_putstr(t_img *img, char *str, t_co co, int size)
 	init_fnc_tab(tab);
 	while (str[i])
 	{
-		if (ft_isalpha(str[i]) || ft_isdigit(str[i]) ||
-			str[i] == '/' || str[i] == ' ' || str[i] == '.')
+		if (ft_isalpha(str[i]) || ft_isdigit(str[i])
+			|| str[i] == '/' || str[i] == ' ' || str[i] == '.')
 		{
 			if (ft_isalpha(str[i]))
 				tab[str[i] - 'A'](img, co, size);
 			if (ft_isdigit(str[i]))
 				tab[str[i] - '0' + 26](img, co, size);
-			if (str[i] == '/')
-				tab[37](img, co, size);
-			if (str[i] == '.')
-				tab[36](img, co, size);
+			if (str[i] == '.' || str[i] == '/')
+				tab[str[i] - 10](img, co, size);
 			co.x += size * 10;
 		}
 		i++;
@@ -51,7 +49,7 @@ void	mlx_putstr(t_img *img, char *str, t_co co, int size)
 	free(str);
 }
 
-static void	init_fnc_tab2(t_fnc tab[38]);
+static void		init_fnc_tab2(t_fnc tab[38]);
 
 void	init_fnc_tab(t_fnc tab[38])
 {

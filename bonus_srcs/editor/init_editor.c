@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 12:36:50 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 12:39:10 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 23:25:42 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ static void	write_warning(char *str);
 
 void	init_editor(t_menu *menu, char *str)
 {
-	int fd;
+	int	fd;
 
 	str = transform_str(str);
 	if (access(str, F_OK) == 0)
