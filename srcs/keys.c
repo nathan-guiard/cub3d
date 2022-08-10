@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 11:59:10 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 13:42:41 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ int	check_key(int key, t_cub *cub)
 
 void	move_player(t_cub *cub, int key)
 {
- 	draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
-		(t_co){.x = WIDTH, .y = HEIGTH});
+ 	/* draw_box(cub, (t_co){.x = 0, .y = 0, .color = BLACK},
+		(t_co){.x = WIDTH, .y = HEIGTH}); */
 	if (key == W_KEY)
 		cub->player->y -= 5;
 	if (key == S_KEY)
@@ -45,6 +45,10 @@ void	move_player(t_cub *cub, int key)
 	if (key == RIGHT_KEY)
 		cub->player->rotation_angle -= PI_DIV_16;
 	//draw_mini_map(cub);
+	mlx_destroy_image(cub->mlx.init, cub->mlx.img.img);
+	cub->mlx.img.img = mlx_new_image(cub->mlx.init, WIDTH, HEIGTH);
+	cub->mlx.img.addr = mlx_get_data_addr(cub->mlx.img.img, \
+	&cub->mlx.img.bpp, &cub->mlx.img.line_len, &cub->mlx.img.endian);
 	cast_all_rays(cub, cub->player);
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win,
 		cub->mlx.img.img, 0, 0);

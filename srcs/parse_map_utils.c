@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/08 16:59:01 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:40:01 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,8 @@ int	set_path(char *str, int *i, t_cub *cub)
 		if (res[len - 1] != 'x' && res[len -2] != 'p' && res[len -3])
 			ft_error2(cub, &cub->map, res, "ERROR : invalid xpm");
 		cub->n_path = res;
+		free(str);
+		str = NULL;
 		return (1);
 	}
 	if (set_path2(str, res, cub, j) == -1)
@@ -83,6 +85,8 @@ int	set_path2(char *str, char *res, t_cub *cub, int j)
 		if (cub->s_path)
 			return (-1);
 		cub->s_path = res;
+		free(str);
+		str = NULL;
 		return (1);
 	}
 	if (str[j] == 'E')
@@ -90,13 +94,24 @@ int	set_path2(char *str, char *res, t_cub *cub, int j)
 		if (cub->e_path)
 			return (-1);
 		cub->e_path = res;
+		free(str);
+		str = NULL;
 		return (1);
 	}
+	if (set_path3(str, res, cub, j) == 1)
+		return (1);
+	return (0);
+}
+
+int	set_path3(char *str, char *res, t_cub *cub, int j)
+{
 	if (str[j] == 'W')
 	{
 		if (cub->w_path)
 			return (-1);
 		cub->w_path = res;
+		free(str);
+		str = NULL;
 		return (1);
 	}
 	return (0);

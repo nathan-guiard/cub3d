@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:12:20 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 12:02:33 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:13:25 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,9 +18,9 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id)
 	int				offset_y;
 	int				i;
 
+	col_id = WIDTH - (col_id);
 	cast_cel(top_p, cub, col_id);
 	cast_floor(bottom_p, cub, col_id);
-	col_id = WIDTH - (col_id * cub->col_width);
 	while (top_p++ < bottom_p)
 	{
 		i = 0;
@@ -41,53 +41,39 @@ unsigned int	get_color(t_cub *cub, int id, int offset_y, int rgb)
 {
 	unsigned int	color;
 	int				offset_x;
-	int				calc;
 
 	offset_x = get_xoffset(cub);
-	calc = (cub->text[id].w * offset_y * 4 \
-	+ offset_x * 4 + rgb);
-	color = cub->text[id].addr[calc];
+	color = cub->text[id].addr[(cub->text[id].w * offset_y * 4 \
+	+ offset_x * 4 + rgb)];
 	return (color);
 }
 
 int	cast_cel(int top_p, t_cub *cub, int col_id)
 {
-	int	i;
 	int	x;
-	int	save;
+	int	y;
 
-	x = WIDTH - (col_id * cub->col_width);
-	save = 0;
-	while (save <= top_p)
+	x = col_id;
+	y = 0;
+	while (y <= top_p)
 	{
-		i = 0;
-		while (i < cub->width)
-		{
-			my_pixel_put(&cub->mlx.img, x + i, save, cub->c_color);
-			i++;
-		}
-		save++;
+		my_pixel_put(&cub->mlx.img, x, y, cub->f_color);
+		y++;
 	}
 	return (0);
 }
 
 int	cast_floor( int bottom_p, t_cub *cub, int col_id)
 {
-	int	i;
 	int	x;
-	int	save;
+	int	y;
 
-	x = WIDTH - (col_id * cub->col_width);
-	save = bottom_p;
-	while (save <= HEIGTH)
+	x = col_id;
+	y = bottom_p;
+	while (y <= HEIGTH)
 	{
-		i = 0;
-		while (i < cub->width)
-		{
-			my_pixel_put(&cub->mlx.img, x + i, save, cub->f_color);
-			i++;
-		}
-		save++;
+		my_pixel_put(&cub->mlx.img, x, y, cub->c_color);
+		y++;
 	}
 	return (0);
 }

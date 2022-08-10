@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 12:00:16 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 14:14:32 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -135,11 +135,12 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		{
 			tab[*i + 1] = NULL;
 			ft_error(cub, &cub->map, "ERROR : map border error");
-		}	
+		}
+		free(map->line);
+		map->line = NULL;
 		tab[*i][k] = 'v';
 		k++;
 	}
 	tab[*i][k] = '\0';
-	free(map->line);
-	map->line = NULL;
+	
 }
