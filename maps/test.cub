@@ -1,6 +1,6 @@
 SO ./textures/eagle.xpm
-NO ./textures/eagle.xpm
-EA ./textures/eagle.xpm
+NO ./textures/greystone.xpm
+EA ./textures/purplestone.xpm
 WE ./textures/eagle.xpm
 
 F 000,100,0

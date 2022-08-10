@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 14:39:45 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/10 15:59:19 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FALSE			-42
 # define ERROR			-420
 
-# define WIDTH			1200
-# define HEIGTH			900
+# define WIDTH			960
+# define HEIGTH			600
 
 # define DIR_X			0
 # define DIR_Y			1
