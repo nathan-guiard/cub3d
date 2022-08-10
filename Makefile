@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
+#    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/10 11:12:15 by clmurphy         ###   ########.fr        #
+#    Updated: 2022/08/10 20:58:23 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -30,6 +30,7 @@ SRC = srcs/main.c \
 	srcs/project_wall.c \
 	srcs/cast_rays.c \
 	srcs/cast_cols.c \
+	srcs/minimap.c	\
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\

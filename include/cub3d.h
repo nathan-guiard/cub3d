@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 19:17:59 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 21:58:51 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -347,4 +347,7 @@ int				set_path3(char *str, char *res, t_cub *cub, int j);
 
 /*	movement	*/
 void			draw_box(t_cub *cub, t_co start, t_co end);
+
+/*	Mini map	*/
+void			minimap(t_cub *cub);
 #endif

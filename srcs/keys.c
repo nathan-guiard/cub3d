@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 17:20:18 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 21:12:34 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	move_player(t_cub *cub, int key)
 	cub->mlx.img.addr = mlx_get_data_addr(cub->mlx.img.img, \
 	&cub->mlx.img.bpp, &cub->mlx.img.line_len, &cub->mlx.img.endian);
 	cast_all_rays(cub, cub->player);
+	minimap(cub);
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win,
 		cub->mlx.img.img, 0, 0);
 }
