@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 17:16:59 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/10 17:20:18 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ void	move_player(t_cub *cub, int key)
 	if (key == RIGHT_KEY)
 		cub->player->rotation_angle -= PI_DIV_16;
 	//draw_mini_map(cub);
-	mlx_destroy_image(cub->mlx.init, cub->mlx.img.img);
+  	mlx_destroy_image(cub->mlx.init, cub->mlx.img.img);
 	cub->mlx.img.img = mlx_new_image(cub->mlx.init, WIDTH, HEIGTH);
 	cub->mlx.img.addr = mlx_get_data_addr(cub->mlx.img.img, \
 	&cub->mlx.img.bpp, &cub->mlx.img.line_len, &cub->mlx.img.endian);
