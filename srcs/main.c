@@ -6,7 +6,7 @@
 /*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 11:16:48 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 18:05:11 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/11 13:37:58 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ t_cub	*init_cub(void)
 {
 	t_cub	*cub;
 
-	cub = ft_calloc(sizeof(t_cub), 1);
+	cub = malloc(sizeof(t_cub));
 	if (!cub)
 		return (NULL);
 	//cub->map = ft_my_lstnew(NULL);

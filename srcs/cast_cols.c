@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cast_cols.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/10 11:12:20 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 19:18:51 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/11 11:50:32 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,8 +78,6 @@ int	cast_col(int top_p, int bottom_p, t_cub *cub, int col_id)
 	}
 	return (0);
 }
-
-
 
 unsigned int	get_color(t_cub *cub, int id, int offset_y, int rgb)
 {
