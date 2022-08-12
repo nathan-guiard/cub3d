@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_split.c                                         :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/11/17 22:19:34 by nathan            #+#    #+#             */
-/*   Updated: 2021/12/02 10:59:36 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/11 12:25:28 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ static void	*free_all(char **s)
 		i++;
 	}
 	free(s);
+	s = NULL;
 	return (NULL);
 }
 
