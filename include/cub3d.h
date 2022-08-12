@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/12 17:45:38 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/12 18:37:39 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,8 +29,8 @@
 # define FALSE			-42
 # define ERROR			-420
 
-# define WIDTH			1280
-# define HEIGTH			800
+# define WIDTH			1120
+# define HEIGTH			700
 
 # define DIR_X			0
 # define DIR_Y			1
@@ -239,6 +239,7 @@ typedef struct s_cub
 	struct s_ray		ray;
 	struct s_player		*player;
 	int					fd;
+	int					last_move;
 }	t_cub;
 
 /*    PARSING                 */
