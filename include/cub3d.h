@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 21:58:51 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/12 17:20:27 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@
 # define TILE_SIZE		32
 # define PI 			3.14159265
 # define TWO_PI			6.28318530
+# define PI_DIV_TWO		1.57
 # define PI_DIV_16		0.125663706
 
 # define N 1
@@ -268,6 +269,10 @@ int				my_atoi(const char *nptr);
 int				tablen(char	**tab);
 int				get_text(t_cub *cub);
 void			get_text_addr(t_cub *cub);
+int				check_first_and_last_line(char *str);
+int				check_line(char *str);
+int				configs_filled(t_cub *cub);
+
 /*			CHECK_ERRORS	*/
 int				check_arguments(int ac, char **av);
 int				check_file_ext(char *file);
@@ -347,6 +352,7 @@ int				set_path3(char *str, char *res, t_cub *cub, int j);
 
 /*	movement	*/
 void			draw_box(t_cub *cub, t_co start, t_co end);
+void			move_player(t_cub *cub, int key);
 
 /*	Mini map	*/
 void			minimap(t_cub *cub);

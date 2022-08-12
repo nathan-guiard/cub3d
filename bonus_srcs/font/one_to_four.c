@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/30 21:23:23 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 22:14:11 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/12 17:27:06 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,8 @@ void	ft_1(t_img *img, t_co co, int size)
 		.color = co.color}, 4 * size, DIR_X);
 }
 
+void		ft_2comp(t_img *img, t_co co, int size);
+
 void	ft_2(t_img *img, t_co co, int size)
 {
 	straight_line(img, (t_co){.x = co.x + size, .y = co.y,
@@ -54,14 +56,7 @@ void	ft_2(t_img *img, t_co co, int size)
 		.color = co.color}, 3 * size, DIR_Y);
 	straight_line(img, (t_co){.x = co.x, .y = co.y + size * 7,
 		.color = co.color}, 3 * size, DIR_Y);
-	straight_line(img, (t_co){.x = co.x + 6 * size, .y = co.y + 7 * size,
-		.color = co.color}, 4 * size, DIR_X);
-	straight_line(img, (t_co){.x = co.x + 3 * size, .y = co.y + 3 * size,
-		.color = co.color}, size, DIR_X);
-	diagonale(img, (t_co){.x = co.x, .y = co.y + 7 * size,
-		.color = co.color}, 4 * size, UPSIDE);
-	diagonale(img, (t_co){.x = co.x + 6 * size, .y = co.y + 7 * size,
-		.color = co.color}, 4 * size, UPSIDE);
+	ft_2comp(img, co, size);
 }
 
 static void	ft_3comp(t_img *img, t_co co, int size);

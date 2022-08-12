@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/06 15:49:18 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 23:23:50 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/12 17:26:42 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,6 +65,8 @@ void	draw_charmap(t_menu *menu)
 	}
 }
 
+static void	wall_part_2(t_menu *menu, t_co co);
+
 void	draw_wall_square(t_menu *menu, t_co co)
 {
 	draw_box(menu, (t_co){.x = co.x, .y = co.y, .color = BLACK},
@@ -85,6 +87,11 @@ void	draw_wall_square(t_menu *menu, t_co co)
 		.color = THREE_BLUE}, 40, DIR_X);
 	straight_line(&menu->img, (t_co){.x = co.x + 14, .y = co.y + 4,
 		.color = THREE_BLUE}, 10, DIR_Y);
+	wall_part_2(menu, co);
+}
+
+static void	wall_part_2(t_menu *menu, t_co co)
+{
 	straight_line(&menu->img, (t_co){.x = co.x + 34, .y = co.y + 4,
 		.color = THREE_BLUE}, 10, DIR_Y);
 	straight_line(&menu->img, (t_co){.x = co.x + 24, .y = co.y + 14,

@@ -6,31 +6,36 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/10 22:45:16 by nguiard          ###   ########.fr        #
+#    Updated: 2022/08/12 17:42:04 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-SRC = srcs/main.c \
-	srcs/check_errors.c \
-	srcs/list.c \
-	srcs/parse_utils.c \
-	srcs/check_els.c \
-	srcs/errors.c \
-	srcs/parse_map.c \
-	srcs/parse_map_utils.c \
-	srcs/fc_colors.c \
-	srcs/let_it_go.c \
-	srcs/launch_cub3d.c \
-	srcs/keys.c \
-	srcs/draw_mini_map.c \
-	srcs/bres.c \
-	srcs/raycasting.c \
-	srcs/player.c \
-	srcs/ray_utils.c \
-	srcs/project_wall.c \
-	srcs/cast_rays.c \
-	srcs/cast_cols.c \
-	srcs/minimap.c	\
+SRC =	$(addsuffix .c, 	\
+		$(addprefix srcs/,	\
+		main 				\
+		check_errors		\
+		list				\
+		parse_utils			\
+		check_els			\
+		errors				\
+		parse_map			\
+		parse_map_utils		\
+		parse_map_utils2	\
+		fc_colors			\
+		let_it_go			\
+		launch_cub3d		\
+		keys				\
+		draw_mini_map		\
+		bres				\
+		raycasting			\
+		player				\
+		ray_utils			\
+		project_wall		\
+		cast_rays			\
+		cast_cols			\
+		minimap				\
+		movements			\
+		))
 
 BONUSSRC =	$(addsuffix .c, \
 		$(addprefix 		\
@@ -85,6 +90,7 @@ BONUSSRC =	$(addsuffix .c, \
 		my_pixel_put 		\
 		straight_line		\
 		get_elapsedtime		\
+		utils				\
 		)					\
 		)
 
