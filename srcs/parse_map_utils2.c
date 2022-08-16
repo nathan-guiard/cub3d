@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:34:57 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/12 17:20:39 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 09:45:08 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	configs_filled(t_cub *cub)
 {
 	if (cub->n_path && cub->s_path && cub->e_path && cub->w_path)
 	{
-		if (cub->f_color != 0 && cub->c_color != 0)
+		if (cub->f_color != 0 && cub->c_color != 0) //valgrind error uninitialised values
 			return (1);
 	}
 	return (0);
