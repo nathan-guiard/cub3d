@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:36:32 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/16 11:51:56 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 12:07:32 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,7 @@
 
 static void	write_map(t_menu *menu);
 static void	the_no_function(t_menu *menu);
+void		draw_three_lines_editor(t_menu *menu);
 
 void	draw_create_map(t_menu *menu)
 {
@@ -36,12 +37,7 @@ void	draw_create_map(t_menu *menu)
 		.y = HEIGTH / 2 + 60, .color = 0x00ff0000}, 4);
 	mlx_putstr(&menu->img, "play", (t_co){.x = WIDTH / 2 - 80,
 		.y = HEIGTH / 2 + 60, .color = 0x00ffff00}, 4);
-	straight_line(&menu->img, (t_co){.x = WIDTH / 2 - 255,
-		.y = HEIGTH / 2 + 105, .color = GREEN}, 50, DIR_X);
-	straight_line(&menu->img, (t_co){.x = WIDTH / 2 - 85,
-		.y = HEIGTH / 2 + 105, .color = 0x00ffff00}, 50, DIR_X);
-	straight_line(&menu->img, (t_co){.x = WIDTH / 2 + 145,
-		.y = HEIGTH / 2 + 105, .color = 0x00ff0000}, 50, DIR_X);
+	draw_three_lines_editor(menu);
 	mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 }
 

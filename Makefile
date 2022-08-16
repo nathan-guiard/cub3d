@@ -6,7 +6,7 @@
 #    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/16 11:52:59 by nguiard          ###   ########.fr        #
+#    Updated: 2022/08/16 12:25:27 by nguiard          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,7 +26,6 @@ SRC =	$(addsuffix .c, 	\
 		launch_cub3d		\
 		keys				\
 		draw_mini_map		\
-		bres				\
 		raycasting			\
 		player				\
 		ray_utils			\

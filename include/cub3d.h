@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/12 18:37:39 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 12:24:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -137,16 +137,7 @@ typedef struct s_map
 	int				len;
 	struct s_map	*next;
 }	t_map;
-/* 
-typedef struct s_img
-{
-	void	*img;
-	int 	*addr;
-	int		bpp;
-	int		line_len;
-	int		endian;
-}	t_img;
-*/
+
 typedef struct s_mlx
 {
 	void	*init;
@@ -311,12 +302,7 @@ int				check_key(int keycode, t_cub *cub);
 /*		MINI MAP		*/
 int				draw_mini_map(t_cub *cub);
 /*		BRES		*/
-void			ft_bresenham(int x1, int y1, int x2, int y2, t_cub *cub);
-void			set_data(int x1, int y1, int x2, int y2, t_line *data);
-void			ft_bresenham_bis(t_line *data, t_cub *cub, int y2);
-void			ft_bresenham2(int x1, int y1, int x2, int y2, t_cub *cub);
-void			set_data2(int x1, int y1, int x2, int y2, t_line *data);
-void			ft_bresenham_bis2(t_line *data, t_cub *cub, int y2);
+
 int				draw_grid(t_cub *cub, t_cords *cords, int fill);
 int				full_square(t_cords *cords, t_cub *cub, int fill);
 int				ft_swap_up(char **tab);

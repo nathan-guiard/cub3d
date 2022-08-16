@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   fc_colors.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:51:45 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/11 12:21:12 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:22:16 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,13 +24,8 @@ int	set_color(char *str, t_cub *cub, char c)
 	i = 1;
 	ft_isspace(str, &i);
 	tab = ft_split(str + i, ',');
-	//free(str);
-	//str = NULL;
 	if (!tab || tablen(tab) != 3)
-	{
-		free_tab(tab);
-		return (-1);
-	}
+		return (free_tab(tab), -1);
 	i = 0;
 	while (i < 3)
 	{

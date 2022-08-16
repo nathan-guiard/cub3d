@@ -3,60 +3,50 @@
 /*                                                        :::      ::::::::   */
 /*   draw_mini_map.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 12:01:24 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/27 17:55:53 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:18:05 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
 
-int	draw_mini_map(t_cub *cub)
-{
-	int		i;
-	int		j;
-	t_cords	cords;
+// int	draw_mini_map(t_cub *cub)
+// {
+// 	int		i;
+// 	int		j;
+// 	t_cords	cords;
 
-	i = 1;
-	j = 0;
-	cords.x = 0;
-	cords.y = 0;
-	while (cub->char_map[i])
-	{
-		j = 0;
-		cords.x = 0;
-		while (cub->char_map[i][j])
-		{
-			if (cub->char_map[i][j] == '1')
-			{
-				draw_grid(cub, &cords, 1);
-				cords.y = cords.y - cords.tile_size * cords.scale;
-			}
-			else if (ft_isset(cub->char_map[i][j], "NSWE") == 1)
-			{
-				draw_grid(cub, &cords, 2);
-				cords.y = cords.y - cords.tile_size * cords.scale;
-			}
-			else if (cub->char_map[i][j] == 32 || cub->char_map[i][j] == 'v')
-			{
-				cords.x = cords.x + (cords.tile_size * cords.scale);
-				//cords.y = cords.y + (cords.tile_size * cords.scale);
-				j++;
-				continue ;
-			}
-			else
-			{
-				draw_grid(cub, &cords, 0);
-				cords.y = cords.y - cords.tile_size * cords.scale;
-			}
-			j++;
-		}
-		cords.y = cords.y + cords.tile_size * cords.scale;
-		i++;
-	}
-	return (0);
-}
+// 	i = 1;
+// 	j = 0;
+// 	cords.x = 0;
+// 	cords.y = 0;
+// 	while (cub->char_map[i])
+// 	{
+// 		j = 0;
+// 		cords.x = 0;
+// 		while (cub->char_map[i][j])
+// 		{
+// 			if (cub->char_map[i][j] == '1')
+// 				draw_grid(cub, &cords, 1);
+// 			else if (ft_isset(cub->char_map[i][j], "NSWE") == 1)
+// 				draw_grid(cub, &cords, 2);
+// 			else if (cub->char_map[i][j] == 32 || cub->char_map[i][j] == 'v')
+// 			{
+// 				cords.x = cords.x + (cords.tile_size * cords.scale);
+// 				j++;
+// 				continue ;
+// 			}
+// 			else
+// 				draw_grid(cub, &cords, 0);
+// 			j++;
+// 		}
+// 		cords.y = cords.y + cords.tile_size * cords.scale;
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 int	draw_grid(t_cub *cub, t_cords *cords, int fill)
 {
@@ -76,9 +66,11 @@ int	draw_grid(t_cub *cub, t_cords *cords, int fill)
 	while (cords->y < cords->end_y && cords->y < HEIGTH && cords->y > 0)
 		my_pixel_put(&cub->mlx.img, cords->x, cords->y++, cub->c_color);
 	while (cords->temp_y < cords->end_y && cords->y < HEIGTH)
-		my_pixel_put(&cub->mlx.img, cords->temp_x, cords->temp_y++, cub->f_color);
+		my_pixel_put(&cub->mlx.img, cords->temp_x,
+			cords->temp_y++, cub->f_color);
 	while (cords->temp_x < cords->end_x && cords->x < WIDTH)
 		my_pixel_put(&cub->mlx.img, cords->temp_x++, cords->y, cub->f_color);
+	cords->y = cords->y - cords->tile_size * cords->scale;
 	return (0);
 }
 
@@ -100,9 +92,3 @@ int	full_square(t_cords *cords, t_cub *cub, int fill)
 	cords->x = cords->end_x;
 	return (0);
 }
-
-/* int	draw_tile(t_cub *cub,t_cords *cords, float cords->x, float cords->y)
-{
-
-}
- */

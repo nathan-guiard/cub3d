@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_els.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/28 14:04:17 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/11 12:38:16 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 12:21:49 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,6 @@ int	verify_borders(char **tab, t_cub *cub)
 	i = 1;
 	while (tab[i][j])
 	{
-		i = 1;
 		while (tab[i])
 		{
 			if (tab[i][j] == 'v')

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/16 11:44:05 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 12:10:56 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,7 @@
 # define SHADOW_DIFF	0x00007f2f
 # define LIL_SHDW_DIFF	0x00002f1f
 # define THREE_DIFF		0x00003f7f
-# define THREE_BLUE		0x0000af3f + 0x00003f7f //faire l'addition
+# define THREE_BLUE		0x0000eebe
 # define PLAYER_COLOR	GREEN
 
 # define TITLE_X		210

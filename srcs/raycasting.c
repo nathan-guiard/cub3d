@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/16 10:41:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 12:11:59 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,5 @@ int	cast_ray(t_ray *ray, t_player *player, t_cub *cub, int col_id)
 	ray_direction(ray, col_id, cub->ray_angle);
 	horizontal_colis(&cub->ray, cub->player, cub, cub->ray_angle);
 	vertical_colis(&cub->ray, cub->player, cub, cub->ray_angle);
-	//ft_bresenham(player->x, player->y, ray->hit_x, ray->hit_y, cub);
 	return (0);
 }

@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:53:16 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/16 10:55:36 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 12:23:01 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,11 +51,6 @@ void	ft_my_lstclear(t_map **lst)
 	while (temp != NULL)
 	{
 		temp = temp ->next;
-	/* 	if ((*lst)->line)
-		{
-			free((*lst)->line);
-			(*lst)->line = NULL;
-		} */
 		free(*lst);
 		*lst = temp;
 	}
