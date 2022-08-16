@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 10:08:22 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/12 18:17:26 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 16:38:41 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 void	set_hooks(t_cub *cub)
 {
-	mlx_hook(cub->mlx.win, 17, 0, ft_close, &cub->mlx);
+	mlx_hook(cub->mlx.win, 33, 0, ft_close, cub);
 	mlx_hook(cub->mlx.win, 2, 1L << 0, check_key, cub);
 }
 
