@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:36:46 by nguiard           #+#    #+#             */
-/*   Updated: 2022/07/04 15:02:02 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 11:08:31 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ void	play_handling(t_menu *menu, int key)
 		index = roulette(menu, map_list, key, index);
 	if (key == ENTER)
 	{
-		exec_map(map_list, index);
+		exec_map(map_list, index, menu->env);
 		play_handling(menu, ESC);
 	}
 }

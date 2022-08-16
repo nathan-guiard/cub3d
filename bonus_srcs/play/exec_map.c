@@ -6,13 +6,13 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:37:30 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 22:26:21 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 10:59:56 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-int	exec_map(t_list *lst, int index)
+int	exec_map(t_list *lst, int index, char **env)
 {
 	char	*path;
 	char	*res;
@@ -31,7 +31,7 @@ int	exec_map(t_list *lst, int index)
 	argv[2] = NULL;
 	ft_printf("\033[1mexecuting %s %s\033[m\n", res, argv[1]);
 	if (fork() == 0)
-		exit(execve(res, argv, NULL));
+		exit(execve(res, argv, env));
 	free_tabtab(argv);
 	free(res);
 	free(path);

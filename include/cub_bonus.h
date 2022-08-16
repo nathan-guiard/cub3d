@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 13:23:04 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 11:11:21 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,14 +87,6 @@ typedef enum e_status
 	editor_create_map = 13,
 }	t_status;
 
-typedef struct s_flags
-{
-	int	n;
-	int s;
-	int	e;
-	int	w;
-}	t_flags;
-
 typedef struct s_menu
 {
 	void				*init;
@@ -112,6 +104,7 @@ typedef struct s_menu
 	char				**char_map;
 	char				*map_name;
 	int					fd;
+	char				**env;
 }	t_menu;
 
 typedef struct s_bres
@@ -145,83 +138,62 @@ typedef struct s_math
 	int	e2;
 }	t_math;
 
-typedef struct s_map
-{
-	char			*line;
-	int				len;
-	struct s_map	*next;
-}	t_map;
-
-typedef struct s_cub
-{
-	int				width;
-	int				height;
-	char			*n_path;
-	char			*s_path;
-	char			*w_path;
-	char			*e_path;
-	unsigned int	f_color;
-	unsigned int	c_color;
-	struct s_map	*map;
-	char			**char_map;
-}	t_cub;
-
-t_menu	init_menu(int argc, char **argv);
-void	menu_hooks(t_menu *menu);
-int		quit_everything(t_menu *menu);
-int		key_handling(int key, void *arg);
-void	start_handling(int key, t_menu *menu);
+t_menu				init_menu(int argc, char **argv, char **env);
+void				menu_hooks(t_menu *menu);
+int					quit_everything(t_menu *menu);
+int					key_handling(int key, void *arg);
+void				start_handling(int key, t_menu *menu);
 
 unsigned long long	get_elapsedtime(unsigned long long base);
 
 /*	Menu drawing			*/
-void	draw_menu_button(t_menu *menu, int key);
-void	my_pixel_put(t_img *img, int x, int y, int color);
-void	straight_line(t_img *img, t_co start, int len, \
+void				draw_menu_button(t_menu *menu, int key);
+void				my_pixel_put(t_img *img, int x, int y, int color);
+void				straight_line(t_img *img, t_co start, int len, \
 				int direction);
-void	diagonale(t_img *img, t_co start, int len, int direction);
-void	draw_borders(t_img *img, t_co co);
-void	remove_border(t_img *img, t_co co);
-void	draw_first_menu(t_menu *menu);
-void	draw_releif(t_img *img, t_co co, int size);
-void	draw_menu(t_menu *menu);
+void				diagonale(t_img *img, t_co start, int len, int direction);
+void				draw_borders(t_img *img, t_co co);
+void				remove_border(t_img *img, t_co co);
+void				draw_first_menu(t_menu *menu);
+void				draw_releif(t_img *img, t_co co, int size);
+void				draw_menu(t_menu *menu);
 
-void	carelage(t_menu *menu, int frame);
-void	put_carelage_x(t_menu *menu);
-void	draw_box(t_menu *menu, t_co start, t_co end);
+void				carelage(t_menu *menu, int frame);
+void				put_carelage_x(t_menu *menu);
+void				draw_box(t_menu *menu, t_co start, t_co end);
 
 /*	Animation				*/
-void	*menu_bg_animation(void *menu);
-void	menu_bg_line(t_img img, t_co start, t_co end);
-t_math	init_mathline(t_set set);
-t_co	base_set(t_set set);
-int		check_base(t_set set, t_co base);
-int		animation_thread(void *arg);
+void				*menu_bg_animation(void *menu);
+void				menu_bg_line(t_img img, t_co start, t_co end);
+t_math				init_mathline(t_set set);
+t_co				base_set(t_set set);
+int					check_base(t_set set, t_co base);
+int					animation_thread(void *arg);
 
 /*	Play menu				*/
-void	play_handling(t_menu *menu, int key);
-void	draw_play(t_menu *menu);
-t_list	*get_map_list(void);
-int roulette(t_menu *menu, t_list *lst, int key, int index);
-void	put_play_maps(t_menu *menu, char **tab);
-char	**define_map_tab(t_list *lst, int index);
-char	*treated_string(char *str);
-void	custom_free_tabtab(char **tab);
-t_list	*destroy_map_list(t_list *lst);
-int		exec_map(t_list *lst, int index);
+void				play_handling(t_menu *menu, int key);
+void				draw_play(t_menu *menu);
+t_list				*get_map_list(void);
+int					roulette(t_menu *menu, t_list *lst, int key, int index);
+void				put_play_maps(t_menu *menu, char **tab);
+char				**define_map_tab(t_list *lst, int index);
+char				*treated_string(char *str);
+void				custom_free_tabtab(char **tab);
+t_list				*destroy_map_list(t_list *lst);
+int					exec_map(t_list *lst, int index, char **env);
 
 /*	Editor					*/
-void	editor_handling(t_menu *menu, int key);
-void	draw_ask_name(t_menu *menu);
-char	*ask_name_handling(t_menu *menu, int key, char *last);
-void	init_editor(t_menu *menu, char *last);
-void	draw_editor(t_menu *menu, char *map);
-void	init_charmap(t_menu *menu);
-void	draw_charmap(t_menu *menu);
-void	build_handling(t_menu *menu, int key);
-void	draw_wall_square(t_menu *menu, t_co co);
-void	draw_player(t_menu *menu, char key, int x, int y);
-void	draw_create_map(t_menu *menu);
-void	create_map_handling(t_menu *menu, int key);
+void				editor_handling(t_menu *menu, int key);
+void				draw_ask_name(t_menu *menu);
+char				*ask_name_handling(t_menu *menu, int key, char *last);
+void				init_editor(t_menu *menu, char *last);
+void				draw_editor(t_menu *menu, char *map);
+void				init_charmap(t_menu *menu);
+void				draw_charmap(t_menu *menu);
+void				build_handling(t_menu *menu, int key);
+void				draw_wall_square(t_menu *menu, t_co co);
+void				draw_player(t_menu *menu, char key, int x, int y);
+void				draw_create_map(t_menu *menu);
+void				create_map_handling(t_menu *menu, int key);
 
 #endif

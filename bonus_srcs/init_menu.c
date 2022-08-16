@@ -6,13 +6,13 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:53:55 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/09 12:38:47 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 11:00:30 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
-t_menu	init_menu(int argc, char **argv)
+t_menu	init_menu(int argc, char **argv, char **env)
 {
 	t_menu					res;
 	static pthread_mutex_t	mutex;
@@ -36,5 +36,6 @@ t_menu	init_menu(int argc, char **argv)
 	res.char_map = NULL;
 	res.fd = -1;
 	res.map_name = 0;
+	res.env = env;
 	return (res);
 }
