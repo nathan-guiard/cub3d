@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/16 11:11:21 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 11:44:05 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,6 +95,7 @@ typedef struct s_menu
 	int					argc;
 	int					button;
 	int					key_pressed;
+	int					last_key;
 	char				**argv;
 	char				*basemap;
 	t_co				button_co;

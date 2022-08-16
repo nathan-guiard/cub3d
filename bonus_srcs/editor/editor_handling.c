@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:09:45 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 22:38:42 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 12:02:43 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	editor_handling(t_menu *menu, int key)
 
 	if (key == ESC)
 	{
-		if (menu->char_map)
+		if (menu->char_map != NULL)
 		{
 			free_tabtab(menu->char_map);
 			menu->char_map = NULL;
