@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 15:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/07/04 12:48:36 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 10:56:49 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ char	*my_strdup(const char *s)
 		return (NULL);
 	i = 0;
 	size = ft_strlen(s) + 1;
-	res = (char *)malloc(size * sizeof(char));
+	res = (char *)ft_calloc(size, sizeof(char));
 	if (!res)
 		return (NULL);
 	while (s[i])

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   raycasting.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/13 14:16:25 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 13:29:21 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 10:41:49 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,8 @@ int	raycasting(t_cub *cub)
 	cub->fov_an = 60 * (PI / 180);
 	cub->col_width = 1;
 	cub->player = init_player(cub);
-	//draw_mini_map(cub);
+	if (!cub->player)
+		ft_close(cub);
 	cast_all_rays(cub, cub->player);
 	return (0);
 }

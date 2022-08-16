@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/11 12:24:49 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 10:56:47 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,8 @@ int	parse_map(int fd)
 	char	*line;
 
 	cub = init_cub();
+	if (!cub)
+		exit(1);
 	cub->fd = fd;
 	map = NULL;
 	line = get_next_line(fd);
@@ -65,12 +67,15 @@ int	create_map(t_map *map, t_cub *cub)
 	cub->width = ft_lst_width(map);
 	if (cub->height < 3)
 		ft_error(cub, &cub->map, "ERROR : map too short");
-	tab = malloc(sizeof(char *) * (cub->height + 3));
+	tab = ft_calloc(sizeof(char *), (cub->height + 3));
 	if (!tab)
 		ft_error(cub, &cub->map, "ERROR : malloc error");
-	tab[i] = malloc(sizeof(char) * cub->width + 2);
-	if (!tab)
+	tab[i] = ft_calloc(sizeof(char), cub->width + 2);
+	if (!tab[i])
+	{
+		free_tabtab(tab);
 		ft_error(cub, &cub->map, "ERROR : malloc error");
+	}
 	while (j < cub->width)
 	{
 		tab[i][j] = 'v';
@@ -86,9 +91,12 @@ int	create_map(t_map *map, t_cub *cub)
 		temp = temp->next;
 	}
 	j = 0;
-	tab[i] = malloc(sizeof(char) * cub->width + 1);
-	if (!tab)
+	tab[i] = ft_calloc(sizeof(char), cub->width + 1);
+	if (!tab[i])
+	{
+		free_tabtab(tab);
 		ft_error(cub, &cub->map, "ERROR : malloc error");
+	}
 	while (j < cub->width)
 	{
 		tab[i][j] = 'v';
@@ -143,5 +151,4 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 		k++;
 	}
 	tab[*i][k] = '\0';
-	
 }

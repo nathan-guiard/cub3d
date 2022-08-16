@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/25 10:28:13 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 11:23:08 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 10:42:10 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ t_player	*init_player(t_cub *cub)
 {
 	t_player	*player;
 
-	player = (t_player *)malloc(sizeof(player) * 3);
+	player = (t_player *)ft_calloc(sizeof(player), 3);
 	if (!player)
 		return (NULL);
 	if (find_player(cub->char_map, player) == -1)

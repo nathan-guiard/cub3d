@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   list.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
+/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:53:16 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 14:18:37 by clmurphy         ###   ########.fr       */
+/*   Updated: 2022/08/16 10:55:36 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ t_map	*ft_my_lstnew(char *line)
 {
 	t_map	*new_node;
 
-	new_node = (t_map *)malloc(sizeof(*new_node));
+	new_node = (t_map *)ft_calloc(sizeof(*new_node), 1);
 	if (!new_node)
 		return (NULL);
 	new_node ->line = my_strdup(line);

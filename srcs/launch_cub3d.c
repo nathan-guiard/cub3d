@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/10 20:58:49 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 10:23:56 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,10 +35,20 @@ t_mlx	init_mlx(t_cub *cub)
 	(void)cub;
 	mlx.init = mlx_init();
 	if (!mlx.init)
-		printf("ERREUR MLX!!!!!!!!");
+	{
+		ft_putendl_fd("MLX init error", 2);
+		free_cub(cub);
+		exit(1);
+	}
 	mlx.win = mlx_new_window(mlx.init, WIDTH, HEIGTH, "cub3d");
 	if (!mlx.win)
-		printf("ERREUR WINDOW!!!!");
+	{
+		ft_putendl_fd("MLX window error", 2);
+		mlx_destroy_display(mlx.init);
+		free(mlx.init);
+		free_cub(cub);
+		exit(1);
+	}
 	mlx.img.img = mlx_new_image(mlx.init, WIDTH, HEIGTH);
 	mlx.img.addr = mlx_get_data_addr(mlx.img.img, \
 	&mlx.img.bpp, &mlx.img.line_len, &mlx.img.endian);
