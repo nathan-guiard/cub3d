@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 17:04:05 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/16 10:23:56 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:22:48 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 int	launch_cub3d(t_cub *cub)
 {
-	print_map(cub);
 	cub->mlx = init_mlx(cub);
 	if (get_text(cub) == -1)
 		ft_error(cub, &cub->map, "ERROR : MLX texture path error");
@@ -63,28 +62,4 @@ void	my_pixel_put(t_img *img, int x, int y, unsigned int color)
 		return ;
 	dst = img->addr + (y * img->line_len + x * (img->bpp / 8));
 	*(unsigned int *)dst = color;
-}
-
-void	print_map(t_cub *cub)
-{
-	int	i;
-
-	i = 0;
-	printf("\n\033[1m\033[35m		PATHS			\033[0m\n");
-	printf("NORTH : %s\n", cub->n_path);
-	printf("SOUTH : %s\n", cub->s_path);
-	printf("EAST : %s\n", cub->e_path);
-	printf("WEST : %s\n", cub->w_path);
-	printf("\n\033[1m\033[35m		COLORS			\033[0m\n");
-	printf("F is %x\n", cub->f_color);
-	printf("C is %x\n", cub->c_color);
-	printf("\n\033[1m\033[35m		MAP			\033[0m\n");
-	while (cub->char_map[i])
-	{
-		printf("%s\n", cub->char_map[i]);
-		i++;
-	}
-	printf("\n\033[1m\033[35m		MAP DATA		\033[0m\n");
-	printf("HEIGHT : %d\n", cub->height);
-	printf("WIDTH : %d\n", cub->width);
 }

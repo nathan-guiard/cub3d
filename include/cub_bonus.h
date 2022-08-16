@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/16 12:10:56 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:22:21 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,9 +73,11 @@
 # define MAX_ROW		13
 # define MAX_COL		22
 
-# define MAP_COLOR_STR	"F 0,0,0\nC 120,0,120\n"
-# define MAP_TPATH1_STR	"SO ./textures/eagle.xpm\nNO ./textures/eagle.xpm\n"
-# define MAP_TPATH2_STR	"EA ./textures/eagle.xpm\nWE ./textures/eagle.xpm\n"
+# define MAP_COLOR_STR	"C 43,52,84\nF 1,8,36\n"
+# define MAP_TPATH_SO	"SO ./textures/simple_wall.xpm\n"
+# define MAP_TPATH_NO	"NO ./textures/hex_wall.xpm\n"
+# define MAP_TPATH_EA	"EA ./textures/bookshelf.xpm\n"
+# define MAP_TPATH_WE	"WE ./textures/energy_ball.xpm\n"
 
 typedef enum e_status
 {

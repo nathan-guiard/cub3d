@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 14:51:45 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/16 12:22:16 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:17:36 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,9 +47,9 @@ void	assign_rgb(char **tab, unsigned int *rgb, t_cub *cub, char c)
 	*rgb = *rgb | (ft_atoi(tab[1]) << 8);
 	*rgb = *rgb | (ft_atoi(tab[2]));
 	if (c == 'F')
-		cub->f_color = *rgb;
-	if (c == 'C')
 		cub->c_color = *rgb;
+	if (c == 'C')
+		cub->f_color = *rgb;
 }
 
 int	tablen(char	**tab)

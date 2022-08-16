@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/08 17:36:32 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/16 12:07:32 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:18:34 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,6 @@ void	exec_new_map(t_menu *menu)
 	to_free = argv[1];
 	argv[1] = ft_strjoin(argv[1], ".cub");
 	free(to_free);
-	ft_printf("%s\n", argv[1]);
 	if (fork() == 0)
 		exit(execve(res, argv, menu->env));
 	free_tabtab(argv);
@@ -97,8 +96,10 @@ static void	write_map(t_menu *menu)
 
 	i = 0;
 	ft_putendl_fd(MAP_COLOR_STR, menu->fd);
-	ft_putstr_fd(MAP_TPATH1_STR, menu->fd);
-	ft_putendl_fd(MAP_TPATH2_STR, menu->fd);
+	ft_putstr_fd(MAP_TPATH_SO, menu->fd);
+	ft_putstr_fd(MAP_TPATH_NO, menu->fd);
+	ft_putstr_fd(MAP_TPATH_EA, menu->fd);
+	ft_putendl_fd(MAP_TPATH_WE, menu->fd);
 	ft_putchar_fd('\n', menu->fd);
 	while (i < MAX_ROW)
 	{

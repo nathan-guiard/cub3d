@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 15:18:57 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 22:37:09 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/16 13:19:37 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,6 @@ void	*refresh_rate(void *arg)
 	while (1)
 	{
 		usleep(30000);
-		printf("\t\tREFRESH\n");
 		pthread_mutex_lock(menu->mutex_img);
 		mlx_put_image_to_window(menu->init, menu->win, menu->img.img, 0, 0);
 		pthread_mutex_unlock(menu->mutex_img);
