@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/22 17:36:46 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/16 11:08:31 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/17 14:37:27 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,13 +40,8 @@ void	play_handling(t_menu *menu, int key)
 	}
 }
 
-static void	sert_a_rien(void *truc)
-{
-	(void)truc;
-}
-
 t_list	*destroy_map_list(t_list *lst)
 {
-	ft_lstclear(&lst, sert_a_rien);
+	ft_lstclear(&lst, free);
 	return (NULL);
 }

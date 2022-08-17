@@ -6,13 +6,15 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:12:20 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 22:32:48 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/17 14:35:53 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 static bool	is_a_good_map_name(char *str);
+
+// DIR	*d;
 
 t_list	*get_map_list(void)
 {
@@ -22,17 +24,14 @@ t_list	*get_map_list(void)
 
 	res = NULL;
 	d = opendir("maps");
-	if (d)
+	dir = readdir(d);
+	while (dir != NULL)
 	{
+		if (is_a_good_map_name(dir->d_name) == TRUE)
+			ft_lstadd_back(&res, ft_lstnew(ft_strdup(dir->d_name)));
 		dir = readdir(d);
-		while (dir != NULL)
-		{
-			if (is_a_good_map_name(dir->d_name) == TRUE)
-				ft_lstadd_back(&res, ft_lstnew(dir->d_name));
-			dir = readdir(d);
-		}
-		closedir(d);
 	}
+	closedir(d);
 	return (res);
 }
 
