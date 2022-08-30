@@ -6,47 +6,11 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/07 12:01:24 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/16 12:18:05 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/30 11:06:21 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub3d.h"
-
-// int	draw_mini_map(t_cub *cub)
-// {
-// 	int		i;
-// 	int		j;
-// 	t_cords	cords;
-
-// 	i = 1;
-// 	j = 0;
-// 	cords.x = 0;
-// 	cords.y = 0;
-// 	while (cub->char_map[i])
-// 	{
-// 		j = 0;
-// 		cords.x = 0;
-// 		while (cub->char_map[i][j])
-// 		{
-// 			if (cub->char_map[i][j] == '1')
-// 				draw_grid(cub, &cords, 1);
-// 			else if (ft_isset(cub->char_map[i][j], "NSWE") == 1)
-// 				draw_grid(cub, &cords, 2);
-// 			else if (cub->char_map[i][j] == 32 || cub->char_map[i][j] == 'v')
-// 			{
-// 				cords.x = cords.x + (cords.tile_size * cords.scale);
-// 				j++;
-// 				continue ;
-// 			}
-// 			else
-// 				draw_grid(cub, &cords, 0);
-// 			j++;
-// 		}
-// 		cords.y = cords.y + cords.tile_size * cords.scale;
-// 		i++;
-// 	}
-// 	return (0);
-// }
 
 int	draw_grid(t_cub *cub, t_cords *cords, int fill)
 {

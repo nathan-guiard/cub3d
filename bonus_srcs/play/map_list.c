@@ -6,15 +6,13 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/23 17:12:20 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/17 14:35:53 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/30 11:05:58 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "cub_bonus.h"
 
 static bool	is_a_good_map_name(char *str);
-
-// DIR	*d;
 
 t_list	*get_map_list(void)
 {

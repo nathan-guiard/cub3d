@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/05 16:56:01 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/10 22:39:57 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/08/30 11:06:12 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,6 @@
 
 static void	header(t_menu *menu, char *map);
 static void	grid(t_menu *menu);
-// static void	colors(t_menu *menu);
 
 void	draw_editor(t_menu *menu, char *map)
 {
@@ -73,35 +72,3 @@ static void	grid(t_menu *menu)
 		i += 50;
 	}
 }
-
-// static void	colors(t_menu *menu)
-// {
-// 	mlx_putstr(&menu->img, "ceiling", (t_co){.x = 750, .y = 50,
-//		.color = GREEN}, 2);
-// 	draw_box(menu, (t_co){.x = 1120, .y = 45, .color = 0x00404040},
-// 		(t_co){.x = 1150, .y = 75});
-// 	draw_box(menu, (t_co){.x = 900, .y = 45, .color = GREEN},
-// 		(t_co){.x = 1110, .y = 75});
-// 	draw_box(menu, (t_co){.x = 901, .y = 46, .color = BLACK},
-// 		(t_co){.x = 1109, .y = 74});
-// 	mlx_putstr(&menu->img, "floor", (t_co){.x = 750,
-// .y = 120, .color = GREEN}, 2);
-// 	draw_box(menu, (t_co){.x = 1120, .y = 115, .color = 0x00404040},
-// 		(t_co){.x = 1150, .y = 145});
-// 	draw_box(menu, (t_co){.x = 900, .y = 115, .color = GREEN},
-// 		(t_co){.x = 1110, .y = 145});
-// 	draw_box(menu, (t_co){.x = 901, .y = 116, .color = BLACK},
-// 		(t_co){.x = 1109, .y = 144});
-// 	mlx_putstr(&menu->img, "0", (t_co){.x = 905,
-	// .y = 50, .color = 0x00ff0000}, 2);
-// 	mlx_putstr(&menu->img, "0", (t_co){.x = 975,
-// .y = 50, .color = GREEN}, 2);
-// 	mlx_putstr(&menu->img, "0", (t_co){.x = 1045,
-// .y = 50, .color = 0x000000ff}, 2);
-// 	mlx_putstr(&menu->img, "0", (t_co){.x = 905,
-// .y = 120, .color = 0x00ff0000}, 2);
-// 	mlx_putstr(&menu->img, "0", (t_co){.x = 975,
-// .y = 120, .color = GREEN}, 2);
-// 	mlx_putstr(&menu->img, "0", (t_co){.x = 1045,
-// .y = 120, .color = 0x000000ff}, 2);
-// }
