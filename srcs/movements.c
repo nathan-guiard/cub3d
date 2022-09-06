@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 17:10:52 by nguiard           #+#    #+#             */
-/*   Updated: 2022/09/06 10:40:37 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/09/06 10:42:26 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,7 +72,7 @@ static void	part_2_mvmt(t_cub *cub, int key)
 	if (key == A_KEY)
 	{
 		if (hit_wall(cub, cub->player->x
-				- cos(cub->player->rotation_angle - PI_DIV_TWO) * 1
+				- cos(cub->player->rotation_angle - PI_DIV_TWO) * 15
 				, cub->player->y
 				+ sin(cub->player->rotation_angle - PI_DIV_TWO) * 15))
 		{
@@ -83,7 +83,7 @@ static void	part_2_mvmt(t_cub *cub, int key)
 	else if (key == D_KEY)
 	{
 		if (hit_wall(cub, cub->player->x
-				- cos(cub->player->rotation_angle + PI_DIV_TWO) * 1
+				- cos(cub->player->rotation_angle + PI_DIV_TWO) * 15
 				, cub->player->y
 				+ sin(cub->player->rotation_angle + PI_DIV_TWO) * 15))
 		{
