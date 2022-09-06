@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   cub3d.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/28 20:03:40 by nguiard           #+#    #+#             */
-/*   Updated: 2022/08/30 11:02:50 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/09/06 11:40:33 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -246,6 +246,12 @@ int				create_map(t_map *map, t_cub *cub);
 void			set_tab(char **tab, int *i, t_cub *cub, t_map *map);
 int				create_list(char *line, t_map **map);
 int				set_path2(char *str, char *res, t_cub *cub, int j);
+void			check_map_tab(t_cub *cub, t_map *map, int *k, int *i);
+void			set_tab2(t_cub *cub, t_map *map, int *i, int *k);
+void			create_map3(t_cub *cub, char **tab, int *i, int *j);
+void			crete_map_tab_error(char **tab, t_cub *cub);
+char			**create_map2(t_cub *cub, int *i, int *j);
+
 /*    LIST                     */
 void			ft_my_lstadd_back(t_map **alst, t_map *new);
 t_map			*ft_my_lstnew(char *line);

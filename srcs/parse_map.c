@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse_map.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
+/*   By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/07/04 09:31:35 by clmurphy          #+#    #+#             */
-/*   Updated: 2022/08/16 10:56:47 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/09/06 11:40:18 by clmurphy         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,28 +60,10 @@ int	create_map(t_map *map, t_cub *cub)
 	int		j;
 	t_map	*temp;
 
-	j = 0;
 	temp = map;
-	i = 0;
 	cub->height = ft_my_lstsize(map);
 	cub->width = ft_lst_width(map);
-	if (cub->height < 3)
-		ft_error(cub, &cub->map, "ERROR : map too short");
-	tab = ft_calloc(sizeof(char *), (cub->height + 3));
-	if (!tab)
-		ft_error(cub, &cub->map, "ERROR : malloc error");
-	tab[i] = ft_calloc(sizeof(char), cub->width + 2);
-	if (!tab[i])
-	{
-		free_tabtab(tab);
-		ft_error(cub, &cub->map, "ERROR : malloc error");
-	}
-	while (j < cub->width)
-	{
-		tab[i][j] = 'v';
-		j++;
-	}
-	tab[i][j] = '\0';
+	tab = create_map2(cub, &i, &j);
 	i++;
 	cub->char_map = tab;
 	while (temp != NULL)
@@ -93,20 +75,8 @@ int	create_map(t_map *map, t_cub *cub)
 	j = 0;
 	tab[i] = ft_calloc(sizeof(char), cub->width + 1);
 	if (!tab[i])
-	{
-		free_tabtab(tab);
-		ft_error(cub, &cub->map, "ERROR : malloc error");
-	}
-	while (j < cub->width)
-	{
-		tab[i][j] = 'v';
-		j++;
-	}
-	tab[i][j] = '\0';
-	i++;
-	cub->char_map[i] = '\0';
-	if (verify_borders(cub->char_map, cub) == -1)
-		ft_error(cub, &cub->map, "ERROR : Check map borders");
+		crete_map_tab_error(tab, cub);
+	create_map3(cub, tab, &i, &j);
 	return (1);
 }
 
@@ -114,15 +84,7 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 {
 	int	k;
 
-	if (!map)
-		ft_error(cub, &cub->map, "ERROR : map error");
-	tab[*i] = malloc(sizeof(char) * (cub->width) + 2);
-	if (!tab[*i])
-	{
-		tab[*i] = NULL;
-		ft_error(cub, &cub->map, "ERROR : malloc error");
-	}
-	k = 0;
+	check_map_tab(cub, map, &k, i);
 	while (k < cub->width)
 	{
 		if (k < map->len)
@@ -140,15 +102,7 @@ void	set_tab(char **tab, int *i, t_cub *cub, t_map *map)
 				k++;
 			}
 		}
-		if (check_line(map->line) == -1)
-		{
-			tab[*i + 1] = NULL;
-			ft_error(cub, &cub->map, "ERROR : map border error");
-		}
-		free(map->line);
-		map->line = NULL;
-		tab[*i][k] = 'v';
-		k++;
+		set_tab2(cub, map, i, &k);
 	}
 	tab[*i][k] = '\0';
 }

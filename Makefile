@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+         #
+#    By: clmurphy <clmurphy@student.42.fr>          +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/01/16 15:42:20 by nguiard           #+#    #+#              #
-#    Updated: 2022/08/16 12:25:27 by nguiard          ###   ########.fr        #
+#    Updated: 2022/09/06 11:41:22 by clmurphy         ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,6 +19,7 @@ SRC =	$(addsuffix .c, 	\
 		check_els			\
 		errors				\
 		parse_map			\
+		parse_map_bis			\
 		parse_map_utils		\
 		parse_map_utils2	\
 		fc_colors			\
