@@ -6,7 +6,7 @@
 /*   By: nguiard <nguiard@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/08/12 17:10:52 by nguiard           #+#    #+#             */
-/*   Updated: 2022/09/06 10:35:27 by nguiard          ###   ########.fr       */
+/*   Updated: 2022/09/06 10:40:37 by nguiard          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,7 @@
 static void	recast_img(t_cub *cub);
 static int	hit_wall(t_cub *cub, float x, float y);
 static void	movements(t_cub *cub, int key);
+static void	part_2_mvmt(t_cub *cub, int key);
 
 void	move_player(t_cub *cub, int key)
 {	
@@ -33,8 +34,8 @@ static void	movements(t_cub *cub, int key)
 	if (key == W_KEY)
 	{
 		if (hit_wall(cub, cub->player->x
-			+ cos(cub->player->rotation_angle) * 15, cub->player->y
-			- sin(cub->player->rotation_angle) * 15))
+				+ cos(cub->player->rotation_angle) * 15, cub->player->y
+				- sin(cub->player->rotation_angle) * 15))
 		{
 			cub->player->x += cos(cub->player->rotation_angle) * 5;
 			cub->player->y -= sin(cub->player->rotation_angle) * 5;
@@ -43,33 +44,15 @@ static void	movements(t_cub *cub, int key)
 	else if (key == S_KEY)
 	{
 		if (hit_wall(cub, cub->player->x
-			- cos(cub->player->rotation_angle) * 15, cub->player->y
-			+ sin(cub->player->rotation_angle) * 15))
+				- cos(cub->player->rotation_angle) * 15, cub->player->y
+				+ sin(cub->player->rotation_angle) * 15))
 		{
 			cub->player->x -= cos(cub->player->rotation_angle) * 5;
 			cub->player->y += sin(cub->player->rotation_angle) * 5;
 		}
 	}
-	else if (key == A_KEY)
-	{
-		if (hit_wall(cub, cub->player->x
-			- cos(cub->player->rotation_angle - PI_DIV_TWO) * 15, cub->player->y
-			+ sin(cub->player->rotation_angle - PI_DIV_TWO) * 15))
-		{
-			cub->player->x -= cos(cub->player->rotation_angle - PI_DIV_TWO) * 5;
-			cub->player->y += sin(cub->player->rotation_angle - PI_DIV_TWO) * 5;
-		}
-	}
-	else if (key == D_KEY)
-	{
-		if (hit_wall(cub, cub->player->x
-			- cos(cub->player->rotation_angle + PI_DIV_TWO) * 15, cub->player->y
-			+ sin(cub->player->rotation_angle + PI_DIV_TWO) * 15))
-		{
-			cub->player->x -= cos(cub->player->rotation_angle + PI_DIV_TWO) * 5;
-			cub->player->y += sin(cub->player->rotation_angle + PI_DIV_TWO) * 5;
-		}
-	}
+	else if (key == A_KEY || key == D_KEY)
+		part_2_mvmt(cub, key);
 }
 
 static void	recast_img(t_cub *cub)
@@ -82,6 +65,32 @@ static void	recast_img(t_cub *cub)
 	minimap(cub);
 	mlx_put_image_to_window(cub->mlx.init, cub->mlx.win,
 		cub->mlx.img.img, 0, 0);
+}
+
+static void	part_2_mvmt(t_cub *cub, int key)
+{
+	if (key == A_KEY)
+	{
+		if (hit_wall(cub, cub->player->x
+				- cos(cub->player->rotation_angle - PI_DIV_TWO) * 1
+				, cub->player->y
+				+ sin(cub->player->rotation_angle - PI_DIV_TWO) * 15))
+		{
+			cub->player->x -= cos(cub->player->rotation_angle - PI_DIV_TWO) * 5;
+			cub->player->y += sin(cub->player->rotation_angle - PI_DIV_TWO) * 5;
+		}
+	}
+	else if (key == D_KEY)
+	{
+		if (hit_wall(cub, cub->player->x
+				- cos(cub->player->rotation_angle + PI_DIV_TWO) * 1
+				, cub->player->y
+				+ sin(cub->player->rotation_angle + PI_DIV_TWO) * 15))
+		{
+			cub->player->x -= cos(cub->player->rotation_angle + PI_DIV_TWO) * 5;
+			cub->player->y += sin(cub->player->rotation_angle + PI_DIV_TWO) * 5;
+		}
+	}
 }
 
 static int	hit_wall(t_cub *cub, float x, float y)
